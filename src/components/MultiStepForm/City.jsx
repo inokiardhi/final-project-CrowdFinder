@@ -34,7 +34,6 @@ const City = ({ state, setState, setPage }) => {
                       <i className="fas fa-map-marker-alt"></i> Where is city you
                       live in?
                     </p>
-                    <p>Let people find you greate thoughts</p>
                     <div style={{ width: "85%" }}>
                       <Form.Group className="mb-3" controlId="interest">
                         <Form.Control

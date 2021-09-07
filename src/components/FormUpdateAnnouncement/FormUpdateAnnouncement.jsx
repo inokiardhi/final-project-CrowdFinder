@@ -5,7 +5,7 @@ import { InputGroup, FormControl, Button, Form, Card } from 'react-bootstrap'
 import { getCurrentUser } from '../../redux/action/user';
 
 function FormUpdateAnnouncement(props) {
-    const {title, interest, content, image, onClick} = props;
+    const { title, interest, content, image, onClick } = props;
     const [img, setImg] = useState(null);
     const [error, setError] = useState(false);
 

@@ -8,13 +8,15 @@ import { TiLocation } from 'react-icons/ti';
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { followUser } from "../../redux/action/followUser"
+import { getCurrentUser } from "../../redux/action/user"
 
 function AvatarComunity(props) {
     const dispatch = useDispatch()
-
+    const { userbyid } = useSelector((state) => state.getUserById)
     const handleFollowUser = async (e) => {
         e.preventDefault();
-        dispatch(followUser(props.idUser))
+        await dispatch(followUser(props.idUser))
+        await dispatch(getCurrentUser())
     }
 
     return (
@@ -25,9 +27,11 @@ function AvatarComunity(props) {
             </div>
             <Card.Body className='title'>
                 <h4>{props.comunityname}</h4>
-                <div className="comunity-badge my-2">
+                {userbyid.role === "community" && <div className="comunity-badge my-2">
                     <h5>Comunity</h5>
                 </div>
+                }
+
                 <h5><TiLocation />{props.location}</h5>
             </Card.Body>
 

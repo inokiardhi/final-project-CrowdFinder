@@ -334,19 +334,19 @@ export default function MultiStep() {
                 <Container>
                   <div
                     className="content-interest"
-                    style={{width: "60rem" }}
+                    style={{ width: "60rem" }}
                   >
                     <Form className="interest mx-5 my-5 justify-content-center">
                       <Row>
-                      <h2 className="mt-3">What topic are you interesting in?</h2>
-                      <p className="mb-3" style={{ fontSize: "20px" }}>
-                        There a lot of people and community waiting you! Let's
-                        be part of them
-                      </p>
-                      <p className="mb-3" style={{ fontSize: "18px" }}>
-                        We will find you the communities and pople which fit
-                        with your interesting topics. So let's find them
-                      </p>
+                        <h2 className="mt-3">What topic are you interesting in?</h2>
+                        <p className="mb-3" style={{ fontSize: "20px" }}>
+                          There a lot of people and community waiting you! Let's
+                          be part of them
+                        </p>
+                        <p className="mb-3" style={{ fontSize: "18px" }}>
+                          We will find you the communities and pople which fit
+                          with your interesting topics. So let's find them
+                        </p>
                       </Row>
                       <Row>
                         {/* {Coll 1} */}
@@ -374,10 +374,10 @@ export default function MultiStep() {
                                   form.interest.length < 5
                                     ? false
                                     : form.interest.filter(
-                                        (item) => item !== `${type}`
-                                      ).length === 5
-                                    ? true
-                                    : false
+                                      (item) => item !== `${type}`
+                                    ).length === 5
+                                      ? true
+                                      : false
                                 }
                               />
                             </div>
@@ -403,10 +403,10 @@ export default function MultiStep() {
                                     form.interest.length < 5
                                       ? false
                                       : form.interest.filter(
-                                          (item) => item !== `${type}`
-                                        ).length === 5
-                                      ? true
-                                      : false
+                                        (item) => item !== `${type}`
+                                      ).length === 5
+                                        ? true
+                                        : false
                                   }
                                 />
                               </div>
@@ -438,10 +438,10 @@ export default function MultiStep() {
                                   form.interest.length < 5
                                     ? false
                                     : form.interest.filter(
-                                        (item) => item !== `${type}`
-                                      ).length === 5
-                                    ? true
-                                    : false
+                                      (item) => item !== `${type}`
+                                    ).length === 5
+                                      ? true
+                                      : false
                                 }
                               />
                             </div>
