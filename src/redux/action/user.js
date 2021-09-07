@@ -41,15 +41,19 @@ export const getCurrentUser = () => {
   }
 }
 
-export const updateUser = (interest, fullname, username, email, location, image, bio) => {
+export const updateUser = (fullname,
+  location,
+  image,
+  background_image,
+  interest,
+  bio) => {
   return {
     type: PUT_UPDATE_USER_PROFILE_BEGIN,
-    interest,
     fullname,
-    username,
-    email,
     location,
     image,
+    background_image,
+    interest,
     bio,
   }
 }

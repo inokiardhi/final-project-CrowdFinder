@@ -7,7 +7,7 @@ function* userUpdate(action) {
     const { interest, fullname, username, email, location, image, bio } = action;
     try {
         const res = yield axios.put(
-            `https://crowdfinder.gabatch13.my.id/api/user/me`,
+            `https://crowdfinder.gabatch13.my.id/api/user`,
             { interest, fullname, username, email, location, image, bio },
             { headers: { Authorization: `Bearer ${Token}` } }
         );

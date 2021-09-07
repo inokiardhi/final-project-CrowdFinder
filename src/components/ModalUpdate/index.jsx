@@ -1,12 +1,54 @@
-import React from "react"
-import { Button, Form, Modal } from "react-bootstrap"
+import React, { useState } from "react"
+import { Button, Form, Modal, Row, Col } from "react-bootstrap"
+import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
+import { getCurrentUser, updateUser } from "../../redux/action/user"
 
 function ModalUpdate(props) {
     const user = useSelector((state) => state.userData.user)
+    const dispatch = useDispatch()
+    const [form, setForm] = useState({
+        fullname: user.fullname,
+        location: user.location,
+        image: "",
+        background_image: "",
+        interest: [],
+        bio: user.bio
+    });
+
+    const changeForm = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const changeInterest = (e) => {
+        if (form.interest.length <= 5) {
+            setForm({
+                ...form,
+                interest: form.interest.find((item) => item === e.target.value)
+                    ? form.interest.filter((item) => item !== e.target.value)
+                    : [...form.interest, e.target.value],
+            });
+        }
+    };
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        await dispatch(updateUser(
+            form.fullname,
+            form.location,
+            form.image,
+            form.background_image,
+            form.interest,
+            form.bio
+        ));
+        await dispatch(getCurrentUser())
+    };
+
+    console.log("form", form);
+
     return (
         <div>
-            <Modal show={props.show} fullscreen={props.fullscreen} onHide={props.hide} aria-labelledby="contained-modal-title-vcenter"
+            <Modal size="lg" show={props.show} fullscreen={props.fullscreen} onHide={props.hide} aria-labelledby="contained-modal-title-vcenter"
                 centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
@@ -14,203 +56,156 @@ function ModalUpdate(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>FullName</Form.Label>
-                        <Form.Control type="text" placeholder={user.fullname} />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Location</Form.Label>
-                        <Form.Control type="text" placeholder={user.location} />
-                    </Form.Group>
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Image Profile</Form.Label>
-                        <Form.Control type="file" />
-                    </Form.Group>
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Background Image</Form.Label>
-                        <Form.Control type="file" />
-                    </Form.Group>
-                    <Form.Group className="my-3" controlId="exampleForm.ControlTextarea1">
+                    <Form onSubmit={handleUpdate} >
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>FullName</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={user.fullname}
+                                value={form.fullname}
+                                name="fullname"
+                                onChange={(e) => changeForm(e)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Location</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={user.location}
+                                value={form.location}
+                                name="location"
+                                onChange={(e) => changeForm(e)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Image Profile</Form.Label>
+                            <Form.Control type="file" />
+                        </Form.Group>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Background Image</Form.Label>
+                            <Form.Control type="file" />
+                        </Form.Group>
                         <Form.Label>Interest Topic Edit</Form.Label>
-                        {/* {Coll 1} */}
-                        <div className="p-3 rounded border d-flex justify-content-between ">
-                            <div>
-                                <div className="Cekbox">
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="sports"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            sports
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="finance"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            finance
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="automotive"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            automotivee
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="politics"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            politics
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="design"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            design
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* {Col 2} */}
+                        <Form.Group className="my-2 border p-2" controlId="exampleForm.ControlTextarea1">
 
-                            <div>
-                                <div className="Cekbox">
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="cook"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            cook
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="tech"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            tech
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="religion"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            religion
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="art"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            art
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="music"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            music
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* {Coll 3} */}
+                            <Row>
+                                {/* {Coll 1} */}
+                                <Col>
+                                    {[
+                                        "sports",
+                                        "finance",
+                                        "automotive",
+                                        "politics",
+                                        "design",
+                                    ].map((type) => (
+                                        <div
+                                            key={`default-${type}`}
+                                            className="mb-2"
+                                            style={{ fontSize: "18px" }}
+                                        >
+                                            <Form.Check
+                                                type="checkbox"
+                                                placeholder="enter your interest"
+                                                id={`default-${type}`}
+                                                label={` ${type}`}
+                                                value={`${type}`}
+                                                onChange={(e) => changeInterest(e)}
+                                                disabled={
+                                                    form.interest.length < 5
+                                                        ? false
+                                                        : form.interest.filter(
+                                                            (item) => item !== `${type}`
+                                                        ).length === 5
+                                                            ? true
+                                                            : false
+                                                }
+                                            />
+                                        </div>
+                                    ))}
+                                </Col>
 
-                            <div>
-                                <div className="Cekbox">
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="business"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            business
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="psychology"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            psychology
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="tourism"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            tourism
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="bike"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            bike
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value="science"
-                                        />
-                                        <label className="form-check-label" for="flexCheckDefault">
-                                            science
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Form.Group>
-                    <Form.Group className="my-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Bio</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
+                                <Col>
+                                    {["cook", "tech", "religion", "art", "music"].map(
+                                        (type) => (
+                                            <div
+                                                key={`default-${type}`}
+                                                className="mb-2"
+                                                style={{ fontSize: "18px" }}
+                                            >
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    placeholder="enter your interest"
+                                                    id={`default-${type}`}
+                                                    label={` ${type}`}
+                                                    value={`${type}`}
+                                                    onChange={(e) => changeInterest(e)}
+                                                    disabled={
+                                                        form.interest.length < 5
+                                                            ? false
+                                                            : form.interest.filter(
+                                                                (item) => item !== `${type}`
+                                                            ).length === 5
+                                                                ? true
+                                                                : false
+                                                    }
+                                                />
+                                            </div>
+                                        )
+                                    )}
+                                </Col>
+
+                                <Col>
+                                    {[
+                                        "business",
+                                        "psychology",
+                                        "tourism",
+                                        "bike",
+                                        "science",
+                                    ].map((type) => (
+                                        <div
+                                            key={`default-${type}`}
+                                            className="mb-2"
+                                            style={{ fontSize: "18px" }}
+                                        >
+                                            <Form.Check
+                                                type="checkbox"
+                                                placeholder="enter your interest"
+                                                id={`default-${type}`}
+                                                label={` ${type}`}
+                                                value={`${type}`}
+                                                onChange={(e) => changeInterest(e)}
+                                                disabled={
+                                                    form.interest.length < 5
+                                                        ? false
+                                                        : form.interest.filter(
+                                                            (item) => item !== `${type}`
+                                                        ).length === 5
+                                                            ? true
+                                                            : false
+                                                }
+                                            />
+                                        </div>
+                                    ))}
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                        <Form.Group className="my-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Bio</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={3}
+                                value={form.bio}
+                                name="bio"
+                                onChange={(e) => changeForm(e)}
+                            />
+                        </Form.Group>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={props.action}> Save</Button>
+                    <Button onClick={handleUpdate}> Save</Button>
                     <Button variant='secondary' onClick={props.cancel}> Cancel</Button>
                 </Modal.Footer>
+
             </Modal>
         </div>
     )
