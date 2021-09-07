@@ -31,7 +31,7 @@ function* postComments(actions) {
         // yield console.log("ini masuk", res.data.data)
         yield put({
             type: POST_COMMENT_SUCCESS,
-            payload: res.data.data
+            payload: res.data
         });
     } catch (err) {
         yield put({

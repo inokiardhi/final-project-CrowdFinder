@@ -23,7 +23,7 @@
 }
 
 .font-size {
-    color: #828282;
+    color: #454545;
     font-weight: 400;
     text-align: justify;
     font-size: 14px;
@@ -137,10 +137,10 @@
 }
 
 .btnStyle-largeCard {
-    position: absolute;
+    /* position: absolute;
     top: -2.7rem;
     left: 47.9rem;
-    z-index: 10;
+    z-index: 10; */
 
 }
 

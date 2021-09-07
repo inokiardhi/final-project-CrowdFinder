@@ -19,7 +19,8 @@ const comments = (state = initialState, action) => {
         case GET_COMMENT_SUCCESS:
             return {
                 ...state,
-                listComment: [...payload, ...state.listComment],
+                // listComment: [...payload.reverse(), ...state.listComment],
+                listComment: [...payload.reverse(), ...state.listComment],
                 loading: false,
                 error: null,
             };
