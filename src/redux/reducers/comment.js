@@ -20,7 +20,7 @@ const comments = (state = initialState, action) => {
             return {
                 ...state,
                 // listComment: [...payload.reverse(), ...state.listComment],
-                listComment: [...payload.reverse(), state.listComment],
+                listComment: [...payload.reverse(), ...state.listComment],
                 loading: false,
                 error: null,
             };
@@ -38,7 +38,7 @@ const comments = (state = initialState, action) => {
         case POST_COMMENT_SUCCESS:
             return {
                 ...state,
-                listComment: [ ...state.listComment, payload],
+                listComment: [payload, ...state.listComment],
                 loading: false,
                 error: null,
             };

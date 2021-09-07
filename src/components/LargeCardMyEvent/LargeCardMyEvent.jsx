@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactLoading from 'react-loading';
 import useOnClickOutside from "./useOnClickOutside";
@@ -11,6 +11,7 @@ import { putLike } from "../../redux/action/like";
 import { deletePost, getPost } from "../../redux/action/post";
 import ReactTimeAgo from 'react-time-ago'
 import { useParams } from "react-router";
+
 
 
 function LargeCardMyEvent(props) {
@@ -31,20 +32,28 @@ function LargeCardMyEvent(props) {
     // const {id} = useParams(idPost)
     // console.log("ini id",id)
 
-    const [state, setState] = useState({
-        contentCard: contentCard,
-        image: image,
-        time: time,
-        interest: interest,
-        location: location,
-        like: like,
-        comment: comment,
-        userName: userName,
-        idPost: idPost,
-    })
+    // const [state, setState] = useState({
+    //     contentCard: contentCard,
+    //     image: image,
+    //     time: time,
+    //     interest: interest,
+    //     location: location,
+    //     like: like,
+    //     comment: comment,
+    //     userName: userName,
+    //     idPost: idPost,
+    // });
+
+    const [listCommentState, setListCommentState] = useState([])
 
     const dispatch = useDispatch();
-    const { listComment, loading } = useSelector((state) => state.comments);
+    const { listComment, loading } = useSelector((state) => state.comments, shallowEqual);
+
+    useEffect(() => {
+        setListCommentState([
+            ...listComment
+        ])
+    }, [listComment]);
 
     useEffect(() => {
         dispatch(getComment(idPost));
@@ -67,13 +76,14 @@ function LargeCardMyEvent(props) {
     const handlePostComment = async (e) => {
         e.preventDefault();
         await dispatch(postComment(idPost, body));
-        dispatch(getComment(idPost))
+        // await dispatch(getComment(idPost))
     };
 
     //delete comment======================================
     const handleDeleteComment = async (idCommentDel) => {
-        await dispatch(deleteComment(idCommentDel));
-        dispatch(getComment(idPost))
+        await dispatch(deleteComment(idCommentDel, idPost));
+        
+        // await dispatch(getComment(idPost))
     }
 
 
@@ -111,7 +121,7 @@ function LargeCardMyEvent(props) {
 
     // console.log('likes', likes)
     // console.log('body gaes', body)
-    // console.log('listcomment', listComment)
+    console.log('listcomment state', listCommentState)
 
     return (
         <>
@@ -171,7 +181,7 @@ function LargeCardMyEvent(props) {
                             <p className="font-size">
                                 {contentCard}
                             </p>
-                            <img className="imageSize" src={image} alt="" />
+                            <img className="imageSize" src={`https://crowdfinder.gabatch13.my.id/api${image}`} alt="" />
                         </div>
 
                         <div className="btnGroup d-inline-flex">
@@ -206,17 +216,16 @@ function LargeCardMyEvent(props) {
                         {/* <div className="commentCard py-3 text-center" style={{ fontWeight: '400', fontSize: '16px' }}>
                             <Link className="text-decoration-none text-secondary">Load more comment</Link>
                         </div> */}
-
-                        {listComment.length > 0 && listComment?.filter((item) => item.post_id === idPost).map((item, idx) => (
+                        {listCommentState.length > 0 && listCommentState?.filter((item) => item.post_id === idPost).map((item, idx) => (
                             <div key={idx} className="commentCard py-3 px-3">
                                 <div className="d-flex mb-2 fontCircular" style={{ fontWeight: '450', fontSize: '18px' }}>
-                                    <div className="flex-grow-1" >{item.user_id.fullname}</div>
-                                    <div style={{ color: '#828282' }}><ReactTimeAgo date={item.createdAt} locale="en-US" /></div>
+                                    <div className="flex-grow-1" >{item?.user_id?.fullname}</div>
+                                    <div style={{ color: '#828282' }}><ReactTimeAgo date={item?.createdAt || Date.now()} locale="en-US" /></div>
                                 </div>
                                 <div className="d-flex align-items-center">
-                                    <div className="flex-grow-1" style={{ fontWeight: '400', fontSize: '16px' }}>{item.content}</div>
-                                    {idUser === item.user_id.id &&
-                                        <label onClick={() => handleDeleteComment(item.id)}>
+                                    <div className="flex-grow-1" style={{ fontWeight: '400', fontSize: '16px' }}>{item?.content}</div>
+                                    {idUser === item?.user_id?.id &&
+                                        <label onClick={() => handleDeleteComment(item?.id)}>
                                             <i className="fa fa-trash fa-2x"></i>
                                         </label>
                                     }

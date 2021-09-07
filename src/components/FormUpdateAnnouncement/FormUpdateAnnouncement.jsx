@@ -25,15 +25,23 @@ function FormUpdateAnnouncement(props) {
     // }, [dispatch])
 
     const [state, setState] = useState({
-        interest : postbyid.interest,
-        content : postbyid.content,
-        image : postbyid.image,
+        interest : null,
+        content : null,
+        image : null,
     })
+
+    useEffect(() => {
+        setState({
+            interest : postbyid.interest,
+            content : postbyid.content,
+            image : postbyid.image,
+        })
+    },[postbyid])
 
     useEffect(() => {
         dispatch(getCurrentUser());
         dispatch(getPostById(1, idPost));
-    }, [postbyid]);
+    }, [dispatch]);
 
     const handleUpdateAnnouncement = (e) => {
         e.preventDefault();
