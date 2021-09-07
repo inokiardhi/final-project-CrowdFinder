@@ -27,6 +27,8 @@ const Signin = () => {
     return <Link to="/home" />;
   }
 
+  console.log("signIn", )
+
   return (
     <div className="container-Signin">
       <div className="d-flex">
@@ -44,22 +46,22 @@ const Signin = () => {
                 src={PlayStore}
                 alt="playstore"
                 width="175"
-                height="60"
-                className="d-inline-block"
+                height="59"
+                className="d-inline-block align-top"
               />
               <img
                 src={AppStore}
                 alt="appstore"
                 width="175"
-                height="62"
-                className="d-inline-block marginTop"
+                height="65"
+                className="d-inline-block align-top"
               />
             </div>
           </div>
         </div>
 
-        <div className="Signinbg-right justify-content-center w-100">
-          <div className="Right-signin d-flex justify-content-center">
+        <div className="Signinbg-right w-100">
+          <div className="Right-signin d-flex">
             <div className="box-signin my-auto" style={{ width: "25rem" }}>
               <Formik
                 validationSchema={schema}
@@ -81,9 +83,9 @@ const Signin = () => {
                   isValid,
                   errors,
                 }) => (
-                  <Form style={{ height: "33rem"}} noValidate onSubmit={handleSubmit}>
-                    <div className="justify-content-center">
-                      <Form.Group className="d-flex mt-3 mb-2 justify-content-center">
+                  <Form className="align-center" style={{ height: "33rem"}} noValidate onSubmit={handleSubmit}>
+                    <div>
+                      <Form.Group className="d-flex mt-3 mb-4 justify-content-center">
                         <h2 style={{ fontSize: "28px" }} className="mt-auto">Login</h2>
                       </Form.Group>
 
@@ -91,7 +93,7 @@ const Signin = () => {
                         className="mb-3 mx-4"
                         controlId="validataionFOrmik03"
                       >
-                        <Form.Label style={{ fontSize: "18px" }}>Email address</Form.Label>
+                        <label className="d-flex justify-content-rigth mb-3" style={{ fontSize: "18px" }}>Email address</label>
                         <Form.Control
                           name="email"
                           onBlur={handleBlur}
@@ -99,7 +101,7 @@ const Signin = () => {
                           type="text"
                           value={values.email}
                           isValid={touched.email && !errors.email}
-                          isInValid={!!errors.email}
+                          // isInValid={!!errors.email}
                           placeholder="email@example.com"
                         />
                         {<p style={{ color: "red", fontSize: "15px" }}>{errors.email && touched.email && errors.email}</p>}
@@ -109,7 +111,7 @@ const Signin = () => {
                         className="mb-3 mx-4"
                         controlId="formBasicPassword"
                       >
-                        <Form.Label style={{ fontSize: "18px" }}>Password</Form.Label>
+                        <label className="d-flex justify-content-rigth mb-3" style={{ fontSize: "18px" }}>Password</label>
                         <Form.Control
                           name="password"
                           onBlur={handleBlur}
@@ -117,8 +119,8 @@ const Signin = () => {
                           type="password"
                           value={values.password}
                           isValid={touched.password && !errors.password}
-                          isInValid={!!errors.password}
-                          placeholder="Password"
+                          // isinvalid={!!errors.password}
+                          placeholder="enter you're password here"
                         />
                         {<p style={{ color: "red", fontSize: "15px" }}>{errors.password && touched.password && errors.password}</p>}
                       </Form.Group>
