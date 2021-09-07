@@ -99,7 +99,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   justify-content: center;
-  width: 40rem;
+  /* width: 40rem; */
 }
 
 /* =======================================================Interest===================================== */
@@ -142,8 +142,8 @@
 .yes {
   position: absolute;
   top: 50%;
-  left: 45%;
+  left: 50%;
   transform: translate(-50%, -50%);
   justify-content: center;
-  width: 50rem;
+  /* width: 50rem; */
 }

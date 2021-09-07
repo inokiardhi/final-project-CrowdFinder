@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import FormUpdateAnnouncement from '../../components/FormUpdateAnnouncement/FormUpdateAnnouncement'
 import { useParams } from 'react-router'
-import { getCurrentUser } from '../../redux/action/user'
-import { getPostById } from '../../redux/action/postById'
+import { getPost } from '../../redux/action/post'
 
 function FormUpdateAnnouncementPage() {
     let { idPost } = useParams()
@@ -11,12 +10,29 @@ function FormUpdateAnnouncementPage() {
     // const { listPost, loading } = useSelector((state) => state.posts);
     // const idPostUPdate = listPost?.filter(post => post?.id === idPost)
 
-    // useEffect(() => {
-    //     dispatch(getCurrentUser());
-    //     dispatch(getPostById(1, idPost));
-    // }, [dispatch]);
+    const idPostUPdate = listPost?.filter(post => post?.id === idPost)
+    const dataupdate = listPost
 
-    console.log("data dari halaman update", idPost)
+
+    console.log("data dari halaman update", idPostUPdate)
+    const [state, setState] = useState({
+        content: "",
+        interest: "",
+        image: ""
+    });
+
+    useEffect(() => {
+        dispatch(getPost())
+    }, [dispatch])
+
+
+    const handleUpdateAnnouncement = (e) => {
+        e.preventDefault();
+        const data = state;
+        dispatch(updateAnnouncement(data, idPost));
+    }
+
+    console.log(state)
 
     return (
         <>

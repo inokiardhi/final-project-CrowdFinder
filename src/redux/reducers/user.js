@@ -9,7 +9,6 @@ import {
   GET_USER_SUCCESS,
   GET_USER_FAIL,
   LOGOUT,
-  GET_USER_ID,
   UPDATE_USER_PROFILE,
   UPDATE_USER_PROFILE_BEGIN,
 } from "../action/type";

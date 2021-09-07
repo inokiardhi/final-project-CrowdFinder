@@ -55,8 +55,8 @@ const Header = () => {
       <div className="header">
         <Navbar >
           <Container>
-            <Link to="/home"><Navbar.Brand className="header-logo">
-              <LogoCrowdFinder />
+            <Link to="/home" style={{marginTop:"2rem"}}><Navbar.Brand className="header-logo">
+              <LogoCrowdFinder/>
             </Navbar.Brand></Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="navbarScroll" className="d-flex justify-content-around">
@@ -74,20 +74,20 @@ const Header = () => {
                     </Form>
                   </Nav>
                   {/* {} */}
-                  <Nav className="Feed-Notification">
-                    <Nav.Link>
+                  <Nav className="Feed-Notification mx-5">
+                    <Nav.Link className="mx-5">
                       <Link
                         to="/home"
                         style={{ textDecoration: "none", color: "black" }}
                       >
-                        <i class="fa fa-home fa-lg"></i>
+                        <i class="fa fa-home fa-lg" style={{marginLeft:"1rem"}}></i>
                         <Col>
                           <p>Feeds</p>
                         </Col>
                       </Link>
                     </Nav.Link>
                     <Nav.Link href="#">
-                      <i class="fa fa-bell fa-lg"></i>
+                      <i class="fa fa-bell fa-lg"style={{marginLeft:"23px"}}></i>
                       <Col>
                         <p>Notification</p>
                       </Col>
