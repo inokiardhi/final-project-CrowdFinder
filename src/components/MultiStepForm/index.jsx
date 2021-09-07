@@ -121,7 +121,7 @@ export default function MultiStep() {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            placeholder="Fullname"
+                            placeholder="Jhon Doe"
                             value={form.name}
                             name="fullname"
                             onChange={(e) => changeForm(e)}
@@ -136,7 +136,7 @@ export default function MultiStep() {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            placeholder="Username"
+                            placeholder="JhonDoe12"
                             value={form.username}
                             name="username"
                             onChange={(e) => changeForm(e)}
@@ -365,10 +365,10 @@ export default function MultiStep() {
                                   form.interest.length < 5
                                     ? false
                                     : form.interest.filter(
-                                        (item) => item !== `${type}`
-                                      ).length === 5
-                                    ? true
-                                    : false
+                                      (item) => item !== `${type}`
+                                    ).length === 5
+                                      ? true
+                                      : false
                                 }
                               />
                             </div>
@@ -394,10 +394,10 @@ export default function MultiStep() {
                                     form.interest.length < 5
                                       ? false
                                       : form.interest.filter(
-                                          (item) => item !== `${type}`
-                                        ).length === 5
-                                      ? true
-                                      : false
+                                        (item) => item !== `${type}`
+                                      ).length === 5
+                                        ? true
+                                        : false
                                   }
                                 />
                               </div>
@@ -429,10 +429,10 @@ export default function MultiStep() {
                                   form.interest.length < 5
                                     ? false
                                     : form.interest.filter(
-                                        (item) => item !== `${type}`
-                                      ).length === 5
-                                    ? true
-                                    : false
+                                      (item) => item !== `${type}`
+                                    ).length === 5
+                                      ? true
+                                      : false
                                 }
                               />
                             </div>

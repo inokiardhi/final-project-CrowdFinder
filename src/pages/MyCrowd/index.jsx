@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import AvatarCard from '../../components/AvatarCard';
 import Hero from '../../components/Hero';
