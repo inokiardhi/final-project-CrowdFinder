@@ -48,7 +48,7 @@ function LargeCardMyEvent(props) {
 
     useEffect(() => {
         dispatch(getComment(idPost));
-    }, [dispatch]);
+    }, []);
 
     //get current user and user id====================================
     const { user } = useSelector((state) => state.userData);
@@ -66,13 +66,14 @@ function LargeCardMyEvent(props) {
 
     const handlePostComment = async (e) => {
         e.preventDefault();
-        dispatch(postComment(idPost, body));
+        await dispatch(postComment(idPost, body));
+        dispatch(getComment(idPost))
     };
 
     //delete comment======================================
     const handleDeleteComment = async (idCommentDel) => {
         await dispatch(deleteComment(idCommentDel));
-        await dispatch(getPost)
+        dispatch(getComment(idPost))
     }
 
 
@@ -157,7 +158,7 @@ function LargeCardMyEvent(props) {
                             </label>
                         </div>
                         <label
-                            style={{ fontSize: "16px", fontWeight: "400", color: "#4F4F4F" }}
+                            style={{ fontSize: "16px", fontWeight: "400", color: "#828282" }}
                         >
                             <ReactTimeAgo date={time} locale="en-US" />
                         </label>
@@ -210,7 +211,7 @@ function LargeCardMyEvent(props) {
                             <div key={idx} className="commentCard py-3 px-3">
                                 <div className="d-flex mb-2 fontCircular" style={{ fontWeight: '450', fontSize: '18px' }}>
                                     <div className="flex-grow-1" >{item.user_id.fullname}</div>
-                                    <div style={{ color: '#828282' }}>3h ago</div>
+                                    <div style={{ color: '#828282' }}><ReactTimeAgo date={item.createdAt} locale="en-US" /></div>
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <div className="flex-grow-1" style={{ fontWeight: '400', fontSize: '16px' }}>{item.content}</div>

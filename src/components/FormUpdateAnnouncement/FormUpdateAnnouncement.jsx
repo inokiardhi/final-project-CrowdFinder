@@ -3,33 +3,71 @@ import { useSelector, useDispatch } from 'react-redux';
 // import './index.css'
 import { InputGroup, FormControl, Button, Form, Card } from 'react-bootstrap'
 import { getCurrentUser } from '../../redux/action/user';
+import { useParams } from 'react-router';
+import { getPostById } from '../../redux/action/postById';
+import { updateAnnouncement } from '../../redux/action/announcement';
 
 function FormUpdateAnnouncement(props) {
-    const {title, interest, content, image, onClick} = props;
+    const { interest, content, image, onClick} = props;
     const [img, setImg] = useState(null);
     const [error, setError] = useState(false);
-
-    const imageHandler = (e) => {
-        const selected = e.target.files[0];
-        const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
-        if (selected && allowedTypes.includes(selected.type)) {
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                setImg(reader.result);
-            };
-            reader.readAsDataURL(selected);
-        } else {
-            setError(true);
-        }
-    };
-
-    //getUserData=============================================
     const dispatch = useDispatch();
-    const userInterest = useSelector((state) => state.userData.user.interest);
+   
+    let { idPost } = useParams()
+
+   
+
+    //getPost by ID ==================================
+    const {postbyid} = useSelector((state) => state.postsId)
+    
+    // useEffect(() => {
+       
+    // }, [dispatch])
+
+    const [state, setState] = useState({
+        interest : postbyid.interest,
+        content : postbyid.content,
+        image : postbyid.image,
+    })
 
     useEffect(() => {
         dispatch(getCurrentUser());
-    }, [dispatch]);
+        dispatch(getPostById(1, idPost));
+    }, [postbyid]);
+
+    const handleUpdateAnnouncement = (e) => {
+        e.preventDefault();
+        const data = state;
+        const formData = new FormData();
+        dispatch(updateAnnouncement(formData, idPost));
+        if(state.image){
+            formData.append('image', data.image, data.image.name);
+        }
+        formData.append('content',data.content);
+        formData.append('interest', data.interest);
+    }
+
+    console.log('ini dari inoki', postbyid)
+    console.log('ini dari inoki2', state)
+
+    //imageHandler ============================================
+    // const imageHandler = (e) => {
+    //     const selected = e.target.files[0];
+    //     const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+    //     if (selected && allowedTypes.includes(selected.type)) {
+    //         let reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setImg(reader.result);
+    //         };
+    //         reader.readAsDataURL(selected);
+    //     } else {
+    //         setError(true);
+    //     }
+    // };
+
+    //getUserData=============================================
+    const userInterest = useSelector((state) => state.userData.user.interest);
+
 
     return (
         <>
@@ -41,7 +79,7 @@ function FormUpdateAnnouncement(props) {
                         <div className="headText-main d-flex mb-3">
                             <p className="m-0 flex-grow-1" style={{ fontSize: '18px', fontWeight: '400' }}>What would you like to change?</p>
                             {/* <div className="headText-badge rounded-pill ms-3">Design</div> */}
-                            <select className="MyBadge flex-end" onChange={interest}>
+                            <select className="MyBadge flex-end" value={state.interest} onChange={(e) => setState({ ...state, interest: e.target.value })}>
                                 <option></option>
                                 {userInterest?.map((item, index) => (
                                     <option key={index} value={item}>{item}</option>
@@ -53,7 +91,8 @@ function FormUpdateAnnouncement(props) {
                                 as="textarea"
                                 placeholder="Type something..."
                                 rows={3}
-                                onChange={content}
+                                onChange={(e) => setState({ ...state, content: e.target.value })}
+                                value={state.content}
                             />
                         </InputGroup>
 
@@ -64,7 +103,7 @@ function FormUpdateAnnouncement(props) {
                                 name="image-upload"
                                 id="input"
                                 accept="image/*"
-                                onChange={imageHandler}
+                                onChange={(e) => setState({ ...state, image: e.target.files[0] })}
                             />
 
                             {img ? (
@@ -81,7 +120,7 @@ function FormUpdateAnnouncement(props) {
                             )}
                         </Card>
                         <div className="d-flex justify-content-end">
-                            <Button className="px-5" variant="secondary" onClick={onClick}>Update</Button>
+                            <Button className="px-5" variant="secondary" onClick={handleUpdateAnnouncement}>Update</Button>
                         </div>
                     </div>
                 </div>

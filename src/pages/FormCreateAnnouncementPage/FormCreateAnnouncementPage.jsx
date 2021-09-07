@@ -13,22 +13,25 @@ function FormCreateAnnouncementPage() {
     const [state, setState] = useState({
         content : "",
         interest : "",
-        image : "",
+        image : null,
     });
-
-    let formData = new FormData();
 
     const imageFile = (e) => {
         console.log(e.target.files[0]);
-        formData.append('file', e.target.files[0]);
-        setState({...state, image: formData});
+        setState({...state, image: e.target.files[0]});
         
     }
 
     const handlePostAnnouncement = async (e) => {
         e.preventDefault();
         const data = state;
-         await dispatch(postAnnouncement(data))
+        let formData = new FormData();
+        dispatch(postAnnouncement(formData))
+        if(state.image){
+            formData.append('image', data.image, data.image.name);
+        }
+        formData.append('content',data.content);
+        formData.append('interest', data.interest);
         //  await window.location.replace("/home")
     };
 

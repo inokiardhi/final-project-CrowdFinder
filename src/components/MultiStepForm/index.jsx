@@ -324,11 +324,11 @@ export default function MultiStep() {
               <div className="choose-interest">
                 <Container>
                   <div
-                    className="content-interest justify-content-center"
-                    style={{ height: "35rem", width: "60rem" }}
+                    className="content-interest "
+                    // style={{ height: "35rem", width: "60rem" }}
                   >
-                    <Form className="interest mx-5 my-5 justify-content-center">
-                      <h3 className="my-3">
+                  <div className="mt-5">
+                  <h3 className="">
                         What topic are you interesting in?
                       </h3>
                       <p className="mb-4" style={{ fontSize: "20px" }}>
@@ -339,6 +339,9 @@ export default function MultiStep() {
                         We will find you the communities and pople which fit
                         with your interesting topics. So let's find them
                       </p>
+                  </div>
+                    <Form className="interest mx-5 my-5 justify-content-center">
+                      
                       <Row>
                         {/* {Coll 1} */}
                         <Col>
