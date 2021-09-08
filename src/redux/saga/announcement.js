@@ -10,7 +10,7 @@ const Token = localStorage.getItem('user');
 function* PostAnnouncements(actions) {
     const { data } = actions;
     try {
-        const res = yield axios.post(`${BASE_URL_CROWDFINDER}/post/announcement`, data, { headers: { Authorization: `Bearer ${Token}`} });
+        const res = yield axios.post(`${BASE_URL_CROWDFINDER}/post/announcement`, data, { headers: { Authorization: `Bearer ${Token}` } });
         yield put({
             type: POST_ANNOUNCEMENT_SUCCESS,
             payload: res.data,
