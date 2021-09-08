@@ -1,0 +1,13 @@
+@media(max-width:1000px) {
+    .search-bar {
+        width: 100%;
+        max-height: 100%;
+        margin-left: 0;
+    }
+
+    .avatar-drop {
+        margin-top: 50px;
+
+    }
+
+}

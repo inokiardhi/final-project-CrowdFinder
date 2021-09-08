@@ -30,19 +30,17 @@ function ComunityProfile(props) {
         setIsAbout(index);
     }
 
-
     return (
         <Container>
             <div className="Profile-page">
                 <Hero />
                 <Row>
                     <Col xl={4}>
-                        <AvatarComunity idUser={postbyid[0].user_id.id} comunityname={postbyid[0].user_id.username} photo={`https://ui-avatars.com/api/?name=${postbyid[0].user_id.fullname}&background=random&length=1&rounded=true&size=35`} />
+                        <AvatarComunity idUser={userbyid.id} location={userbyid.location} comunityname={userbyid.fullname} photo={`https://ui-avatars.com/api/?name=${userbyid.fullname}&background=random&length=1&rounded=true&size=35`} />
                     </Col>
                     <Col xl={1}></Col>
                     <Col>
                         <div className="button-menu d-flex">
-
                             <h5 className={`${isAbout === 2 ? "is-active" : "not-active"}`} onClick={() => toggle(2)} >About</h5>
                             <h5 className={`${isAbout === 1 ? "is-active" : "not-active"}`} onClick={() => toggle(1)} >Events</h5>
                             <h5 className={`${isAbout === 3 ? "is-active" : "not-active"}`} onClick={() => toggle(3)} >Post</h5>

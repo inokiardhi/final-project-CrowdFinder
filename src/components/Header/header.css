@@ -4,6 +4,7 @@
     height: 100%;
     justify-content: center;
     top: 50%;
+    font-family: 'Mulish', sans-serif;
 }
 
 .search-bar {
@@ -30,15 +31,13 @@
     border-radius: 50%;
 }
 
-.Feed-Notification {
-    padding-top: 1rem;
-    font-size: 18px;
-    margin-right: 1rem;
-    color: white;
-    justify-content: center;
-}
 
 .Feed-Notification p {
-    margin-top: 10px;
     color: white;
+}
+
+.avatar-drop {
+    padding: 0;
+    width: 61px;
+    height: 80px
 }

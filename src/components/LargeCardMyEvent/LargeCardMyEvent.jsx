@@ -135,7 +135,7 @@ function LargeCardMyEvent(props) {
                     <div className="headText container-fluid d-block mb-2">
 
                         <div ref={ref} className="d-flex justify-content-end m-0 positionRelative">
-                            { idUser === idUserPost && <i className="fa fa-ellipsis-h"
+                            {idUser === idUserPost && <i className="fa fa-ellipsis-h"
                                 onClick={() => toggleDropDown()}
                                 tabIndex="0"></i>
                             }

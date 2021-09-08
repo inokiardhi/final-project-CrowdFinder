@@ -56,6 +56,7 @@ const comments = (state = initialState, action) => {
         case DELETE_COMMENT_SUCCESS:
             return {
                 ...state,
+                listComment: state.listComment.filter((item) => item.id !== action.id),
                 loading: false,
                 error: null,
             };

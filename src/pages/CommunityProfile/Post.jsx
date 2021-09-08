@@ -25,7 +25,7 @@ function Post(props) {
         <div>
             {show ?
                 [
-                    postbyid.length > 0 && posts?.reverse().filter(post => post.type[0] === 'announcement').map((post, idx) => (
+                    postbyid.length > 0 && posts?.reverse().filter(post => post.type === 'announcement').map((post, idx) => (
                         <LargeCardMyEvent
                             key={idx}
                             contentCard={post.content}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import AvatarCard from '../../components/AvatarCard';
 import Hero from '../../components/Hero';
+import ModalUpdate from '../../components/ModalUpdate';
 import { getPostById } from '../../redux/action/postById';
 import { getUser } from '../../redux/action/user';
 
@@ -19,14 +20,25 @@ function MyProfile(props) {
     const user = useSelector((state) => state.userData.user)
     const [isAbout, setIsAbout] = useState(true)
     const dispatch = useDispatch()
+    const [fullscreen, setFullscreen] = useState(true);
+    const [show, setShow] = useState(false);
 
+    function handleShow() {
+        setFullscreen('sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down');
+        setShow(true);
+    }
+    useEffect(() => {
+        dispatch(getPostById(1, user.id))
+    }, [dispatch])
+
+    // console.log("ini user id", user.id)
     return (
         <Container>
             <div className="Profile-page">
                 <Hero />
                 <Row>
                     <Col xl={4}>
-                        <AvatarCard username={user.username} location={user.location} photo={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`} />
+                        <AvatarCard action={handleShow} username={user.fullname} location={user.location} photo={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`} />
                     </Col>
                     <Col xl={1}></Col>
                     <Col>
@@ -38,6 +50,7 @@ function MyProfile(props) {
                         {isAbout ? <About /> : <Activities />}
                     </Col>
                 </Row>
+                <ModalUpdate show={show} hide={() => setShow(false)} fullscreen={fullscreen} cancel={() => setShow(false)} />
             </div>
 
 

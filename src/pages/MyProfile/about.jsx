@@ -1,17 +1,13 @@
 import React from 'react';
-
 import Bio from '../../components/Bio';
 import InterstTopic from '../../components/InterestTopic';
-import ListCardPeople from '../../components/ListCardPeople';
 import { Link } from "react-router-dom"
 import './index.scss'
 import { useSelector } from 'react-redux';
-import { Badge } from 'react-bootstrap';
 import ListCardComunity from '../../ListCardComunity';
 
 function About(props) {
     const user = useSelector((state) => state.userData.user)
-
     return (
         <div>
             <Bio bio={user.bio} />

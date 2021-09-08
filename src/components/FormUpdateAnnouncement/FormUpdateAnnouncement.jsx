@@ -8,7 +8,7 @@ import { getPostById } from '../../redux/action/postById';
 import { updateAnnouncement } from '../../redux/action/announcement';
 
 function FormUpdateAnnouncement(props) {
-    const { interest, content, image, onClick} = props;
+    const { title, interest, content, image, onClick } = props;
     const [img, setImg] = useState(null);
     const [error, setError] = useState(false);
     const dispatch = useDispatch();

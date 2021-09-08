@@ -88,7 +88,7 @@ export default function MultiStep() {
                       src={PlayStore}
                       alt="playstore"
                       width="175"
-                      height="55"
+                      height="59"
                       className="d-inline-block align-top"
                     />
                     <img
@@ -107,7 +107,7 @@ export default function MultiStep() {
                   <div className="box my-auto" style={{ width: "25rem" }}>
                     <Form>
                       <div>
-                        <Form.Group className="d-flex mt-3 justify-content-center">
+                        <Form.Group className="d-flex mt-3 mb-3 justify-content-center">
                           <h2 style={{ fontSize: "28px" }} className="mt-auto">
                             Sign Up
                           </h2>
@@ -116,12 +116,15 @@ export default function MultiStep() {
                           className="mb-3 mx-4"
                           controlId="formBasicFullName"
                         >
-                          <Form.Label style={{ fontSize: "18px" }}>
+                          <label
+                            className="d-flex justify-content-rigth mb-2"
+                            style={{ fontSize: "18px" }}
+                          >
                             Full Name
-                          </Form.Label>
+                          </label>
                           <Form.Control
                             type="text"
-                            placeholder="Fullname"
+                            placeholder="Crowd Finder"
                             value={form.name}
                             name="fullname"
                             onChange={(e) => changeForm(e)}
@@ -131,12 +134,15 @@ export default function MultiStep() {
                           className="mb-3 mx-4"
                           controlId="formBasicUserName"
                         >
-                          <Form.Label style={{ fontSize: "18px" }}>
+                          <label
+                            className="d-flex justify-content-rigth mb-2"
+                            style={{ fontSize: "18px" }}
+                          >
                             Username
-                          </Form.Label>
+                          </label>
                           <Form.Control
                             type="text"
-                            placeholder="Username"
+                            placeholder="crowdfinder"
                             value={form.username}
                             name="username"
                             onChange={(e) => changeForm(e)}
@@ -146,9 +152,12 @@ export default function MultiStep() {
                           className="mb-3 mx-4"
                           controlId="formBasicEmail"
                         >
-                          <Form.Label style={{ fontSize: "18px" }}>
+                          <label
+                            className="d-flex justify-content-rigth mb-2"
+                            style={{ fontSize: "18px" }}
+                          >
                             Email address
-                          </Form.Label>
+                          </label>
                           <Form.Control
                             type="text"
                             placeholder="example@gmail.com"
@@ -161,12 +170,15 @@ export default function MultiStep() {
                           className="mb-3 mx-4"
                           controlId="formBasicPassword"
                         >
-                          <Form.Label style={{ fontSize: "18px" }}>
+                          <label
+                            className="d-flex justify-content-rigth mb-2"
+                            style={{ fontSize: "18px" }}
+                          >
                             Password
-                          </Form.Label>
+                          </label>
                           <Form.Control
                             type="password"
-                            placeholder="Password"
+                            placeholder="enter you're password here"
                             value={form.password}
                             name="password"
                             onChange={(e) => changeForm(e)}
@@ -224,18 +236,15 @@ export default function MultiStep() {
                     className="content-form d-flex justify-content-center"
                     style={{ width: "43rem" }}
                   >
-                    <Form className="mt-5 mb-5" style={{ width: "32rem" }}>
+                    <Form className="mx-3 my-3" style={{ width: "31rem" }}>
                       <h2>Welcome to CrowdFinder</h2>
                       <h3>Helps you to find right community</h3>
-                      <div className="interest ms-3">
+                      <p>Where is city you live in?</p>
+                      <p>Let people find you greate thoughts</p>
+                      <div className="interest">
                         <div className="content-interest justify-content-center">
-                          <p>
-                            <i className="fas fa-map-marker-alt"></i> Where is
-                            city you live in?
-                          </p>
-                          <p>Let people find you greate thoughts</p>
-                          <div style={{ width: "85%" }}>
-                            <Form.Group className="mb-3" controlId="interest">
+                          <div>
+                            <Form.Group className="mb-4" controlId="interest">
                               <Form.Control
                                 type="text"
                                 placeholder="Type a city’s name"
@@ -260,7 +269,7 @@ export default function MultiStep() {
                                     User
                                   </label>
                                 </div>
-                                <div className="mb-2">
+                                <div className="mb-3">
                                   <input
                                     className="form-radio-input"
                                     type="radio"
@@ -324,24 +333,21 @@ export default function MultiStep() {
               <div className="choose-interest">
                 <Container>
                   <div
-                    className="content-interest "
-                    // style={{ height: "35rem", width: "60rem" }}
+                    className="content-interest"
+                    style={{ width: "60rem" }}
                   >
-                  <div className="mt-5">
-                  <h3 className="">
-                        What topic are you interesting in?
-                      </h3>
-                      <p className="mb-4" style={{ fontSize: "20px" }}>
-                        There a lot of people and community waiting you! Let's
-                        be part of them
-                      </p>
-                      <p className="mb-4" style={{ fontSize: "18px" }}>
-                        We will find you the communities and pople which fit
-                        with your interesting topics. So let's find them
-                      </p>
-                  </div>
                     <Form className="interest mx-5 my-5 justify-content-center">
-                      
+                      <Row>
+                        <h2 className="mt-3">What topic are you interesting in?</h2>
+                        <p className="mb-3" style={{ fontSize: "20px" }}>
+                          There a lot of people and community waiting you! Let's
+                          be part of them
+                        </p>
+                        <p className="mb-3" style={{ fontSize: "18px" }}>
+                          We will find you the communities and pople which fit
+                          with your interesting topics. So let's find them
+                        </p>
+                      </Row>
                       <Row>
                         {/* {Coll 1} */}
                         <Col>
@@ -368,10 +374,10 @@ export default function MultiStep() {
                                   form.interest.length < 5
                                     ? false
                                     : form.interest.filter(
-                                        (item) => item !== `${type}`
-                                      ).length === 5
-                                    ? true
-                                    : false
+                                      (item) => item !== `${type}`
+                                    ).length === 5
+                                      ? true
+                                      : false
                                 }
                               />
                             </div>
@@ -397,10 +403,10 @@ export default function MultiStep() {
                                     form.interest.length < 5
                                       ? false
                                       : form.interest.filter(
-                                          (item) => item !== `${type}`
-                                        ).length === 5
-                                      ? true
-                                      : false
+                                        (item) => item !== `${type}`
+                                      ).length === 5
+                                        ? true
+                                        : false
                                   }
                                 />
                               </div>
@@ -432,10 +438,10 @@ export default function MultiStep() {
                                   form.interest.length < 5
                                     ? false
                                     : form.interest.filter(
-                                        (item) => item !== `${type}`
-                                      ).length === 5
-                                    ? true
-                                    : false
+                                      (item) => item !== `${type}`
+                                    ).length === 5
+                                      ? true
+                                      : false
                                 }
                               />
                             </div>
@@ -443,13 +449,10 @@ export default function MultiStep() {
                         </Col>
                       </Row>
                       <div className="mt-3">
-                        <i class="fas fa-exclamation-triangle">
-                          <p>You can choose Max 5 Interest</p>
-                        </i>
-
+                        <p>You can choose Max 5 Interest</p>
                         <div className="button-choseiterest">
                           <Row>
-                            <Col className="mt-3">
+                            <Col className="mt-3 mb-4">
                               <div className="d-flex">
                                 <Button
                                   onClick={() => changeStep("prev")}
@@ -458,7 +461,6 @@ export default function MultiStep() {
                                 >
                                   Prev
                                 </Button>
-                                {/* <Link to="/signin"> */}
                                 <Button
                                   type="submit"
                                   className="ms-3"
@@ -467,7 +469,6 @@ export default function MultiStep() {
                                 >
                                   Next
                                 </Button>
-                                {/* </Link> */}
                               </div>
                             </Col>
                           </Row>
