@@ -30,7 +30,6 @@ function ComunityProfile(props) {
         setIsAbout(index);
     }
 
-
     return (
         <Container>
             <div className="Profile-page">

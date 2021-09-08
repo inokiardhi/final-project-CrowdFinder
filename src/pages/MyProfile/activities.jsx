@@ -30,7 +30,7 @@ function Activities(props) {
         <div>
             {show ?
                 [
-                    postbyid.length > 0 && posts?.reverse().filter(post => post.type[0] === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
+                    postbyid.length > 0 && posts?.reverse().filter(post => post.type === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
                     (<LargeCrowdFinderCard key={idx} userName={post.user_id.username} title={post.title} content={post.content} time={post.createdAt}
                         action={() => {
                             setShow(false)
@@ -40,7 +40,7 @@ function Activities(props) {
                             })
                         }
                         } idPost={post.id} />)),
-                    postbyid.length > 0 && posts?.reverse().filter(post => post.type[0] === 'announcement').map((post, idx) => (
+                    postbyid.length > 0 && posts?.reverse().filter(post => post.type === 'announcement').map((post, idx) => (
                         <LargeCardMyEvent
                             key={idx}
                             contentCard={post.content}

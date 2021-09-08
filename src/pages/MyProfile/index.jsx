@@ -31,6 +31,7 @@ function MyProfile(props) {
         dispatch(getPostById(1, user.id))
     }, [dispatch])
 
+    // console.log("ini user id", user.id)
     return (
         <Container>
             <div className="Profile-page">
