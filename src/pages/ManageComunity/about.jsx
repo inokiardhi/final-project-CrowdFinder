@@ -14,7 +14,7 @@ function About(props) {
 
     return (
         <div>
-            <Bio />
+            <Bio bio={user.bio} />
 
             <hr />
             <div className="myCrowd d-flex justify-content-between py-3">

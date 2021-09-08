@@ -7,7 +7,7 @@ import AvatarCard from '../../components/AvatarCard';
 import Hero from '../../components/Hero';
 import ModalUpdate from '../../components/ModalUpdate';
 import { getPostById } from '../../redux/action/postById';
-import { getUser } from '../../redux/action/user';
+import { getCurrentUser, getUser } from '../../redux/action/user';
 
 
 import About from './about';
@@ -29,10 +29,12 @@ function MyProfile(props) {
     }
     useEffect(() => {
         dispatch(getPostById(1, user.id))
+        dispatch(getCurrentUser())
     }, [dispatch])
 
+    // console.log("ini user id", user.id)
     return (
-        <Container>
+        <Container style={{ minHeight: "100vH", paddingBottom: "500px" }}>
             <div className="Profile-page">
                 <Hero />
                 <Row>

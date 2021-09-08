@@ -1,17 +1,21 @@
 .fontWeight-topic {
     font-weight: 400;
+    max-height: 32rem;
+    min-width: 16rem;
+    width: 23rem;
+    margin-top: 1.3rem;
 }
 
-.fontWeight-topic h6{
+.fontWeight-topic h6 {
     font-size: 18px;
 }
 
-.part-1 p{
+.part-1 p {
     font-size: 16px;
     color: #A7A7A7;
 }
 
-.fontWeight-topic div{
+.fontWeight-topic div {
     font-size: 16px;
 }
 

@@ -30,9 +30,8 @@ function ComunityProfile(props) {
         setIsAbout(index);
     }
 
-
     return (
-        <Container>
+        <Container style={{ minHeight: "100vH", paddingBottom: "500px" }}>
             <div className="Profile-page">
                 <Hero />
                 <Row>

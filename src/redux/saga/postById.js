@@ -12,7 +12,7 @@ function* getPostById(action) {
     const Token = localStorage.getItem('user');
     const { page, id } = action;
     try {
-        const res = yield axios.get(`${BASE_URL_CROWDFINDER}/post/${id}?page=${page}&limit=0`, { headers: { Authorization: `Bearer ${Token}` } });
+        const res = yield axios.get(`${BASE_URL_CROWDFINDER}/post/user/${id}?page=${page}&limit=0`, { headers: { Authorization: `Bearer ${Token}` } });
         yield put({
             type: GET_POST_BY_ID_SUCCESS,
             payload: res.data.data,

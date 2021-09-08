@@ -9,16 +9,21 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { followUser } from "../../redux/action/followUser"
 import { getCurrentUser } from "../../redux/action/user"
+import { useParams } from 'react-router'
+import { getUserById } from "../../redux/action/userById"
 
 function AvatarComunity(props) {
     const dispatch = useDispatch()
     const { userbyid } = useSelector((state) => state.getUserById)
+    const user = useSelector((state) => state.userData.user)
+
     const handleFollowUser = async (e) => {
         e.preventDefault();
         await dispatch(followUser(props.idUser))
-        await dispatch(getCurrentUser())
+        await dispatch(getUserById(props.idUser))
     }
-
+    const idFollow = userbyid?.followers?.map((item) => item.id)
+    console.log("ini id follow", idFollow)
     return (
 
         <Card className='AvatarCard'>
@@ -27,7 +32,7 @@ function AvatarComunity(props) {
             </div>
             <Card.Body className='title'>
                 <h4>{props.comunityname}</h4>
-                {userbyid.role === "community" && <div className="comunity-badge my-2">
+                {userbyid?.role === "community" && <div className="comunity-badge my-2">
                     <h5>Comunity</h5>
                 </div>
                 }
@@ -36,9 +41,13 @@ function AvatarComunity(props) {
             </Card.Body>
 
             <Card.Body className='cardbody d-flex align-items-center flex-column justify-content-lg-end'>
-                <Button onClick={handleFollowUser} className='my-4' style={{ width: '90%', fontSize: '16px', fontWeight: '700' }} variant="secondary" size="lg">
-                    Follow
+                {idFollow?.includes(user.id) ? <Button onClick={handleFollowUser} className='my-4' style={{ width: '90%', fontSize: '16px', fontWeight: '700' }} variant="secondary" size="lg">
+                    Unfollow
                 </Button>
+                    : <Button onClick={handleFollowUser} className='my-4' style={{ width: '90%', fontSize: '16px', fontWeight: '700' }} variant="secondary" size="lg">
+                        Follow
+                    </Button>}
+
 
             </Card.Body>
         </Card>
