@@ -34,7 +34,7 @@ function HomePage() {
 
     // console.log('comment',listComment)
     // console.log('data', listPost)
-    // console.log("ini data", listPost)
+    console.log("ini data", listPost)
 
     // console.log("searchdata", search?.data?.length)
     return (
