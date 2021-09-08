@@ -22,7 +22,7 @@ function AvatarManageCm(props) {
 
             </Card.Body>
             <Card.Body className='cardbody d-flex align-items-center flex-column'>
-                <Button className='my-4' style={{ width: '70%', fontSize: '16px', fontWeight: '700' }} variant="secondary" size="lg">
+                <Button onClick={props.action} className='my-4' style={{ width: '70%', fontSize: '16px', fontWeight: '700' }} variant="secondary" size="lg">
                     Comunity Setting
                 </Button>
             </Card.Body>

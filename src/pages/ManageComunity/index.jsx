@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import AvatarCard from '../../components/AvatarCard';
 import AvatarManageCm from '../../components/AvatarManageCM';
-
+import ModalUpdate from '../../components/ModalUpdate';
 import Hero from '../../components/Hero';
 import { getPostById } from '../../redux/action/postById';
 import About from './about';
@@ -16,7 +16,13 @@ function ManageComunity(props) {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.userData.user)
     const [isAbout, setIsAbout] = useState(1)
+    const [fullscreen, setFullscreen] = useState(true);
+    const [show, setShow] = useState(false);
 
+    function handleShow() {
+        setFullscreen('sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down');
+        setShow(true);
+    }
     const toggle = (index) => {
         setIsAbout(index);
     }
@@ -33,7 +39,7 @@ function ManageComunity(props) {
                 <Hero />
                 <Row>
                     <Col xl={4}>
-                        <AvatarManageCm comunityname={user.username} location={user.location} photo={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`} />
+                        <AvatarManageCm action={handleShow} comunityname={user.username} location={user.location} photo={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`} />
                     </Col>
                     <Col>
                         <div className="button-menu d-flex">
@@ -48,7 +54,7 @@ function ManageComunity(props) {
                     </Col>
                 </Row>
             </div>
-
+            <ModalUpdate show={show} hide={() => setShow(false)} fullscreen={fullscreen} cancel={() => setShow(false)} />
 
         </Container>
     );
