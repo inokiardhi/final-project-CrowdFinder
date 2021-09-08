@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './index.css'
 import { Button, Card, Container, ListGroup } from 'react-bootstrap'
 import { getCurrentUser } from '../../redux/action/user';
+import "./responsive.css"
 
 
 
@@ -15,7 +16,7 @@ function TopicMe(props) {
     }, [dispatch]);
     return (
         <>
-            <Card className="fontWeight-topic" style={{ maxHeight: '32rem', minWidth: '16rem', width: '16rem' }}>
+            <Card className="fontWeight-topic">
                 <ListGroup variant="flush">
                     <ListGroup.Item className="part-1 mt-2">
                         <h6>What topic would you like to see now?</h6>

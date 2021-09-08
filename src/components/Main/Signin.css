@@ -1,4 +1,3 @@
-
 .Signinbg-left {
   background-image: url(../../Asset/background.png);
   background-size: cover;
@@ -27,6 +26,7 @@
   text-align: center;
 
 }
+
 .Right-signin {
   background-color: rgba(255, 255, 255, 0.9);
   background-size: cover;
@@ -37,12 +37,13 @@
 
 .box-signin {
   background-color: rgb(255, 255, 255);
+  width: 25rem
 }
 
-.button-signin{
+.button-signin {
   background-color: #D82671;
   border: none;
-  color:white;
+  color: white;
   height: 3rem;
   width: 22rem;
 }
@@ -51,3 +52,27 @@
   margin-top: 3px;
 }
 
+.image-logo {
+  width: 500px;
+}
+
+.image-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-title h2 {
+  font-size: 28px;
+}
+
+.play-store img {
+  width: 175px;
+  height: 59px;
+}
+
+.app-store img {
+  width: 175px;
+  height: 65px;
+
+}

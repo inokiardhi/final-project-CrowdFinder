@@ -39,12 +39,11 @@ function HomePage() {
     // console.log("searchdata", search?.data?.length)
     return (
         <>
-            <div className="container mt-5">
-                <div className="d-flex mt-3">
+            <div className="container mt-5" style={{ minHeight: "100vH", paddingBottom: "500px" }}>
+                <div className="d-flex flex-sm-column flex-md-column  flex-lg-row mt-3">
                     <TopicMe />
-                    <div className="w-100 ms-4">
+                    <div className="w-100 ms-lg-4 mt-sm-4">
                         <CreatePost />
-
                         <div>
                             <div className="d-flex mt-4 mb-3">
                                 <h5 className="flex-grow-1 my-auto" style={{ fontSize: '22px', fontWeight: '700' }}>Your Events</h5>

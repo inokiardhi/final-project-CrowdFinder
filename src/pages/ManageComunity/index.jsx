@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import AvatarCard from '../../components/AvatarCard';
 import AvatarManageCm from '../../components/AvatarManageCM';
 import ModalUpdate from '../../components/ModalUpdate';
 import Hero from '../../components/Hero';
@@ -11,6 +10,8 @@ import About from './about';
 import Event from './Event';
 import './index.scss'
 import Post from './Post';
+import { getCurrentUser, getUser } from '../../redux/action/user';
+
 
 function ManageComunity(props) {
     const dispatch = useDispatch()
@@ -29,8 +30,8 @@ function ManageComunity(props) {
 
     useEffect(() => {
         dispatch(getPostById(1, user.id))
-        console.log(user.id)
-    })
+        dispatch(getCurrentUser())
+    }, [dispatch])
 
 
     return (
