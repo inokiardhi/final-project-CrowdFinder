@@ -5,22 +5,12 @@ import Swal from "sweetalert2";
 
 function* userUpdate(action) {
     const Token = localStorage.getItem("user");
-    const { fullname,
-        location,
-        image,
-        background_image,
-        interest,
-        bio } = action;
+    const { data } = action;
     try {
         const res = yield axios.put(
             `https://crowdfinder.gabatch13.my.id/api/user`,
             {
-                fullname,
-                location,
-                image,
-                background_image,
-                interest,
-                bio
+                data
             },
             { headers: { Authorization: `Bearer ${Token}` } }
         );
@@ -46,7 +36,7 @@ function* userUpdate(action) {
             Swal.fire({
                 position: 'center',
                 icon: 'warning',
-                title: 'this is not your post',
+                title: "Can't Update Data",
                 showConfirmButton: false,
                 timer: 1800
             })
