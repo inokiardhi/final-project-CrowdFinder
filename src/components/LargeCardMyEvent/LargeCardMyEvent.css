@@ -137,11 +137,15 @@
 }
 
 .btnStyle-largeCard {
-    /* position: absolute;
+    position: absolute;
     top: -2.7rem;
-    left: 47.9rem;
-    z-index: 10; */
+    /* left: 47.9rem; */
+    z-index: 10;
 
+}
+
+.toTheLeft{
+    margin-right: 4rem;
 }
 
 .sizeText {
