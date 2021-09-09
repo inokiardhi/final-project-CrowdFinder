@@ -10,21 +10,22 @@ import { attendEvent } from "../../redux/action/attend";
 import './index.css'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { getPostById } from "../../redux/action/postById";
 
 function EventDetailCard(props) {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.userData.user)
     const { postbyid, loading } = useSelector((state) => state.postsId);
 
-    const idAttend = postbyid?.map((item) => item.attender).filter((item) => item)
+    const idAttend = postbyid?.filter((item) => item.id === props.postid).map((item) => item.attender)
 
     console.log("ini id attend", idAttend)
 
     const handleAttendEvent = async (e) => {
         e.preventDefault();
-        dispatch(attendEvent(props.postid))
+        await dispatch(attendEvent(props.postid))
+        await dispatch(getPostById(1, props.idUser))
     };
-
 
     return (
         <>
@@ -67,10 +68,10 @@ function EventDetailCard(props) {
 
                             {idAttend?.includes(user.id) ? <Button onClick={handleAttendEvent} className='my-4' style={{ width: '100%' }} variant="secondary" size="lg">
                                 I have join this Event
-                            </Button> : <Button onClick={handleAttendEvent} className='my-4' style={{ width: '100%' }} variant="secondary" size="lg">
-                                Join This Event
                             </Button>
-                            }
+                                : <Button onClick={handleAttendEvent} className='my-4' style={{ width: '100%' }} variant="secondary" size="lg">
+                                    Join This Event
+                                </Button>}
 
 
                         </div>

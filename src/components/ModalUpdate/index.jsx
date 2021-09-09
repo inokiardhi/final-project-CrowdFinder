@@ -7,11 +7,12 @@ import { getCurrentUser, updateUser } from "../../redux/action/user"
 function ModalUpdate(props) {
     const user = useSelector((state) => state.userData.user)
     const dispatch = useDispatch()
+
     const [form, setForm] = useState({
         fullname: user.fullname,
         location: user.location,
-        image: "",
-        background_image: "",
+        image: null,
+        background_image: null,
         interest: [],
         bio: user.bio
     });
@@ -33,18 +34,42 @@ function ModalUpdate(props) {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
+        const data = form
+        let formdata = new FormData()
         await dispatch(updateUser(
-            form.fullname,
-            form.location,
-            form.image,
-            form.background_image,
-            form.interest,
-            form.bio
+            formdata
         ));
+        formdata.append('fullname', data.fullname);
+        formdata.append('location', data.location);
+        formdata.append('image', data.image);
+        formdata.append('background_image', data.background_image);
+        formdata.append('interest', data.interest);
+        formdata.append('bio', data.bio);
+
+        // form.fullname,
+        //     form.location,
+        //     form.image,
+        //     form.background_image,
+        //     form.interest,
+        //     form.bio
+
         await dispatch(getCurrentUser())
     };
 
+    const imageFile = (e) => {
+        console.log(e.target.files[0]);
+        setForm({ ...form, image: e.target.files[0] });
+
+    }
+
+    const backgroundFile = (e) => {
+        console.log(e.target.files[0]);
+        setForm({ ...form, background_image: e.target.files[0] });
+
+    }
+
     console.log("form", form);
+
 
     return (
         <div>
@@ -79,11 +104,16 @@ function ModalUpdate(props) {
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Image Profile</Form.Label>
-                            <Form.Control type="file" />
+                            <Form.Control type="file"
+                                accept="image/*"
+                                onChange={imageFile} />
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Background Image</Form.Label>
-                            <Form.Control type="file" />
+                            <Form.Control type="file"
+                                accept="image/*"
+                                onChange={backgroundFile}
+                            />
                         </Form.Group>
                         <Form.Label>Interest Topic Edit</Form.Label>
                         <Form.Group className="my-2 border p-2" controlId="exampleForm.ControlTextarea1">
