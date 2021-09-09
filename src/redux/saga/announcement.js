@@ -34,7 +34,7 @@ function* PostAnnouncements(actions) {
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Filled the form, Please :(',
+                title: 'Check your form, Please :(',
                 showConfirmButton: false,
                 timer: 1800
             })

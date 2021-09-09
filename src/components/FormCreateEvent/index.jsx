@@ -4,25 +4,25 @@ import { InputGroup, FormControl, Card, Button, FormSelect, FloatingLabel } from
 import axios from 'axios';
 
 function FormCreateEvent(props) {
-    const { title, image, location, interest, content, date, onClick } = props;
+    const { title, image, location, interest, content, date, address, onClick } = props;
 
     const [img, setImg] = useState("");
     const [error, setError] = useState(false);
 
-    const imageHandler = (e) => {
-        //   const selected = e.target.files[0];
-        const selected = { image };
-        const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
-        if (selected && allowedTypes.includes(selected.type)) {
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                setImg(reader.result);
-            };
-            reader.readAsDataURL(selected);
-        } else {
-            setError(true);
-        }
-    };
+    // const imageHandler = (e) => {
+    //     //   const selected = e.target.files[0];
+    //     const selected = { image };
+    //     const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+    //     if (selected && allowedTypes.includes(selected.type)) {
+    //         let reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setImg(reader.result);
+    //         };
+    //         reader.readAsDataURL(selected);
+    //     } else {
+    //         setError(true);
+    //     }
+    // };
 
     return (
         <>
@@ -31,13 +31,13 @@ function FormCreateEvent(props) {
                 <p style={{ fontSize: '18px', fontWeight: '400' }}>Put your awesome photo to get more people!</p>
 
                 <Card className="cardSize mb-3">
-                    {img && <img src={img} alt="" />}
+                    {img && <img src={image} alt="" />}
                     <input
                         type="file"
                         name="image-upload"
                         id="input"
                         accept="image/*"
-                        onChange={imageHandler}
+                        onChange={image}
                     />
 
                     {img ? (
@@ -88,7 +88,7 @@ function FormCreateEvent(props) {
                         placeholder="Address?"
                         aria-label="Address?"
                         aria-describedby="basic-addon3"
-
+                        onChange={address}
                     />
                 </InputGroup>
 

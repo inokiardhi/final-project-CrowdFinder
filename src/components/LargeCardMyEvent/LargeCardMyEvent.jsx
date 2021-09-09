@@ -46,7 +46,7 @@ function LargeCardMyEvent(props) {
 
     useEffect(() => {
         dispatch(getComment(idPost));
-    }, []);
+    }, [dispatch]);
 
     //get current user and user id====================================
     const { user } = useSelector((state) => state.userData);
