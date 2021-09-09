@@ -45,7 +45,8 @@ function FormCreateEventPage() {
                    interest={(e) => setState({...state, interest: e.target.value})}
                    content={(e) => setState({...state, content: e.target.value})}
                    address={(e) => setState({...state, address: e.target.value})}
-                   date={(e) => setState({...state, date: e.target.value})}
+                   date={(date) => setState({...state, date: date})}
+                   showDate={state.date}
                    image={(e) => setState({...state, image: e.target.files[0]})}
                    onClick={(e) => handlePostEvent(e)}/>
                 </div>
