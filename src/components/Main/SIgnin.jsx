@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Signin.css";
 import * as yup from "yup";
 import { Formik } from "formik";
+import "./responsive.css"
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -27,42 +28,50 @@ const Signin = () => {
     return <Link to="/home" />;
   }
 
-  console.log("signIn", )
+  console.log("signIn",)
 
   return (
     <div className="container-Signin">
-      <div className="d-flex">
+      <div className="main-sign d-flex flex-md-column flex-lg-row flex-sm-column">
         <div className="Fullbgimage-left w-100">
           <div className="left d-flex align-items-center">
             <div>
-              <img
-                className="Logo justify-content-center"
-                src={Logo}
-                alt="logo"
-              />
-              <h2 style={{ fontSize: "28px" }}>Let’s make your own crowd!</h2>
+              <div className="image-logo">
+                <img
+                  className="Logo justify-content-center"
+                  src={Logo}
+                  alt="logo"
+                />
+              </div>
+              <div className="logo-title">
 
-              <img
-                src={PlayStore}
-                alt="playstore"
-                width="175"
-                height="59"
-                className="d-inline-block align-top"
-              />
-              <img
-                src={AppStore}
-                alt="appstore"
-                width="175"
-                height="65"
-                className="d-inline-block align-top"
-              />
+                <h2 >Let’s make your own crowd!</h2>
+
+              </div>
+              <div className="image-app d-flex justify-content-center align-items-center">
+                <div className="play-store">
+                  <img
+                    src={PlayStore}
+                    alt="playstore"
+                  />
+                </div>
+                <div className="app-store">
+                  <img
+                    src={AppStore}
+                    alt="appstore"
+                  />
+                </div>
+
+
+              </div>
+
             </div>
           </div>
         </div>
 
         <div className="Signinbg-right w-100">
           <div className="Right-signin d-flex">
-            <div className="box-signin my-auto" style={{ width: "25rem" }}>
+            <div className="box-signin my-auto">
               <Formik
                 validationSchema={schema}
                 onSubmit={(values) => {
@@ -83,7 +92,7 @@ const Signin = () => {
                   isValid,
                   errors,
                 }) => (
-                  <Form className="align-center" style={{ height: "33rem"}} noValidate onSubmit={handleSubmit}>
+                  <Form className="align-center" style={{ height: "33rem" }} noValidate onSubmit={handleSubmit}>
                     <div>
                       <Form.Group className="d-flex mt-3 mb-4 justify-content-center">
                         <h2 style={{ fontSize: "28px" }} className="mt-auto">Login</h2>

@@ -72,32 +72,38 @@ export default function MultiStep() {
       <Form onSubmit={handleRegister}>
         {page === 1 ? (
           <div className="container-signup">
-            <div className="d-flex">
+            <div className="main-sign d-flex flex-md-column flex-lg-row flex-sm-column">
               <div className="Fullbgimage-left w-100">
                 <div className="left d-flex align-items-center">
                   <div>
-                    <img
-                      className="Logo justify-content-center"
-                      src={Logo}
-                      alt="logo"
-                    />
-                    <h2 style={{ fontSize: "28px" }}>
-                      Let’s make your own crowd!
-                    </h2>
-                    <img
-                      src={PlayStore}
-                      alt="playstore"
-                      width="175"
-                      height="59"
-                      className="d-inline-block align-top"
-                    />
-                    <img
-                      src={AppStore}
-                      alt="appstore"
-                      width="175"
-                      height="65"
-                      className="d-inline-block align-top"
-                    />
+                    <div className="image-logo">
+                      <img
+                        className="Logo justify-content-center"
+                        src={Logo}
+                        alt="logo"
+                      />
+                    </div>
+                    <div className="logo-title">
+
+                      <h2 >Let’s make your own crowd!</h2>
+
+                    </div>
+                    <div className="image-app d-flex justify-content-center align-items-center">
+                      <div className="play-store">
+                        <img
+                          src={PlayStore}
+                          alt="playstore"
+                        />
+                      </div>
+                      <div className="app-store">
+                        <img
+                          src={AppStore}
+                          alt="appstore"
+                        />
+                      </div>
+
+
+                    </div>
                   </div>
                 </div>
               </div>
@@ -258,7 +264,7 @@ export default function MultiStep() {
                               <Col>
                                 <div className="mb-1">
                                   <input
-                                    className="form-radio-input"
+                                    className="form-radio-input me-2"
                                     type="radio"
                                     name="role"
                                     placeholder="User"
@@ -271,7 +277,7 @@ export default function MultiStep() {
                                 </div>
                                 <div className="mb-3">
                                   <input
-                                    className="form-radio-input"
+                                    className="form-radio-input me-2"
                                     type="radio"
                                     name="role"
                                     placeholder="Community"

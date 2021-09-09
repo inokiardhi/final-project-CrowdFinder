@@ -16,25 +16,24 @@ function Event(props) {
     const [detailcard, setDetailCard] = useState({ title: "", content: "", post_id: "" })
     const [data, setData] = useState({ name: "", id: "" })
     const { listPost } = useSelector((state) => state.posts);
-
+    const dispatch = useDispatch()
 
     useEffect(() => {
         setPosts(postbyid)
     }, [postbyid])
 
-    console.log("postid event", detailcard.post_id)
+    console.log("postid event", postbyid)
     return (
         <div>
             {show ?
                 [
-                    postbyid.length > 0 && posts?.reverse().filter(post => post.type[0] === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
+                    postbyid?.length > 0 && posts?.reverse().filter(post => post.type === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
                     (<LargeCrowdFinderCard key={idx} userName={post.user_id.username} title={post.title} content={post.content} time={post.createdAt}
                         action={() => {
                             setShow(false)
                             setDetailCard({
                                 title: post.title,
-                                content: post.content,
-                                post_id: post.id
+                                content: post.content
                             })
                         }
                         } idPost={post.id} />)),

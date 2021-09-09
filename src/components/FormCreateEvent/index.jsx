@@ -73,16 +73,6 @@ function FormCreateEvent(props) {
                     />
                 </InputGroup>
 
-
-                <InputGroup className="mb-3">
-                    <FormControl
-                        placeholder=" What time?"
-                        aria-label="What time?"
-                        aria-describedby="basic-addon3"
-
-                    />
-                </InputGroup>
-
                 <InputGroup className="mb-3">
                     <FormControl
                         style={{ fontFamily: 'Mulish, FontAwesome, sans-serif' }}
@@ -90,6 +80,15 @@ function FormCreateEvent(props) {
                         aria-label="Where?"
                         aria-describedby="basic-addon4"
                         onChange={location}
+                    />
+                </InputGroup>
+
+                <InputGroup className="mb-3">
+                    <FormControl
+                        placeholder="Address?"
+                        aria-label="Address?"
+                        aria-describedby="basic-addon3"
+
                     />
                 </InputGroup>
 

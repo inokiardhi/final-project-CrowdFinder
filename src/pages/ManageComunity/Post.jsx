@@ -15,17 +15,18 @@ function Post(props) {
     const [detailcard, setDetailCard] = useState({ title: "", content: "" })
     const [data, setData] = useState({ name: "", id: "" })
     const { listPost } = useSelector((state) => state.posts);
-
+    const dispatch = useDispatch()
 
     useEffect(() => {
         setPosts(postbyid)
-    }, [postbyid])
+        dispatch(getPostById(1, user.id))
+    }, [postbyid, getPostById])
 
     return (
         <div>
             {show ?
                 [
-                    postbyid.length > 0 && posts?.reverse().filter(post => post.type[0] === 'announcement').map((post, idx) => (
+                    postbyid?.length > 0 && posts?.reverse().filter(post => post.type === 'announcement').map((post, idx) => (
                         <LargeCardMyEvent
                             key={idx}
                             contentCard={post.content}
@@ -36,7 +37,8 @@ function Post(props) {
                             like={post.like.length}
                             userName={post.user_id.fullname}
                             idPost={post.id}
-                            comment={post.comment.length} />
+                            comment={post.comment.length}
+                            idUserPost={post?.user_id.id} />
                     )),
                     <div className="pagination justify-content-center mt-5">
                         <MyPagination />

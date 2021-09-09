@@ -16,6 +16,9 @@ function EventDetailCard(props) {
     const user = useSelector((state) => state.userData.user)
     const { postbyid, loading } = useSelector((state) => state.postsId);
 
+    const idAttend = postbyid?.map((item) => item.attender).filter((item) => item)
+
+    console.log("ini id attend", idAttend)
 
     const handleAttendEvent = async (e) => {
         e.preventDefault();
@@ -62,11 +65,13 @@ function EventDetailCard(props) {
 
                             <p className="content-text mb-3">{props.content}</p>
 
-                            {user.id === postbyid[0].user_id.id ?
-                                null : <Button onClick={handleAttendEvent} className='my-4' style={{ width: '100%' }} variant="secondary" size="lg">
-                                    Join This Event
-                                </Button>
+                            {idAttend?.includes(user.id) ? <Button onClick={handleAttendEvent} className='my-4' style={{ width: '100%' }} variant="secondary" size="lg">
+                                I have join this Event
+                            </Button> : <Button onClick={handleAttendEvent} className='my-4' style={{ width: '100%' }} variant="secondary" size="lg">
+                                Join This Event
+                            </Button>
                             }
+
 
                         </div>
                     </Card>
