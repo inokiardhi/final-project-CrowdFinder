@@ -9,7 +9,6 @@ function FormCreateAnnouncementPage() {
     const dispatch = useDispatch()
     const announcement = useSelector((state) => state.announcements.listAnnouncement);
    
-
     const [state, setState] = useState({
         content : "",
         interest : "",
