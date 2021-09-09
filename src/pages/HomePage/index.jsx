@@ -39,9 +39,11 @@ function HomePage() {
     // console.log("searchdata", search?.data?.length)
     return (
         <>
-            <div className="container mt-5">
+            <div className="container-lg mt-5">
                 <div className="d-flex mt-3">
+
                     <TopicMe />
+
                     <div className="w-100 ms-4">
                         <CreatePost />
 

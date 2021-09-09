@@ -32,17 +32,6 @@ function LargeCardMyEvent(props) {
     // const {id} = useParams(idPost)
     // console.log("ini id",id)
 
-    // const [state, setState] = useState({
-    //     contentCard: contentCard,
-    //     image: image,
-    //     time: time,
-    //     interest: interest,
-    //     location: location,
-    //     like: like,
-    //     comment: comment,
-    //     userName: userName,
-    //     idPost: idPost,
-    // });
 
     const [listCommentState, setListCommentState] = useState([])
 
@@ -208,7 +197,7 @@ function LargeCardMyEvent(props) {
                                     onChange={(e) => changeComment(e)}
                                 />
                             </InputGroup>
-                            <div className="position-relative toTheLeft">
+                            <div className="position-relative float-end toTheLeft">
                                 <Button className="rounded-circle btnStyle-largeCard" variant="secondary" onClick={handlePostComment}><i className="fa fa-paper-plane"></i></Button>
                             </div>
                         </div>
