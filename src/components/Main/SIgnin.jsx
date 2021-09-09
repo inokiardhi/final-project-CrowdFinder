@@ -4,7 +4,7 @@ import { Login } from "../../redux/action/user";
 import { Form, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../Asset/logo.png";
-import PlayStore from "../../Asset/GogglePlayStore.png";
+import PlayStore from "../../Asset/GooglePlay.png";
 import AppStore from "../../Asset/AppStore.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Signin.css";
@@ -54,10 +54,10 @@ const Signin = () => {
                 <h2>Let’s make your own crowd!</h2>
               </div>
               <div className="image-app d-flex justify-content-center align-items-center">
-                <div className="play-store">
+                <div className="play-store me-1">
                   <img src={PlayStore} alt="playstore" />
                 </div>
-                <div className="app-store">
+                <div className="app-store ms-1">
                   <img src={AppStore} alt="appstore" />
                 </div>
               </div>
@@ -147,8 +147,8 @@ const Signin = () => {
                           isValid={touched.password && !errors.password}
                           placeholder="enter you're password here"
                         />
-                         <div>
-                          <i onClick={togglePasswordVisiblity}>{eye}</i>{" "}
+                         <div className="Mata-SignIn position-relative float-end">
+                          <i onClick={togglePasswordVisiblity}>{eye}</i>
                         </div>
                         {
                           <p style={{ color: "red", fontSize: "15px" }}>
