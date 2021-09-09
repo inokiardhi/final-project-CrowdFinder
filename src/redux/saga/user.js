@@ -10,14 +10,11 @@ import {
   LOGOUT,
   GET_USER_SUCCESS,
   GET_USER_CROWDFINDER,
-  GET_USER_DETAIL_CROWDFINDER,
-  // GET_USER_ID,
   GET_USER_BEGIN,
   GET_USER_FAIL,
-  UPDATE_USER_PROFILE,
-  UPDATE_USER_PROFILE_SUCCESS,
 } from "../action/type";
 import { put, takeEvery, takeLatest } from "redux-saga/effects";
+import Swal from "sweetalert2";
 
 function* Register(actions) {
   const { role, email, password, username, fullname, location, interest } =
@@ -36,6 +33,13 @@ function* Register(actions) {
       .then((response) => {
         localStorage.setItem("user", response.data.token);
       });
+    yield Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Account has been created :)",
+      showConfirmButton: false,
+      timer: 3000,
+    });
     yield window.location.replace("/signin");
     yield put({
       type: REGISTER_SUCCESS,
@@ -47,6 +51,13 @@ function* Register(actions) {
     yield put({
       type: REGISTER_FAIL,
       error: error,
+    });
+    yield Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "Please fill all form :(",
+      showConfirmButton: false,
+      timer: 1800,
     });
   }
 }
@@ -75,9 +86,9 @@ function* Login(actions) {
 function* getUser() {
   const Token = yield localStorage.getItem("user");
   try {
-    const res = yield axios.get(`${GET_USER_CROWDFINDER}`
-    , {headers: { Authorization: `Bearer ${Token}` },}
-    );
+    const res = yield axios.get(`${GET_USER_CROWDFINDER}`, {
+      headers: { Authorization: `Bearer ${Token}` },
+    });
     yield put({
       type: GET_USER_SUCCESS,
       payload: res.data,
@@ -90,10 +101,9 @@ function* getUser() {
   }
 }
 
-
 function* Logout() {
   yield localStorage.removeItem("user");
-  yield window.location.replace("/")
+  yield window.location.replace("/");
 }
 
 export function* watchRegister() {
