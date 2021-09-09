@@ -47,17 +47,18 @@ function* Register(actions) {
       loading: false,
       error: null,
     });
-  } catch (error) {
+    
+  } catch (err) {
     yield put({
       type: REGISTER_FAIL,
-      error: error,
+      error: err,
     });
     yield Swal.fire({
       position: "center",
-      icon: "warning",
+      icon: "error",
       title: "Please fill all form :(",
       showConfirmButton: false,
-      timer: 1800,
+      timer: 1000,
     });
   }
 }
