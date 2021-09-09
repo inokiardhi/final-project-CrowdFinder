@@ -4,13 +4,15 @@ import BioNoEdit from '../../components/Bio/bioNoedit';
 import InterstTopic from '../../components/InterestTopic';
 import ListCardPeople from '../../components/ListCardPeople';
 import MyPagination from '../../components/MyPagination/MyPagination';
-
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function About(props) {
+    const { userbyid } = useSelector((state) => state.getUserById)
+
     return (
         <div>
-            <BioNoEdit bio='test' />
+            <BioNoEdit bio={userbyid.bio} />
 
             <hr />
             <div className="myCrowd d-flex justify-content-between py-3">

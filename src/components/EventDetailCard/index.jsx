@@ -11,6 +11,7 @@ import './index.css'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getPostById } from "../../redux/action/postById";
+import moment from 'moment'
 
 function EventDetailCard(props) {
     const dispatch = useDispatch()
@@ -19,15 +20,15 @@ function EventDetailCard(props) {
 
     const idAttend = postbyid?.find((item) => item.id === props.postid).attender
 
-    console.log("ini id attend", idAttend)
-    console.log("ini id user", user.id)
-    console.log("ini data post", postbyid.find((item) => item.id === props.postid))
+    console.log("ini id user", props.idUser)
 
     const handleAttendEvent = async (e) => {
         e.preventDefault();
         await dispatch(attendEvent(props.postid))
         await dispatch(getPostById(1, props.idUser))
     };
+
+    const background = `https://crowdfinder.gabatch13.my.id/api${props.imageBkg}`
 
     return (
         <>
@@ -36,29 +37,30 @@ function EventDetailCard(props) {
                     <Card>
                         <div className="me-3 ms-3 mt-3 mb-4">
                             <div className="image-hero" style={{ backgroundImage: `url(${post})` }}>
+
                             </div>
                             <h5 className='title-event my-4'>{props.title}</h5>
                             <Row className="time-event my-3 d-flex ">
                                 <Col xs={4}>
                                     <div className="calender d-flex align-items-center">
-                                        <h4> <AiFillCalendar style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>22/09/2021</h5>
+                                        <h4> <AiFillCalendar style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>{moment(props.date).calendar("")}</h5>
                                     </div>
                                 </Col>
                                 <Col>
                                     <div className="time d-flex align-items-center ">
-                                        <h4> <TiLocation style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>Jl.smpm 29 no.123 </h5>
+                                        <h4> <TiLocation style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>{props.address} </h5>
                                     </div>
                                 </Col>
                             </Row>
                             <Row className="time-event my-3 d-flex ">
                                 <Col xs={4}>
                                     <div className="calender d-flex align-items-center">
-                                        <h4> <AiFillClockCircle style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>09:00 AM</h5>
+                                        <h4> <AiFillClockCircle style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5> {moment(props.date).format("LT")}</h5>
                                     </div>
                                 </Col>
                                 <Col>
                                     <div className="time d-flex align-items-center ">
-                                        <h4> <RiGroupFill className='me-4' style={{ color: '#BDBDBD' }} /></h4> <h5>129 people attend this</h5>
+                                        <h4> <RiGroupFill className='me-4' style={{ color: '#BDBDBD' }} /></h4> <h5>{props.attend} people attend this</h5>
                                     </div>
                                 </Col>
                             </Row>

@@ -15,11 +15,13 @@ function SmallCardMyEvent(props) {
                     <div className="mx-2 d-flex dateTime">
                         <div className="flex-grow-1">
                             <i className="iconColor fa fa-calendar me-3"></i>
-                            <label>{moment(dateTime).format("ddd")}</label>
+                            <label>
+                                {moment(dateTime).calendar()}
+                            </label>
                         </div>
                         <div>
                             <i className="iconColor fa  fa-clock-o me-3"></i>
-                            <label>{moment(dateTime).calendar()}</label>
+                            <label>   {moment(dateTime).format("LT")}</label>
                         </div>
                     </div>
                 </Card.Body>

@@ -57,9 +57,9 @@ function HomePage() {
                             </div>
                             <div className="wrapper mx-auto mb-5">
                                 {search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
-                                    <Link style={{ textDecoration: "none" }} to={`/comunity-profile/${post?.user_id?.id}`}> <SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
+                                    <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}> <SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
                                 )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
-                                    <Link style={{ textDecoration: "none" }} to={`/comunity-profile/${post?.user_id?.id}`}><SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
+                                    <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}><SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
                                 ))}
                             </div>
                         </div>
@@ -77,6 +77,7 @@ function HomePage() {
                                     idPost={post?.id}
                                     comment={post?.comment?.length}
                                     idUserPost={post?.user_id.id}
+                                    photo={post?.user_id.image}
                                 />
                             )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
                                 <LargeCardMyEvent key={id}
@@ -90,6 +91,7 @@ function HomePage() {
                                     idPost={post?.id}
                                     comment={post?.comment?.length}
                                     idUserPost={post?.user_id.id}
+                                    photo={post?.user_id.image}
                                 />
                             ))
                             )}
