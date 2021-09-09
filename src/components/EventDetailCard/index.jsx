@@ -17,9 +17,11 @@ function EventDetailCard(props) {
     const user = useSelector((state) => state.userData.user)
     const { postbyid, loading } = useSelector((state) => state.postsId);
 
-    const idAttend = postbyid?.filter((item) => item.id === props.postid).map((item) => item.attender)
+    const idAttend = postbyid?.find((item) => item.id === props.postid).attender
 
     console.log("ini id attend", idAttend)
+    console.log("ini id user", user.id)
+    console.log("ini data post", postbyid.find((item) => item.id === props.postid))
 
     const handleAttendEvent = async (e) => {
         e.preventDefault();

@@ -71,7 +71,7 @@ function LargeCardMyEvent(props) {
     //delete comment======================================
     const handleDeleteComment = async (idCommentDel) => {
         await dispatch(deleteComment(idCommentDel, idPost));
-        
+
         // await dispatch(getComment(idPost))
     }
 
@@ -110,7 +110,7 @@ function LargeCardMyEvent(props) {
 
     // console.log('likes', likes)
     // console.log('body gaes', body)
-    console.log('listcomment state', listCommentState)
+
 
     return (
         <>
