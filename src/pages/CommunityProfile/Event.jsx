@@ -13,7 +13,7 @@ function Event(props) {
     const user = useSelector((state) => state.userData.user)
     const { postbyid, loading } = useSelector((state) => state.postsId);
     const [show, setShow] = useState(true)
-    const [detailcard, setDetailCard] = useState({ title: "", content: "", post_id: "" })
+    const [detailcard, setDetailCard] = useState({ title: "", content: "", post_id: "", userId: "" })
     const [data, setData] = useState({ name: "", id: "" })
     const { listPost } = useSelector((state) => state.posts);
 
@@ -33,7 +33,8 @@ function Event(props) {
                             setDetailCard({
                                 title: post.title,
                                 content: post.content,
-                                post_id: post.id
+                                post_id: post.id,
+                                userId: post.user_id.id
                             })
                         }
                         } idPost={post.id} />)),
@@ -42,7 +43,7 @@ function Event(props) {
                     </div>
 
                 ]
-                : <EventDetailCard title={detailcard.title} content={detailcard.content} postid={detailcard.post_id} />}
+                : <EventDetailCard title={detailcard.title} content={detailcard.content} postid={detailcard.post_id} idUser={detailcard.userId} />}
         </div>
     );
 }

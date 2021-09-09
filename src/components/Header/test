@@ -1,0 +1,84 @@
+ <Navbar >
+          <Container>
+            <Link to="/home" style={{ marginTop: "2rem" }}><Navbar.Brand className="header-logo">
+              <LogoCrowdFinder />
+            </Navbar.Brand></Link>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="navbarScroll" className="d-flex justify-content-around">
+              {isLoggedIn && (
+                <>
+                  <Nav className="me-auto">
+                    <Form className="search-bar d-flex">
+                      <input
+                        className="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        onChange={(e) => debounceSearch(e)}
+                      />
+                    </Form>
+                  </Nav>
+                  {/* {} */}
+
+                  <Nav className="Feed-Notification mx-5">
+                    <Nav.Link className="mx-5">
+                      <Link
+                        to="/home"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        <i class="fa fa-home fa-lg" style={{ marginLeft: "1rem" }}></i>
+                        <Col>
+                          <p>Feeds</p>
+                        </Col>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#">
+                      <i class="fa fa-bell fa-lg" style={{ marginLeft: "23px" }}></i>
+                      <Col>
+                        <p>Notification</p>
+                      </Col>
+                    </Nav.Link>
+                  </Nav>
+                  <Nav>
+                    <NavDropdown
+                      style={{ padding: "0px", width: "61px", height: "80px" }}
+                      title={
+                        <div className="text-center avatar">
+                          <img
+                            src={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`}
+                            alt="..."
+                          />
+                        </div>
+                      }
+                      id="collasible-nav-dropdown"
+                    >
+                      {userrole.role === "community" ? (
+                        <NavDropdown.Item>
+                          <Link
+                            to="/manage-comunity"
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            Profile
+                          </Link>
+                        </NavDropdown.Item>
+                      ) : (
+                        <NavDropdown.Item>
+                          <Link
+                            to="/profile"
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            Profile
+                          </Link>
+                        </NavDropdown.Item>
+                      )}
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item onClick={Logout}>
+                        Sign Out
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+                </>
+              )}
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>

@@ -23,7 +23,6 @@ function AvatarComunity(props) {
         await dispatch(getUserById(props.idUser))
     }
     const idFollow = userbyid?.followers?.map((item) => item.id)
-    console.log("ini id follow", idFollow)
     return (
 
         <Card className='AvatarCard'>
