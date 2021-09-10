@@ -11,7 +11,7 @@ import { getPostById } from '../../redux/action/postById'
 import { putLike } from '../../redux/action/like'
 import { Link } from 'react-router-dom'
 import ReactLoading from 'react-loading';
-
+import './responsive.css'
 
 function HomePage() {
     const [posts, setPosts] = useState();
@@ -46,9 +46,9 @@ function HomePage() {
     return (
         <>
             <div className="container mt-5" style={{ minHeight: "100vH" }}>
-                <div className="d-flex flex-sm-column flex-md-column  flex-lg-row mt-3">
+                <div className="body-main d-flex flex-sm-column flex-md-column flex-lg-row mt-3">
                     <TopicMe />
-                    <div className="w-100 ms-lg-4 mt-sm-4">
+                    <div className="createpos w-100 ms-lg-4 mt-sm-4">
                         <CreatePost />
                         <div>
                             <div className="d-flex mt-4 mb-3">

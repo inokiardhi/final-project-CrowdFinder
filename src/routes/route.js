@@ -66,7 +66,7 @@ const Routers = () => {
         <Route exact path="/comunity-profile/:userId">
           <ComunityProfile />
         </Route>
-        <Route exact path="/mycrowd">
+        <Route exact path="/mycrowd/:userId">
           <MyCrowd />
         </Route>
         <Route exact path="/eventdetail">

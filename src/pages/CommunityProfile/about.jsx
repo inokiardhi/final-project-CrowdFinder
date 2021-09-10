@@ -5,7 +5,8 @@ import InterstTopic from '../../components/InterestTopic';
 import ListCardPeople from '../../components/ListCardPeople';
 import MyPagination from '../../components/MyPagination/MyPagination';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom';
+import ListCardComunity from '../../ListCardComunity';
 
 function About(props) {
     const { userbyid } = useSelector((state) => state.getUserById)
@@ -13,16 +14,25 @@ function About(props) {
     return (
         <div>
             <BioNoEdit bio={userbyid.bio} />
-
             <hr />
-            <div className="myCrowd d-flex justify-content-between py-3">
+            {userbyid?.role === "community" ? (<><div className="myCrowd d-flex justify-content-between py-3">
                 <h5>Comunity Member (205)</h5>
+            </div>
+                <ListCardPeople />
+            </>) : (<> <div className="myCrowd d-flex flex-wrap justify-content-between py-3">
+                <h5>Comunity</h5>
 
+                <h5><Link style={{ color: '#D82671', fontWeight: '400', textDecoration: 'none', fontSize: '16px' }}
+                    to={`/mycrowd/${userbyid.id}`}>See All</Link></h5>
             </div>
-            <ListCardPeople />
-            <div className="pagination justify-content-center mt-5">
+                {userbyid.following?.filter((item) => item.role === "community").map((item) => (<ListCardComunity comunityname={item.fullname} />))}
+            </>)
+
+            }
+
+            {/* <div className="pagination justify-content-center mt-5">
                 <MyPagination />
-            </div>
+            </div> */}
 
         </div>
     );

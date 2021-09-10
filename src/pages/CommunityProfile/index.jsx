@@ -30,6 +30,8 @@ function ComunityProfile(props) {
         setIsAbout(index);
     }
 
+    console.log(userId)
+
     return (
         <Container style={{ minHeight: "100vH", paddingBottom: "500px" }}>
             <div className="Profile-page">

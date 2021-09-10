@@ -3,6 +3,7 @@ import { Button, Card } from 'react-bootstrap'
 import './index.css'
 import profilDummy from '../../img/profilDummy.jpeg'
 import { Link } from 'react-router-dom'
+import './responsive.css'
 
 function CreatePost() {
     const ref = useRef();

@@ -1,13 +1,25 @@
 import React, { useState } from 'react'
 import './index.css'
 import { InputGroup, FormControl, Card, Button, FormSelect, FloatingLabel } from 'react-bootstrap'
-import axios from 'axios';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 function FormCreateEvent(props) {
-    const { title, image, location, interest, content, date, address, onClick } = props;
+    const { title, image, location, interest, content, date, showDate, address, onClick } = props;
 
     const [img, setImg] = useState("");
     const [error, setError] = useState(false);
+    const [dateTime, setDateTime] = useState()
+
+    const filterDateTime = (time) => {
+        const currentDate = new Date();
+        const selectedDate = new Date(time);
+    
+        return currentDate.getTime() < selectedDate.getTime();
+      };
+
+     
 
     // const imageHandler = (e) => {
     //     //   const selected = e.target.files[0];
@@ -23,6 +35,7 @@ function FormCreateEvent(props) {
     //         setError(true);
     //     }
     // };
+    console.log(dateTime)
 
     return (
         <>
@@ -63,7 +76,7 @@ function FormCreateEvent(props) {
                     />
                 </InputGroup>
 
-                <InputGroup className="mb-3">
+                {/* <InputGroup className="mb-3">
                     <FormControl
                         style={{ fontFamily: 'Mulish, FontAwesome, sans-serif' }}
                         placeholder="&#xf133; What date?"
@@ -71,7 +84,20 @@ function FormCreateEvent(props) {
                         aria-describedby="basic-addon2"
                         onChange={date}
                     />
-                </InputGroup>
+                </InputGroup> */}
+
+                <DatePicker
+                    className="mb-3"
+                    selected={showDate}
+                    onChange={date}
+                    timeFormat="HH:mm"
+                    timeInputLabel="Time:"
+                    showTimeInput
+                    dateFormat="d MMMM yyyy h:mm aa"
+                    placeholderText=" Date & Time"
+                    filterTime={filterDateTime}
+                    filterDate={filterDateTime}
+                />
 
                 <InputGroup className="mb-3">
                     <FormControl
