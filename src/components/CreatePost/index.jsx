@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap'
 import './index.css'
 import profilDummy from '../../img/profilDummy.jpeg'
 import { Link } from 'react-router-dom'
-import './responsive.css'
+
 
 function CreatePost() {
     const ref = useRef();
@@ -38,7 +38,7 @@ function CreatePost() {
         <>
             <Card className="fontWeight-create">
                 <div className="d-flex">
-                    <div className="d-flex createContainer flex-grow-1 ms-4">
+                    <div className="d-flex .createContainer flex-grow-1 ms-4">
                         <h5 className="ms-3">Create Announcement or Events</h5>
                     </div>
                     <div ref={ref} className="my-auto d-flex position-relative">
