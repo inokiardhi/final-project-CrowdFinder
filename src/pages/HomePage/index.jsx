@@ -11,6 +11,8 @@ import { getPostById } from '../../redux/action/postById'
 import { putLike } from '../../redux/action/like'
 import { Link } from 'react-router-dom'
 import ReactLoading from 'react-loading';
+import { getComment } from '../../redux/action/comment'
+import { postComment } from '../../redux/action/comment'
 
 
 function HomePage() {
@@ -18,6 +20,8 @@ function HomePage() {
     const dispatch = useDispatch()
     const { listPost, loading } = useSelector((state) => state.posts);
     const { search } = useSelector((state) => state.searchData)
+    const { listComment } = useSelector((state) => state.comments);
+
 
     const user = useSelector((state) => state.userData.user)
 
@@ -31,10 +35,21 @@ function HomePage() {
         setTimeout(2000)
     }, [listPost])
 
-    const handleLikes = async (e) => {
-        await dispatch(putLike(e))
-        await dispatch(getPost())
-    };
+    // const [body, setBody] = useState({
+    //     content: "",
+    // });
+
+    // const changeComment = (e) => {
+    //     setBody({ ...body, content: e.target.value });
+    // };
+
+    // const handlePostComment = async (e, id) => {
+    //     e.preventDefault();
+    //     await dispatch(postComment(id, body));
+    //     // await dispatch(getPost())
+    //     // await dispatch(getComment(idPost))
+        
+    // };
 
 
 
@@ -77,6 +92,7 @@ function HomePage() {
                                     idPost={post?.id} 
                                     comment={post?.comment?.length} 
                                     idUserPost={post?.user_id.id} 
+                                    // handlePostComment={(id, body) => handlePostComment(post?.id, )}
                                 />
                                 )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
                                     <LargeCardMyEvent key={id} 
