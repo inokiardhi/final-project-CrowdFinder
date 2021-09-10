@@ -80,9 +80,9 @@ const Header = () => {
                     style={{ maxHeight: '100px' }}
 
                   >
-                    <Nav className="mx-lg-5 my-lg-4 d-flex">
+                    <Nav className="my-lg-4 d-flex">
                       <Link
-                        className="mx-lg-5 d-flex flex-column align-items-lg-center"
+                        className="d-flex flex-column align-items-lg-center"
                         to="/home"
                         style={{ textDecoration: "none", color: "black" }}
                       >

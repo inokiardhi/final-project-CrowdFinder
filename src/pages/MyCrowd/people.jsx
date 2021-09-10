@@ -1,15 +1,16 @@
 import React from 'react';
 import ListCardPeople from '../../components/ListCardPeople';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
 function People(props) {
-    const user = useSelector((state) => state.userData.user)
+    const { userbyid } = useSelector((state) => state.getUserById)
 
 
     return (
         <div>
-            {user.following?.filter((item) => item.role === "user").map((item) => (<ListCardPeople fullname={item.fullname} role={item.role} />))}
-
+            {userbyid.following?.filter((item) => item.role === "user").map((item) =>
+                (<ListCardPeople fullname={item.fullname} role={item.role} idUser={item.id} photo={item.image} />))}
         </div>
     );
 }

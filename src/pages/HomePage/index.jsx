@@ -11,6 +11,7 @@ import { getPostById } from '../../redux/action/postById'
 import { putLike } from '../../redux/action/like'
 import { Link } from 'react-router-dom'
 import ReactLoading from 'react-loading';
+import './responsive.css'
 import { getComment } from '../../redux/action/comment'
 import { postComment } from '../../redux/action/comment'
 
@@ -48,7 +49,7 @@ function HomePage() {
     //     await dispatch(postComment(id, body));
     //     // await dispatch(getPost())
     //     // await dispatch(getComment(idPost))
-        
+
     // };
 
 
@@ -61,9 +62,9 @@ function HomePage() {
     return (
         <>
             <div className="container mt-5" style={{ minHeight: "100vH" }}>
-                <div className="d-flex flex-sm-column flex-md-column  flex-lg-row mt-3">
+                <div className="body-main d-flex flex-sm-column flex-md-column flex-lg-row mt-3">
                     <TopicMe />
-                    <div className="w-100 ms-lg-4 mt-sm-4">
+                    <div className="createpos w-100 ms-lg-4 mt-sm-4">
                         <CreatePost />
                         <div>
                             <div className="d-flex mt-4 mb-3">
@@ -72,47 +73,50 @@ function HomePage() {
                             </div>
                             <div className="wrapper mx-auto mb-5">
                                 {search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
-                                    <Link style={{ textDecoration: "none" }} to={`/comunity-profile/${post?.user_id?.id}`}> <SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date}  /></Link>
+                                    <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}> <SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
                                 )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
-                                    <Link style={{ textDecoration: "none" }} to={`/comunity-profile/${post?.user_id?.id}`}><SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
+                                    <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}><SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
                                 ))}
                             </div>
                         </div>
 
                         <div>
-                            {loading ?  <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'} /> : (search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
-                                <LargeCardMyEvent key={id} 
-                                    contentCard={post?.content} 
-                                    image={post?.image} 
-                                    time={post?.createdAt} 
-                                    interest={post?.interest} 
-                                    location={post?.user_id?.location} 
-                                    like={post?.like?.length} 
-                                    userName={post?.user_id?.fullname} 
-                                    idPost={post?.id} 
-                                    comment={post?.comment?.length} 
-                                    idUserPost={post?.user_id.id} 
-                                    // handlePostComment={(id, body) => handlePostComment(post?.id, )}
+                            {loading ? <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'} /> : (search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
+                                <LargeCardMyEvent key={id}
+                                    contentCard={post?.content}
+                                    image={post?.image}
+                                    time={post?.createdAt}
+                                    interest={post?.interest}
+                                    location={post?.user_id?.location}
+                                    like={post?.like?.length}
+                                    userName={post?.user_id?.fullname}
+                                    idPost={post?.id}
+                                    comment={post?.comment?.length}
+                                    idUserPost={post?.user_id.id}
+                                    photo={post?.user_id.image}
+                                // handlePostComment={(id, body) => handlePostComment(post?.id, )}
                                 />
-                                )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
-                                    <LargeCardMyEvent key={id} 
-                                    contentCard={post?.content} 
-                                    image={post?.image} 
-                                    time={post?.createdAt} 
-                                    interest={post?.interest} 
-                                    location={post?.user_id?.location} 
-                                    like={post?.like?.length} 
-                                    userName={post?.user_id?.fullname} 
-                                    idPost={post?.id} 
-                                    comment={post?.comment?.length} 
-                                    idUserPost={post?.user_id.id} 
-                                    />
-                                ))
+                            )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
+                                <LargeCardMyEvent key={id}
+                                    contentCard={post?.content}
+                                    image={post?.image}
+                                    time={post?.createdAt}
+                                    interest={post?.interest}
+                                    location={post?.user_id?.location}
+                                    like={post?.like?.length}
+                                    userName={post?.user_id?.fullname}
+                                    idPost={post?.id}
+                                    comment={post?.comment?.length}
+                                    idUserPost={post?.user_id.id}
+                                    photo={post?.user_id.image}
+                                />
+                            ))
                             )}
                             <div className="text-center my-5">
                                 <MyPagination />
                             </div>
                         </div>
+
 
                     </div>
                 </div>

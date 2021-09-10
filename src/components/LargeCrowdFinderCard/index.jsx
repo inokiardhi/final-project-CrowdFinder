@@ -9,18 +9,17 @@ import { Link } from "react-router-dom";
 import ReactTimeAgo from 'react-time-ago'
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, getPost } from "../../redux/action/post";
+import moment from 'moment'
 
 import './index.css'
 
 function LargeCrowdFinderCard(props) {
+    const { userbyid } = useSelector((state) => state.getUserById)
     const [show, setShow] = useState(false);
     const eventid = props
     const dispatch = useDispatch()
     const ref = useRef();
     useOnClickOutside(ref, () => setShow(false));
-
-
-
     const {
         contentCard, image, time, location, userName, idPost, action, title
     } = props;
@@ -34,6 +33,7 @@ function LargeCrowdFinderCard(props) {
         userName: userName,
         action: action,
         title: title,
+        image: image,
 
     })
 
@@ -76,7 +76,11 @@ function LargeCrowdFinderCard(props) {
 
                 <div className="d-flex">
                     <div className="imageAvatar">
-                        <img src={`https://ui-avatars.com/api/?name=${state?.userName}&background=random&length=1&rounded=true&size=35`} />
+                        {userbyid?.image === "" ? (<img
+                            src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`}
+                            alt="..."
+                        />) : (<img src={`https://crowdfinder.gabatch13.my.id/api${userbyid.image}`} />)}
+
                     </div>
                     <div className="headText container-fluid d-block">
 
@@ -113,19 +117,19 @@ function LargeCrowdFinderCard(props) {
                             <Row className="time-event my-3 d-flex ">
                                 <Col xs={4}>
                                     <div className="calender d-flex align-items-center">
-                                        <h4> <AiFillCalendar style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>22/09/2021</h5>
+                                        <h4> <AiFillCalendar style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>{moment(props.date).calendar("")}</h5>
                                     </div>
                                 </Col>
                                 <Col>
                                     <div className="calender d-flex align-items-center">
-                                        <h4> <AiFillClockCircle style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>09:00 AM</h5>
+                                        <h4> <AiFillClockCircle style={{ color: '#BDBDBD' }} className='me-4' /></h4> <h5>{moment(props.date).format("LT")}</h5>
                                     </div>
                                 </Col>
                             </Row>
                             <p className="fontSize">{state.contentCard}</p>
                             <div className="people-event mt-3 d-flex justify-content-between ">
                                 <div className="time-event  d-flex align-items-center ">
-                                    <h4> <RiGroupFill className='me-4' style={{ color: '#BDBDBD' }} /></h4> <h5>129 people attend this</h5>
+                                    <h4> <RiGroupFill className='me-4' style={{ color: '#BDBDBD' }} /></h4> <h5>{props.attend}people attend this</h5>
                                 </div>
 
                                 <div className="time d-flex align-items-center ">

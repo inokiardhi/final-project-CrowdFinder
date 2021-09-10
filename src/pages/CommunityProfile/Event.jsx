@@ -13,10 +13,14 @@ function Event(props) {
     const user = useSelector((state) => state.userData.user)
     const { postbyid, loading } = useSelector((state) => state.postsId);
     const [show, setShow] = useState(true)
-    const [detailcard, setDetailCard] = useState({ title: "", content: "", post_id: "", userId: "" })
+    const [detailcard, setDetailCard] = useState({
+        title: "", content: "", post_id: "", userId: "", imageBkg: "", date: "",
+        attend: "", address: ""
+    })
     const [data, setData] = useState({ name: "", id: "" })
     const { listPost } = useSelector((state) => state.posts);
 
+    console.log("ini detail card", detailcard)
 
     useEffect(() => {
         setPosts(postbyid)
@@ -27,14 +31,18 @@ function Event(props) {
             {show ?
                 [
                     postbyid.length > 0 && posts?.reverse().filter(post => post.type === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
-                    (<LargeCrowdFinderCard key={idx} userName={post.user_id.username} title={post.title} content={post.content} time={post.createdAt}
+                    (<LargeCrowdFinderCard date={post.date} attend={post.attender.length} key={idx} userName={post.user_id.username} title={post.title} content={post.content} time={post.createdAt}
                         action={() => {
                             setShow(false)
                             setDetailCard({
                                 title: post.title,
                                 content: post.content,
                                 post_id: post.id,
-                                userId: post.user_id.id
+                                userId: post.user_id.id,
+                                imageBkg: post.image,
+                                date: post.date,
+                                attend: post.attender.length,
+                                address: post.address
                             })
                         }
                         } idPost={post.id} />)),
@@ -43,7 +51,9 @@ function Event(props) {
                     </div>
 
                 ]
-                : <EventDetailCard title={detailcard.title} content={detailcard.content} postid={detailcard.post_id} idUser={detailcard.userId} />}
+                : <EventDetailCard date={detailcard.date}
+                    address={detailcard.address} attend={detailcard.attend}
+                    imageBkg={detailcard.imageBkg} title={detailcard.title} content={detailcard.content} postid={detailcard.post_id} idUser={detailcard.userId} />}
         </div>
     );
 }

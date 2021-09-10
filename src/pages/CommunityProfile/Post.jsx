@@ -15,7 +15,7 @@ function Post(props) {
     const [detailcard, setDetailCard] = useState({ title: "", content: "" })
     const [data, setData] = useState({ name: "", id: "" })
     const { listPost } = useSelector((state) => state.posts);
-
+    const { userbyid } = useSelector((state) => state.getUserById)
 
     useEffect(() => {
         setPosts(postbyid)
@@ -36,7 +36,9 @@ function Post(props) {
                             like={post.like.length}
                             userName={post.user_id.fullname}
                             idPost={post.id}
-                            comment={post.comment.length} />
+                            comment={post.comment.length}
+                            photo={userbyid.image}
+                        />
                     )),
                     <div className="pagination justify-content-center mt-5">
                         <MyPagination />

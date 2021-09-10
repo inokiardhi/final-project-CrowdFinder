@@ -91,6 +91,11 @@
 
 .content-form {
   background-color: rgb(255, 255, 255);
+  width: 43rem
+}
+
+.form-data {
+  width: 31rem
 }
 
 .content-city {

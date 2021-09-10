@@ -30,13 +30,15 @@ function ComunityProfile(props) {
         setIsAbout(index);
     }
 
+    console.log(userId)
+
     return (
         <Container style={{ minHeight: "100vH", paddingBottom: "500px" }}>
             <div className="Profile-page">
                 <Hero />
                 <Row>
                     <Col xl={4}>
-                        <AvatarComunity idUser={userbyid.id} location={userbyid.location} comunityname={userbyid.fullname} photo={`https://ui-avatars.com/api/?name=${userbyid.fullname}&background=random&length=1&rounded=true&size=35`} />
+                        <AvatarComunity idUser={userbyid.id} location={userbyid.location} comunityname={userbyid.fullname} photo={userbyid.image} />
                     </Col>
                     <Col xl={1}></Col>
                     <Col>

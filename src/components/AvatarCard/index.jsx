@@ -8,23 +8,27 @@ import { useDispatch } from "react-redux"
 import { logout } from "../../redux/action/user"
 import './responsive.scss'
 import Swal from "sweetalert2"
-
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getCurrentUser } from "../../redux/action/user"
 function AvatarCard(props) {
     const dispatch = useDispatch();
-
-
-
+    const user = useSelector((state) => state.userData.user)
     const Logout = (e) => {
         e.preventDefault();
         dispatch(logout());
         window.location.replace("/")
     }
 
+    useEffect(() => {
+        dispatch(getCurrentUser())
+    }, [dispatch])
+
     return (
 
         <Card className='AvatarCard'>
             <div className="image-avatar">
-                <img src={props.photo} />
+                {user?.image === null ? (<img src={`https://ui-avatars.com/api/?name=${user.fullname}&background=random&length=1&rounded=true&size=35`} />) : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} />)}
             </div>
             <Card.Body className='title'>
                 <h4>{props.username}</h4>
