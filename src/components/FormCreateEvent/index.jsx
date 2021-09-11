@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import './index.css'
 import { InputGroup, FormControl, Card, Button, FormSelect, FloatingLabel } from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ReactLoading from 'react-loading';
 
 
 function FormCreateEvent(props) {
@@ -20,6 +22,8 @@ function FormCreateEvent(props) {
         onClick 
     } = props;
 
+    const {loading} = useSelector((state) => state.events)
+
     const filterDateTime = (time) => {
         const currentDate = new Date();
         const selectedDate = new Date(time);
@@ -34,6 +38,8 @@ function FormCreateEvent(props) {
                 <h5 style={{ fontSize: '22px', fontWeight: '700' }}>Create an event</h5>
                 <p style={{ fontSize: '18px', fontWeight: '400' }}>Put your awesome photo to get more people!</p>
 
+                {loading && <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'}/>}
+                {!loading && (
                 <Card className="cardSize mb-3">
                     {displayImage && <img src={displayImage} alt="" />}
                     <input
@@ -57,67 +63,72 @@ function FormCreateEvent(props) {
                         </label>
                     )}
                 </Card>
+                )}
+                
+                {!loading && (
+                <div>
+                    <InputGroup className="mb-3 fontWeightSize-formEvent">
+                        <FormControl
+                            placeholder="How do you call this event?"
+                            aria-label="How do you call this event?"
+                            aria-describedby="basic-addon1"
+                            onChange={title}
+                        />
+                    </InputGroup>
 
-                <InputGroup className="mb-3 fontWeightSize-formEvent">
-                    <FormControl
-                        placeholder="How do you call this event?"
-                        aria-label="How do you call this event?"
-                        aria-describedby="basic-addon1"
-                        onChange={title}
+
+                    <DatePicker
+                        className="mb-3"
+                        selected={showDate}
+                        onChange={date}
+                        timeFormat="HH:mm"
+                        timeInputLabel="Time:"
+                        showTimeInput
+                        dateFormat="d MMMM yyyy HH:mm"
+                        placeholderText=" Date & Time"
+                        filterTime={filterDateTime}
+                        filterDate={filterDateTime}
                     />
-                </InputGroup>
+
+                    <InputGroup className="mb-3">
+                        <FormControl
+                            style={{ fontFamily: 'Mulish, FontAwesome, sans-serif' }}
+                            placeholder="&#xf041; Where?"
+                            aria-label="Where?"
+                            aria-describedby="basic-addon4"
+                            onChange={location}
+                        />
+                    </InputGroup>
+
+                    <InputGroup className="mb-3">
+                        <FormControl
+                            placeholder="Address?"
+                            aria-label="Address?"
+                            aria-describedby="basic-addon3"
+                            onChange={address}
+                        />
+                    </InputGroup>
+
+                    <FloatingLabel className="mb-3" controlId="floatingSelect" label="What Category This Event Is?" onChange={interest}>
+                        <FormSelect aria-label="Floating label select example">
+                            <option></option>
+                            <option value="sports">sport</option>
+                            <option value="art">art</option>
+                            <option value="bike">bike</option>
+                        </FormSelect>
+                    </FloatingLabel>
 
 
-                <DatePicker
-                    className="mb-3"
-                    selected={showDate}
-                    onChange={date}
-                    timeFormat="HH:mm"
-                    timeInputLabel="Time:"
-                    showTimeInput
-                    dateFormat="d MMMM yyyy HH:mm"
-                    placeholderText=" Date & Time"
-                    filterTime={filterDateTime}
-                    filterDate={filterDateTime}
-                />
-
-                <InputGroup className="mb-3">
-                    <FormControl
-                        style={{ fontFamily: 'Mulish, FontAwesome, sans-serif' }}
-                        placeholder="&#xf041; Where?"
-                        aria-label="Where?"
-                        aria-describedby="basic-addon4"
-                        onChange={location}
-                    />
-                </InputGroup>
-
-                <InputGroup className="mb-3">
-                    <FormControl
-                        placeholder="Address?"
-                        aria-label="Address?"
-                        aria-describedby="basic-addon3"
-                        onChange={address}
-                    />
-                </InputGroup>
-
-                <FloatingLabel className="mb-3" controlId="floatingSelect" label="What Category This Event Is?" onChange={interest}>
-                    <FormSelect aria-label="Floating label select example">
-                        <option></option>
-                        <option value="sports">sport</option>
-                        <option value="art">art</option>
-                        <option value="bike">bike</option>
-                    </FormSelect>
-                </FloatingLabel>
-
-
-                <InputGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <FormControl
-                        as="textarea"
-                        placeholder="Tell people more about this event"
-                        rows={3}
-                        onChange={content}
-                    />
-                </InputGroup>
+                    <InputGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <FormControl
+                            as="textarea"
+                            placeholder="Tell people more about this event"
+                            rows={3}
+                            onChange={content}
+                        />
+                    </InputGroup>
+                </div>
+                )}
 
                 <div className="d-flex justify-content-end">
                     <Button className="px-5" variant="secondary" onClick={onClick}>Post event</Button>

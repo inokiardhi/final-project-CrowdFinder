@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './index.css'
+import ReactLoading from 'react-loading';
 import { InputGroup, FormControl, Button, Form, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from '../../redux/action/user';
@@ -9,6 +10,7 @@ function FormCreateAnnouncement(props) {
     const { title, interest, content, image, onClick } = props;
     const dispatch = useDispatch();
     const [error, setError] = useState(false);
+    const {loading} = useSelector((state) => state.announcements)
 
     const [state, setState] = useState({
         content: "",
@@ -80,6 +82,8 @@ function FormCreateAnnouncement(props) {
                                 ))}
                             </select>
                         </div>
+                        {loading && <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'}/>}
+                        {!loading && (
                         <InputGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <FormControl
                                 as="textarea"
@@ -88,7 +92,9 @@ function FormCreateAnnouncement(props) {
                                 onChange={(e) => setState({ ...state, content: e.target.value })}
                             />
                         </InputGroup>
+                        )}
 
+                        {!loading && (
                         <Card className="imgContainer">
                             {state.image.display && <img src={state.image.display} alt="" />}
                             <input
@@ -112,9 +118,14 @@ function FormCreateAnnouncement(props) {
                                 </label>
                             )}
                         </Card>
+                         )}
+                        
+                        {!loading && (
                         <div className="d-flex justify-content-end">
                             <Button className="px-5" variant="secondary" onClick={(e) => handlePostAnnouncement(e)} >Post</Button>
                         </div>
+                        )}
+                        
                     </div>
                 </div>
 
