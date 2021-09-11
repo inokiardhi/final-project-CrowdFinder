@@ -6,11 +6,19 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 function FormCreateEvent(props) {
-    const { title, image, location, interest, content, date, showDate, address, onClick } = props;
-
-    const [img, setImg] = useState("");
-    const [error, setError] = useState(false);
-    const [dateTime, setDateTime] = useState()
+    const { 
+        title, 
+        onChangeImage,
+        displayImage,
+        removeImage,
+        location, 
+        interest, 
+        content, 
+        date, 
+        showDate, 
+        address, 
+        onClick 
+    } = props;
 
     const filterDateTime = (time) => {
         const currentDate = new Date();
@@ -19,23 +27,6 @@ function FormCreateEvent(props) {
         return currentDate.getTime() < selectedDate.getTime();
       };
 
-     
-
-    // const imageHandler = (e) => {
-    //     //   const selected = e.target.files[0];
-    //     const selected = { image };
-    //     const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
-    //     if (selected && allowedTypes.includes(selected.type)) {
-    //         let reader = new FileReader();
-    //         reader.onloadend = () => {
-    //             setImg(reader.result);
-    //         };
-    //         reader.readAsDataURL(selected);
-    //     } else {
-    //         setError(true);
-    //     }
-    // };
-    console.log(dateTime)
 
     return (
         <>
@@ -44,19 +35,19 @@ function FormCreateEvent(props) {
                 <p style={{ fontSize: '18px', fontWeight: '400' }}>Put your awesome photo to get more people!</p>
 
                 <Card className="cardSize mb-3">
-                    {img && <img src={image} alt="" />}
+                    {displayImage && <img src={displayImage} alt="" />}
                     <input
                         type="file"
                         name="image-upload"
                         id="input"
                         accept="image/*"
-                        onChange={image}
+                        onChange={onChangeImage}
                     />
 
-                    {img ? (
+                    {displayImage ? (
                         <button
                             className="rounded-pill btnStyle centeringBtn"
-                            onClick={() => setImg(null)}
+                            onClick={removeImage}
                         >
                             <i className="fa fa-picture-o  me-2"></i>remove image
                         </button>
@@ -76,15 +67,6 @@ function FormCreateEvent(props) {
                     />
                 </InputGroup>
 
-                {/* <InputGroup className="mb-3">
-                    <FormControl
-                        style={{ fontFamily: 'Mulish, FontAwesome, sans-serif' }}
-                        placeholder="&#xf133; What date?"
-                        aria-label="What date?"
-                        aria-describedby="basic-addon2"
-                        onChange={date}
-                    />
-                </InputGroup> */}
 
                 <DatePicker
                     className="mb-3"
@@ -93,7 +75,7 @@ function FormCreateEvent(props) {
                     timeFormat="HH:mm"
                     timeInputLabel="Time:"
                     showTimeInput
-                    dateFormat="d MMMM yyyy h:mm aa"
+                    dateFormat="d MMMM yyyy HH:mm"
                     placeholderText=" Date & Time"
                     filterTime={filterDateTime}
                     filterDate={filterDateTime}

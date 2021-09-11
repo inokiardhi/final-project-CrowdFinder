@@ -6,34 +6,7 @@ import { getPost } from '../../redux/action/post'
 import { updateAnnouncement } from '../../redux/action/announcement'
 
 function FormUpdateAnnouncementPage() {
-    let { idPost } = useParams()
-    const dispatch = useDispatch();
-    const { listPost, loading } = useSelector((state) => state.posts);
-    // const idPostUPdate = listPost?.filter(post => post?.id === idPost)
-
-    const idPostUPdate = listPost?.filter(post => post?.id === idPost)
-    const dataupdate = listPost
-
-
-    console.log("data dari halaman update", idPostUPdate)
-    const [state, setState] = useState({
-        content: "",
-        interest: "",
-        image: ""
-    });
-
-    useEffect(() => {
-        dispatch(getPost())
-    }, [dispatch])
-
-
-    const handleUpdateAnnouncement = (e) => {
-        e.preventDefault();
-        const data = state;
-        dispatch(updateAnnouncement(data, idPost));
-    }
-
-    console.log(state)
+    let { idPost } = useParams();
 
     return (
         <>

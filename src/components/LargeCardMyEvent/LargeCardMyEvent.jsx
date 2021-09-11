@@ -106,6 +106,11 @@ function LargeCardMyEvent(props) {
         setShow(!show);
     };
 
+    //Uppercase first letter
+    const capitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
     // console.log('likes', likes)
     // console.log('body gaes', body)
     console.log('listcomment state', listCommentState)
@@ -142,7 +147,7 @@ function LargeCardMyEvent(props) {
                                 {userName}
                             </label>
                             <label className="headTextBadge rounded-pill ms-3 me-auto">
-                                {interest}
+                                {capitalize(interest[0])}
                             </label>
                             <label
                                 style={{
