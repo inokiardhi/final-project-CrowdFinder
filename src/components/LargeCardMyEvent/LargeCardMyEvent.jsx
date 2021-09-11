@@ -27,6 +27,7 @@ function LargeCardMyEvent(props) {
         idPost,
         idComment,
         idUserPost,
+        photo
     } = props;
 
     const dispatch = useDispatch();
@@ -63,7 +64,7 @@ function LargeCardMyEvent(props) {
         await dispatch(postComment(idPost, body));
         await dispatch(clearComment())
         await dispatch(getPost())
-        await setCommentLength(commentLength +1)
+        await setCommentLength(commentLength + 1)
         // await dispatch(getComment(idPost))
     };
 
@@ -71,7 +72,7 @@ function LargeCardMyEvent(props) {
     const handleDeleteComment = async (idCommentDel) => {
         await dispatch(deleteComment(idCommentDel, idPost));
         // await dispatch(getComment(idPost))
-        setCommentLength(commentLength -1)
+        setCommentLength(commentLength - 1)
     }
 
     //like post===========================================
@@ -113,7 +114,7 @@ function LargeCardMyEvent(props) {
 
     // console.log('likes', likes)
     // console.log('body gaes', body)
-    console.log('listcomment state', listCommentState)
+
 
     return (
         <>
@@ -122,7 +123,11 @@ function LargeCardMyEvent(props) {
 
                 <div className="d-flex">
                     <div className="imageAvatar mb-4 me-2">
-                        <img src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`} alt="" />
+                        {photo === photo ?
+                            (<img src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`} alt="" />) :
+                            (<img src={`https://crowdfinder.gabatch13.my.id/api${photo}`} />)}
+
+
                     </div>
                     <div className="headText container-fluid d-block mb-2">
 
