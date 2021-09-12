@@ -11,6 +11,8 @@ import getUserById from "./userById"
 import attendEvent from "./attend";
 import followUser from "./followUser";
 import updateUser from "./updateUser";
+import notification from "./notification"
+
 
 export default combineReducers({
     userData,
@@ -24,5 +26,6 @@ export default combineReducers({
     getUserById,
     attendEvent,
     followUser,
-    updateUser
+    updateUser,
+    notification,
 });

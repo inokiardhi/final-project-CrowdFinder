@@ -91,7 +91,7 @@ const Header = () => {
                       </Link>
                       <Link
                         className="mx-lg-5 d-flex flex-column align-items-lg-center"
-                        to="/home"
+                        to="/notification"
                         style={{ textDecoration: "none", color: "black" }}
                       >
                         <i className="fa fa-bell fa-lg my-2" style={{ color: "white" }}></i>

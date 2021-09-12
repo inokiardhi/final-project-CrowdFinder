@@ -15,7 +15,7 @@ import FormCreateEventPage from "../pages/FormCreateEventPage/FormCreateEventPag
 import FormCreateAnnouncementPage from "../pages/FormCreateAnnouncementPage/FormCreateAnnouncementPage";
 import ManageComunity from "../pages/ManageComunity";
 import FormUpdateAnnouncementPage from "../pages/FormUpdateAnnouncementPage/FormUpdateAnnouncementPage";
-
+import Getnotif from "../components/Header/notification"
 
 
 const Routers = () => {
@@ -77,6 +77,9 @@ const Routers = () => {
         </Route>
         <Route exact path="/manage-comunity">
           <ManageComunity />
+        </Route>
+        <Route exact path="/notification">
+          <Getnotif />
         </Route>
         <Route path="*">
           <h1>Page Not Found</h1>

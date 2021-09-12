@@ -23,6 +23,7 @@ import { watchGetUserById } from "./userById";
 import { watchAttendEvent } from "./attend";
 import { watchFollowUser } from "./followUser";
 import { watchUserUpdate } from "./updateUser";
+import {watchNotification} from "./notification"
 
 export default function* rootSaga() {
   yield all([
@@ -44,6 +45,7 @@ export default function* rootSaga() {
     watchAttendEvent(),
     watchDeleteComments(),
     watchFollowUser(),
-    watchUserUpdate()
+    watchUserUpdate(),
+    watchNotification(),
   ]);
 }
