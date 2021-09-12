@@ -6,6 +6,7 @@ import { getCurrentUser } from '../../redux/action/user';
 import { useParams } from 'react-router';
 import { getPostById } from '../../redux/action/postById';
 import { updateAnnouncement } from '../../redux/action/announcement';
+import ReactLoading from 'react-loading';
 
 function FormUpdateAnnouncement(props) {
     const { title, interest, content, image, onClick } = props;
@@ -14,6 +15,7 @@ function FormUpdateAnnouncement(props) {
     const dispatch = useDispatch();
    
     let { idPost } = useParams()
+    const {loading} = useSelector((state) => state.announcements)
 
    
 
@@ -27,14 +29,20 @@ function FormUpdateAnnouncement(props) {
     const [state, setState] = useState({
         interest : null,
         content : null,
-        image : null,
+        image : {
+            display: null,
+            upload:null,
+        },
     })
 
     useEffect(() => {
         setState({
             interest : postbyid.interest,
             content : postbyid.content,
-            image : postbyid.image,
+            image : {
+                display: postbyid.image,
+                upload: null,
+            }
         })
     },[postbyid])
 
@@ -43,13 +51,34 @@ function FormUpdateAnnouncement(props) {
         dispatch(getPostById(1, idPost));
     }, [dispatch]);
 
+    const imageFile = (e) => {
+        const selected = e.target.files[0];
+        const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+
+        if (selected && allowedTypes.includes(selected.type)) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                setState({
+                    ...state,
+                    image: {
+                        display: reader.result,
+                        upload: selected,
+                    }
+                });
+            };
+            reader.readAsDataURL(selected);
+        } else {
+            setError(true);
+        }
+    }
+
     const handleUpdateAnnouncement = (e) => {
         e.preventDefault();
         const data = state;
         const formData = new FormData();
         dispatch(updateAnnouncement(formData, idPost));
-        if(state.image){
-            formData.append('image', data.image, data.image.name);
+        if(state.image.upload){
+            formData.append('image', data.image.upload, data.image.upload.name);
         }
         formData.append('content',data.content);
         formData.append('interest', data.interest);
@@ -80,7 +109,6 @@ function FormUpdateAnnouncement(props) {
     return (
         <>
             <div className="head-container">
-
                 <div className="d-flex">
                     <div className="headText container-fluid" style={{ padding: '0 0' }}>
                         <h5 style={{ fontSize: '22px', fontWeight: '700' }}>Update your announcement</h5>
@@ -94,42 +122,48 @@ function FormUpdateAnnouncement(props) {
                                 ))}
                             </select>
                         </div>
-                        <InputGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <FormControl
-                                as="textarea"
-                                placeholder="Type something..."
-                                rows={3}
-                                onChange={(e) => setState({ ...state, content: e.target.value })}
-                                value={state.content}
-                            />
-                        </InputGroup>
 
-                        <Card className="imgContainer">
-                            {img ? <img src={img} alt="" /> : <div></div>}
-                            <input
-                                type="file"
-                                name="image-upload"
-                                id="input"
-                                accept="image/*"
-                                onChange={(e) => setState({ ...state, image: e.target.files[0] })}
-                            />
+                        {loading && <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'}/>}
+                        {!loading && (
+                        <div>
+                            <InputGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                <FormControl
+                                    as="textarea"
+                                    placeholder="Type something..."
+                                    rows={3}
+                                    onChange={(e) => setState({ ...state, content: e.target.value })}
+                                    value={state.content}
+                                />
+                            </InputGroup>
 
-                            {img ? (
-                                <button
-                                    className="rounded-pill btnStyle-announcement btnCenter"
-                                    onClick={() => setImg(null)}
-                                >
-                                    <i className="far fa-image me-2"></i>remove image
-                                </button>
-                            ) : (
-                                <label className="rounded-pill btnStyle-announcement btnCenter" htmlFor="input">
-                                    <i className="fa fa-picture-o me-2"></i>Add Image
-                                </label>
-                            )}
-                        </Card>
-                        <div className="d-flex justify-content-end">
-                            <Button className="px-5" variant="secondary" onClick={handleUpdateAnnouncement}>Update</Button>
+                            <Card className="imgContainer">
+                                {state.image.display ? <img src={!state.image.upload ? `https://crowdfinder.gabatch13.my.id/api${state.image.display}` : state.image.display} alt="" /> : <div></div>}
+                                <input
+                                    type="file"
+                                    name="image-upload"
+                                    id="input"
+                                    accept="image/*"
+                                    onChange={imageFile}
+                                />
+
+                                {state.image.display ? (
+                                    <button
+                                        className="rounded-pill btnStyle-announcement btnCenter"
+                                        onClick={() => setState({ ...state, image:{ display: null, upload: null  }})}
+                                    >
+                                        <i className="fa fa-picture-o me-2"></i>remove image
+                                    </button>
+                                ) : (
+                                    <label className="rounded-pill btnStyle-announcement btnCenter" htmlFor="input">
+                                        <i className="fa fa-picture-o me-2"></i>Add Image
+                                    </label>
+                                )}
+                            </Card>
+                            <div className="d-flex justify-content-end">
+                                <Button className="px-5" variant="secondary" onClick={handleUpdateAnnouncement}>Update</Button>
+                            </div>
                         </div>
+                        )}
                     </div>
                 </div>
 
