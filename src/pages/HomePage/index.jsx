@@ -108,7 +108,7 @@ function HomePage() {
                                     idPost={post?.id}
                                     comment={post?.comment?.length}
                                     idUserPost={post?.user_id.id}
-                                    photo={post?.user_id.image}
+                                    photo={post?.user_id?.image}
                                 />
                             ))
                             )}

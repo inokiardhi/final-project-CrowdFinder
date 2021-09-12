@@ -109,7 +109,9 @@ function LargeCardMyEvent(props) {
 
     // console.log('likes', likes)
     // console.log('body gaes', body)
-
+    const dummy = (e) => {
+        e.target.src = `https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`;
+    }
 
     return (
         <>
@@ -118,11 +120,7 @@ function LargeCardMyEvent(props) {
 
                 <div className="d-flex">
                     <div className="imageAvatar mb-4 me-2">
-                        {photo === photo ?
-                            (<img src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`} alt="" />) :
-                            (<img src={`https://crowdfinder.gabatch13.my.id/api${photo}`} />)}
-
-
+                        <img src={`https://crowdfinder.gabatch13.my.id/api${photo}`} onError={dummy} />
                     </div>
                     <div className="headText container-fluid d-block mb-2">
 

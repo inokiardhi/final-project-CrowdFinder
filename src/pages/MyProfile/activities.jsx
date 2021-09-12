@@ -23,7 +23,7 @@ function Activities(props) {
     useEffect(() => {
         setPosts(postbyid)
         dispatch(getPostById(1, user.id))
-    }, [postbyid])
+    }, [dispatch])
     // console.log('ini type', postbyid[0].id)
 
     return (

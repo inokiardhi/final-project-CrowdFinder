@@ -19,6 +19,9 @@ function ListCardPeople(props) {
         e.preventDefault();
         await dispatch(followUser(props.idUser))
     }
+    const dummy = (e) => {
+        e.target.src = `https://ui-avatars.com/api/?name=${props.fullname}&background=random&length=1&rounded=true&size=35`;
+    }
 
     return (
         <div className='pb-3'>
@@ -27,7 +30,7 @@ function ListCardPeople(props) {
                     <div className="user-detail d-flex ms-1 ">
                         <div className="image">
                             {props.idUser.following?.filter((item) => item.role === "user").map((item) => item.image === null) ?
-                                (<img src={`https://ui-avatars.com/api/?name=${props.fullname}&background=random&length=1&rounded=true&size=35`} />) : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} />)}</div>
+                                null : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} onError={dummy} />)}</div>
                         <div className="user-title ms-4">
                             <h5>{props.fullname}</h5>
                             <p>{props.role}</p>

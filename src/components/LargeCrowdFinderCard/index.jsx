@@ -67,6 +67,7 @@ function LargeCrowdFinderCard(props) {
         await dispatch(getPost())
     }
 
+    const background = `https://crowdfinder.gabatch13.my.id/api${props.imageBkg}`
 
     return (
 
@@ -76,7 +77,7 @@ function LargeCrowdFinderCard(props) {
 
                 <div className="d-flex">
                     <div className="imageAvatar">
-                        {userbyid?.image === "" ? (<img
+                        {userbyid?.image === null ? (<img
                             src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`}
                             alt="..."
                         />) : (<img src={`https://crowdfinder.gabatch13.my.id/api${userbyid.image}`} />)}
@@ -111,7 +112,7 @@ function LargeCrowdFinderCard(props) {
                 <div>
                     <Card>
                         <div className="me-3 ms-3 mt-3 mb-4">
-                            <div className="image-hero" style={{ backgroundImage: `url(${post})` }}>
+                            <div className="image-hero" style={{ backgroundImage: `url(${background})` }}>
                             </div>
                             <h5 className='title-event my-3'>{state.title}</h5>
                             <Row className="time-event my-3 d-flex ">
