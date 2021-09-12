@@ -36,16 +36,16 @@ function ModalUpdate(props) {
         e.preventDefault();
         const data = form
         let formdata = new FormData()
-        await dispatch(updateUser(
-            formdata
-        ));
+
         formdata.append('fullname', data.fullname);
         formdata.append('location', data.location);
         formdata.append('image', data.image);
         formdata.append('background_image', data.background_image);
         formdata.append('interest', data.interest);
         formdata.append('bio', data.bio);
-
+        await dispatch(updateUser(
+            formdata
+        ));
         // form.fullname,
         //     form.location,
         //     form.image,

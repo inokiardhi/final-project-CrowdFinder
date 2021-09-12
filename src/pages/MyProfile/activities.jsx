@@ -40,19 +40,20 @@ function Activities(props) {
                             })
                         }
                         } idPost={post.id} />)),
-                    postbyid?.length > 0 && posts?.reverse().filter(post => post.type === 'announcement').map((post, idx) => (
-                        <LargeCardMyEvent
-                            key={idx}
-                            contentCard={post.content}
-                            image={post.image}
-                            time={post.createdAt}
-                            interest={post.interest}
-                            location={post.user_id.location}
-                            like={post.like.length}
-                            userName={post.user_id.fullname}
-                            idPost={post.id}
-                            comment={post.comment.length}
-                            idUserPost={post?.user_id.id} />
+                    postbyid?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
+                        <LargeCardMyEvent key={id}
+                            contentCard={post?.content}
+                            image={post?.image}
+                            time={post?.createdAt}
+                            interest={post?.interest}
+                            location={post?.user_id?.location}
+                            like={post?.like?.length}
+                            userName={post?.user_id?.fullname}
+                            idPost={post?.id}
+                            comment={post?.comment?.length}
+                            idUserPost={post?.user_id.id}
+                            photo={post?.user_id.image}
+                        />
                     )),
                     <div className="pagination justify-content-center mt-5">
                         <MyPagination />

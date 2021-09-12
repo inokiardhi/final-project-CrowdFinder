@@ -10,7 +10,9 @@ import { Form, Col, Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import "./responsive.css"
 const eye = <FontAwesomeIcon className="fa-lg"icon={faEye} />;
+
 
 export default function MultiStep() {
   const [page, setPage] = useState(1);
@@ -250,73 +252,73 @@ export default function MultiStep() {
                 <Container>
                   <div
                     className="content-form d-flex justify-content-center"
-                    style={{ width: "43rem" }}
+
                   >
-                    <Form className="mx-3 my-3" style={{ width: "31rem" }}>
+                    <Form className="Form-data mx-3 my-3">
                       <h2>Welcome to CrowdFinder</h2>
                       <h3>Helps you to find right community</h3>
                       <p>Where is city you live in?</p>
                       <p>Let people find you greate thoughts</p>
                       <div className="interest">
                         <div className="content-interest justify-content-center">
-                          <div>
-                            <Form.Group className="mb-4" controlId="interest">
-                              <Form.Control
-                                type="text"
-                                placeholder="Type a city’s name"
-                                value={form.location}
-                                name="location"
-                                onChange={(e) => changeForm(e)}
-                              />
-                            </Form.Group>
-                            <p>Create Acount as :</p>
-                            <Form.Group>
-                              <Col>
-                                <div className="mb-1">
-                                  <input
-                                    className="form-radio-input me-2"
-                                    type="radio"
-                                    name="role"
-                                    placeholder="User"
-                                    value="user"
-                                    onChange={(e) => changeForm(e)}
-                                  />
-                                  <label style={{ fontSize: "15px" }}>
-                                    User
-                                  </label>
-                                </div>
-                                <div className="mb-3">
-                                  <input
-                                    className="form-radio-input me-2"
-                                    type="radio"
-                                    name="role"
-                                    placeholder="Community"
-                                    value="community"
-                                    onChange={(e) => changeForm(e)}
-                                  />
-                                  <label style={{ fontSize: "15px" }}>
-                                    Community
-                                  </label>
-                                </div>
-                              </Col>
-                            </Form.Group>
-                            <div className="d-flex justify-content-center my-2 mt-5">
-                              <Button
-                                className="me-3"
-                                onClick={() => changeStep("prev")}
-                                style={{ width: "10rem" }}
-                              >
-                                Prev
-                              </Button>
-                              <Button
-                                className="ms-3"
-                                onClick={() => changeStep("next")}
-                                style={{ width: "10rem" }}
-                              >
-                                Next
-                              </Button>
-                            </div>
+
+                          <Form.Group className="mb-4" controlId="interest">
+                            <Form.Control
+                              type="text"
+                              placeholder="Type a city’s name"
+                              value={form.location}
+                              name="location"
+                              onChange={(e) => changeForm(e)}
+                            />
+                          </Form.Group>
+                          <p>Create Acount as :</p>
+                          <Form.Group>
+                            <Col>
+                              <div className="mb-1">
+                                <input
+                                  className="form-radio-input me-2"
+                                  type="radio"
+                                  name="role"
+                                  placeholder="User"
+                                  value="user"
+                                  onChange={(e) => changeForm(e)}
+                                />
+                                <label style={{ fontSize: "15px" }}>
+                                  User
+                                </label>
+                              </div>
+                              <div className="mb-3">
+                                <input
+                                  className="form-radio-input me-2"
+                                  type="radio"
+                                  name="role"
+                                  placeholder="Community"
+                                  value="community"
+                                  onChange={(e) => changeForm(e)}
+                                />
+                                <label style={{ fontSize: "15px" }}>
+                                  Community
+                                </label>
+                              </div>
+                            </Col>
+                          </Form.Group>
+                          <div className="d-flex justify-content-md-center justify-content-lg-center my-2 mt-5">
+                            <Button
+                              className="me-lg-3"
+                              onClick={() => changeStep("prev")}
+                              style={{ width: "10rem" }}
+                            >
+                              Prev
+                            </Button>
+                            <Button
+                              className="ms-lg-3"
+                              onClick={() => changeStep("next")}
+                              style={{ width: "10rem" }}
+                            >
+                              Next
+                            </Button>
                           </div>
+
                         </div>
                       </div>
                     </Form>

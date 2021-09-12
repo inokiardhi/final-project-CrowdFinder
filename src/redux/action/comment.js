@@ -1,4 +1,4 @@
-import { GET_COMMENT_BEGIN, POST_COMMENT_BEGIN, DELETE_COMMENT_BEGIN } from "./type";
+import { GET_COMMENT_BEGIN, POST_COMMENT_BEGIN, DELETE_COMMENT_BEGIN, CLEAR_COMMENT } from "./type";
 
 export const getComment = (id) => {
   // console.log('ini action')
@@ -24,4 +24,10 @@ export const deleteComment = (id) => {
     id,
   };
 };
+
+export const clearComment = () => {
+  return {
+    type: CLEAR_COMMENT
+  }
+}
 

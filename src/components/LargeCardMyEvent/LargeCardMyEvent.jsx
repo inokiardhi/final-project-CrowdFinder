@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactLoading from 'react-loading';
 import useOnClickOutside from "./useOnClickOutside";
 import { Card, Button, FormControl, InputGroup } from 'react-bootstrap'
 import "./LargeCardMyEvent.css";
 // import image from '../../img/largeCardDummy.jpeg'
-import { deleteComment, getComment, postComment } from "../../redux/action/comment";
+import { clearComment, deleteComment, getComment, postComment } from "../../redux/action/comment";
 import { putLike } from "../../redux/action/like";
 import { deletePost, getPost } from "../../redux/action/post";
 import ReactTimeAgo from 'react-time-ago'
@@ -27,16 +27,14 @@ function LargeCardMyEvent(props) {
         idPost,
         idComment,
         idUserPost,
+        photo
     } = props;
 
-    // const {id} = useParams(idPost)
-    // console.log("ini id",id)
-
+    const dispatch = useDispatch();
+    const [commentLength, setCommentLength] = useState(comment);
 
     const [listCommentState, setListCommentState] = useState([])
-
-    const dispatch = useDispatch();
-    const { listComment, loading } = useSelector((state) => state.comments, shallowEqual);
+    const { listComment, loading } = useSelector((state) => state.comments);
 
     useEffect(() => {
         setListCommentState([
@@ -59,22 +57,23 @@ function LargeCardMyEvent(props) {
 
     const changeComment = (e) => {
         setBody({ ...body, content: e.target.value });
-
     };
 
     const handlePostComment = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         await dispatch(postComment(idPost, body));
+        await dispatch(clearComment())
+        await dispatch(getPost())
+        await setCommentLength(commentLength + 1)
         // await dispatch(getComment(idPost))
     };
 
     //delete comment======================================
     const handleDeleteComment = async (idCommentDel) => {
         await dispatch(deleteComment(idCommentDel, idPost));
-        
         // await dispatch(getComment(idPost))
+        setCommentLength(commentLength - 1)
     }
-
 
     //like post===========================================
     const likes = useSelector((state) => state.likes.like);
@@ -108,9 +107,14 @@ function LargeCardMyEvent(props) {
         setShow(!show);
     };
 
+    //Uppercase first letter
+    const capitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
     // console.log('likes', likes)
     // console.log('body gaes', body)
-    console.log('listcomment state', listCommentState)
+
 
     return (
         <>
@@ -119,7 +123,11 @@ function LargeCardMyEvent(props) {
 
                 <div className="d-flex">
                     <div className="imageAvatar mb-4 me-2">
-                        <img src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`} alt="" />
+                        {photo === photo ?
+                            (<img src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`} alt="" />) :
+                            (<img src={`https://crowdfinder.gabatch13.my.id/api${photo}`} />)}
+
+
                     </div>
                     <div className="headText container-fluid d-block mb-2">
 
@@ -144,7 +152,7 @@ function LargeCardMyEvent(props) {
                                 {userName}
                             </label>
                             <label className="headTextBadge rounded-pill ms-3 me-auto">
-                                {interest}
+                                {capitalize(interest[0])}
                             </label>
                             <label
                                 style={{
@@ -178,7 +186,7 @@ function LargeCardMyEvent(props) {
                                 <i className="fa fa-thumbs-o-up" ></i>Like({like})
                             </button>
                             <button className="button-card flex-grow-1" onClick={() => toggleComment()}>
-                                <i className="fa fa-commenting-o"></i>Comment({comment})
+                                <i className="fa fa-commenting-o"></i>Comment({commentLength})
                             </button>
                             <button className="button-card flex-grow-1">
                                 <i className="fa fa-share-alt"></i>Share
@@ -205,11 +213,11 @@ function LargeCardMyEvent(props) {
                         {/* <div className="commentCard py-3 text-center" style={{ fontWeight: '400', fontSize: '16px' }}>
                             <Link className="text-decoration-none text-secondary">Load more comment</Link>
                         </div> */}
-                        {listCommentState.length > 0 && listCommentState?.filter((item) => item.post_id === idPost).map((item, idx) => (
+                        {listComment.length > 0 && listComment?.filter((item) => item.post_id === idPost).map((item, idx) => (
                             <div key={idx} className="commentCard py-3 px-3">
                                 <div className="d-flex mb-2 fontCircular" style={{ fontWeight: '450', fontSize: '18px' }}>
                                     <div className="flex-grow-1" >{item?.user_id?.fullname}</div>
-                                    <div style={{ color: '#828282' }}><ReactTimeAgo date={item?.createdAt || Date.now()} locale="en-US" /></div>
+                                    <div style={{ color: '#828282' }}><ReactTimeAgo date={item?.createdAt} locale="en-US" /></div>
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <div className="flex-grow-1" style={{ fontWeight: '400', fontSize: '16px' }}>{item?.content}</div>

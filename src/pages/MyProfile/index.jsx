@@ -39,7 +39,7 @@ function MyProfile(props) {
                 <Hero />
                 <Row>
                     <Col xl={4}>
-                        <AvatarCard action={handleShow} username={user.fullname} location={user.location} photo={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`} />
+                        <AvatarCard action={handleShow} username={user.fullname} location={user.location} photo={user.image} />
                     </Col>
                     <Col xl={1}></Col>
                     <Col>

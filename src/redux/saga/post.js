@@ -20,7 +20,7 @@ function* getPosts(actions) {
         const res = yield axios.get(`${BASE_URL_CROWDFINDER}/post?page=1&limit=0`, { headers: { Authorization: `Bearer ${Token}` } });
         yield put({
             type: GET_POST_SUCCESS,
-            payload: res.data.data,
+            payload: res.data.data.reverse(),
         });
     } catch (error) {
         yield put({

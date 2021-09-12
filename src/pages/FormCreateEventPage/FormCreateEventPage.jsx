@@ -7,10 +7,14 @@ import { postEvent } from '../../redux/action/event'
 function FormCreateEventPage() {
     const dispatch = useDispatch()
     const event = useSelector((state) => state.events.posts);
+    const [error, setError] = useState(false);
 
     const [state, setState] = useState({
         title: "",
-        image: null,
+        image: {
+            display: null,
+            upload: null,
+        },
         location: "",
         interest: "",
         content: "",
@@ -18,20 +22,44 @@ function FormCreateEventPage() {
         date: "",
     })
     
+    const imageFile = (e) => {
+        const selected = e.target.files[0];
+        const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
 
-  const handlePostEvent = (e) => {
-      e.preventDefault();
-      const data = state;
-      let formData = new FormData();
-      dispatch(postEvent(formData));
-      formData.append('title', data.title);
-      formData.append('image', data.image);
-      formData.append('location', data.location);
-      formData.append('interest', data.interest);
-      formData.append('content', data.content);
-      formData.append('address', data.address);
-      formData.append('date', data.date);
-  }
+        if (selected && allowedTypes.includes(selected.type)) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                setState({
+                    ...state,
+                    image: {
+                        display: reader.result,
+                        upload: selected,
+                    }
+                });
+            };
+            reader.readAsDataURL(selected);
+        } else {
+            setError(true);
+        }
+    }
+
+
+    const handlePostEvent = (e) => {
+        e.preventDefault();
+        const data = state;
+        let formData = new FormData();
+        dispatch(postEvent(formData));
+
+        if (data.image.upload) {
+            formData.append('image', data.image.upload, data.image.upload.name);
+        }
+        formData.append('title', data.title);
+        formData.append('location', data.location);
+        formData.append('interest', data.interest);
+        formData.append('content', data.content);
+        formData.append('address', data.address);
+        formData.append('date', data.date);
+    }
 
   console.log('create event', state)
 
@@ -45,8 +73,12 @@ function FormCreateEventPage() {
                    interest={(e) => setState({...state, interest: e.target.value})}
                    content={(e) => setState({...state, content: e.target.value})}
                    address={(e) => setState({...state, address: e.target.value})}
-                   date={(e) => setState({...state, date: e.target.value})}
-                   image={(e) => setState({...state, image: e.target.files[0]})}
+                   date={(date) => setState({...state, date: date})}
+                   showDate={state.date}
+                   onChangeImage={imageFile}
+                   displayImage={state.image.display}
+                   uploadImage={state.image.upload}
+                   removeImage={() => setState({ ...state, image:{ display: null, upload: null  }})}
                    onClick={(e) => handlePostEvent(e)}/>
                 </div>
             </div>

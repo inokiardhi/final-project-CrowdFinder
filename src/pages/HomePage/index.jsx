@@ -11,13 +11,23 @@ import { getPostById } from '../../redux/action/postById'
 import { putLike } from '../../redux/action/like'
 import { Link } from 'react-router-dom'
 import ReactLoading from 'react-loading';
+import './responsive.css'
+import { getComment } from '../../redux/action/comment'
+import { postComment } from '../../redux/action/comment'
+import HomePagination from '../../components/MyPagination/HomePagination'
 
 
 function HomePage() {
     const [posts, setPosts] = useState();
+    const [loadingPg, setLoadingPg] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(5);
+
     const dispatch = useDispatch()
     const { listPost, loading } = useSelector((state) => state.posts);
     const { search } = useSelector((state) => state.searchData)
+    const { listComment } = useSelector((state) => state.comments);
+
 
     const user = useSelector((state) => state.userData.user)
 
@@ -31,11 +41,15 @@ function HomePage() {
         setTimeout(2000)
     }, [listPost])
 
-    const handleLikes = async (e) => {
-        await dispatch(putLike(e))
-        await dispatch(getPost())
-    };
 
+     //get current post
+     const indexOfLastPost = currentPage * postPerPage;
+     const indexOfFirsPost = indexOfLastPost - postPerPage;
+     const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost).reverse();
+     console.log('current', currentPosts)
+
+    //change page 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 
     // console.log('comment',listComment)
@@ -46,9 +60,9 @@ function HomePage() {
     return (
         <>
             <div className="container mt-5" style={{ minHeight: "100vH" }}>
-                <div className="d-flex flex-sm-column flex-md-column  flex-lg-row mt-3">
+                <div className="body-main d-flex flex-sm-column flex-md-column flex-lg-row mt-3">
                     <TopicMe />
-                    <div className="w-100 ms-lg-4 mt-sm-4">
+                    <div className="createpos w-100 ms-lg-4 mt-sm-4">
                         <CreatePost />
                         <div>
                             <div className="d-flex mt-4 mb-3">
@@ -57,46 +71,53 @@ function HomePage() {
                             </div>
                             <div className="wrapper mx-auto mb-5">
                                 {search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
-                                    <Link style={{ textDecoration: "none" }} to={`/comunity-profile/${post?.user_id?.id}`}> <SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date}  /></Link>
+                                    <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}> <SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
                                 )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
-                                    <Link style={{ textDecoration: "none" }} to={`/comunity-profile/${post?.user_id?.id}`}><SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
+                                    <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}><SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
                                 ))}
                             </div>
                         </div>
 
                         <div>
-                            {loading ?  <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'} /> : (search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
-                                <LargeCardMyEvent key={id} 
-                                    contentCard={post?.content} 
-                                    image={post?.image} 
-                                    time={post?.createdAt} 
-                                    interest={post?.interest} 
-                                    location={post?.user_id?.location} 
-                                    like={post?.like?.length} 
-                                    userName={post?.user_id?.fullname} 
-                                    idPost={post?.id} 
-                                    comment={post?.comment?.length} 
-                                    idUserPost={post?.user_id.id} 
+                            {loading ? <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'} /> : (search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
+                                <LargeCardMyEvent key={id}
+                                    contentCard={post?.content}
+                                    image={post?.image}
+                                    time={post?.createdAt}
+                                    interest={post?.interest}
+                                    location={post?.user_id?.location}
+                                    like={post?.like?.length}
+                                    userName={post?.user_id?.fullname}
+                                    idPost={post?.id}
+                                    comment={post?.comment?.length}
+                                    idUserPost={post?.user_id.id}
+                                    photo={post?.user_id.image}
+                                // handlePostComment={(id, body) => handlePostComment(post?.id, )}
                                 />
-                                )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
-                                    <LargeCardMyEvent key={id} 
-                                    contentCard={post?.content} 
-                                    image={post?.image} 
-                                    time={post?.createdAt} 
-                                    interest={post?.interest} 
-                                    location={post?.user_id?.location} 
-                                    like={post?.like?.length} 
-                                    userName={post?.user_id?.fullname} 
-                                    idPost={post?.id} 
-                                    comment={post?.comment?.length} 
-                                    idUserPost={post?.user_id.id} 
-                                    />
-                                ))
+                            )) : 
+                                // listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').map((post, id) => (
+                                listPost?.length > 0 && currentPosts?.reverse?.().map((post, id) => (
+                                <LargeCardMyEvent key={id}
+                                    contentCard={post?.content}
+                                    image={post?.image}
+                                    time={post?.createdAt}
+                                    interest={post?.interest}
+                                    location={post?.user_id?.location}
+                                    like={post?.like?.length}
+                                    userName={post?.user_id?.fullname}
+                                    idPost={post?.id}
+                                    comment={post?.comment?.length}
+                                    idUserPost={post?.user_id.id}
+                                    photo={post?.user_id.image}
+                                />
+                            ))
                             )}
-                            <div className="text-center my-5">
-                                <MyPagination />
+                            <div className="d-flex justify-content-center mx-auto my-5">
+                                {/* <MyPagination /> */}
+                                <HomePagination postPerPage={postPerPage} totalPost={listPost.filter(post => post?.type === 'announcement').length} paginate={paginate}/>
                             </div>
                         </div>
+
 
                     </div>
                 </div>

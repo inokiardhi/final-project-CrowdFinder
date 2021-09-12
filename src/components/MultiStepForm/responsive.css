@@ -1,0 +1,23 @@
+@media(max-width:1200px) {
+    .content-form {
+        width: 36rem
+    }
+
+}
+
+@media(max-width:600px) {
+    .content-form {
+        width: 27rem;
+
+    }
+}
+
+@media(max-width:400px) {
+    .content-form {
+        width: 20rem
+    }
+
+    .form-data {
+        width: 100%
+    }
+}
