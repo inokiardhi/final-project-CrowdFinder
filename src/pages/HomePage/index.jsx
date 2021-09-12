@@ -14,10 +14,15 @@ import ReactLoading from 'react-loading';
 import './responsive.css'
 import { getComment } from '../../redux/action/comment'
 import { postComment } from '../../redux/action/comment'
+import HomePagination from '../../components/MyPagination/HomePagination'
 
 
 function HomePage() {
     const [posts, setPosts] = useState();
+    const [loadingPg, setLoadingPg] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(5);
+
     const dispatch = useDispatch()
     const { listPost, loading } = useSelector((state) => state.posts);
     const { search } = useSelector((state) => state.searchData)
@@ -36,22 +41,15 @@ function HomePage() {
         setTimeout(2000)
     }, [listPost])
 
-    // const [body, setBody] = useState({
-    //     content: "",
-    // });
 
-    // const changeComment = (e) => {
-    //     setBody({ ...body, content: e.target.value });
-    // };
+     //get current post
+     const indexOfLastPost = currentPage * postPerPage;
+     const indexOfFirsPost = indexOfLastPost - postPerPage;
+     const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost).reverse();
+     console.log('current', currentPosts)
 
-    // const handlePostComment = async (e, id) => {
-    //     e.preventDefault();
-    //     await dispatch(postComment(id, body));
-    //     // await dispatch(getPost())
-    //     // await dispatch(getComment(idPost))
-
-    // };
-
+    //change page 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 
     // console.log('comment',listComment)
@@ -96,7 +94,9 @@ function HomePage() {
                                     photo={post?.user_id.image}
                                 // handlePostComment={(id, body) => handlePostComment(post?.id, )}
                                 />
-                            )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
+                            )) : 
+                                // listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').map((post, id) => (
+                                listPost?.length > 0 && currentPosts?.reverse?.().map((post, id) => (
                                 <LargeCardMyEvent key={id}
                                     contentCard={post?.content}
                                     image={post?.image}
@@ -112,8 +112,9 @@ function HomePage() {
                                 />
                             ))
                             )}
-                            <div className="text-center my-5">
-                                <MyPagination />
+                            <div className="d-flex justify-content-center mx-auto my-5">
+                                {/* <MyPagination /> */}
+                                <HomePagination postPerPage={postPerPage} totalPost={listPost.filter(post => post?.type === 'announcement').length} paginate={paginate}/>
                             </div>
                         </div>
 
