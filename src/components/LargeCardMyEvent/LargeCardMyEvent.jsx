@@ -11,6 +11,7 @@ import { putLike } from "../../redux/action/like";
 import { deletePost, getPost } from "../../redux/action/post";
 import ReactTimeAgo from 'react-time-ago'
 import { useParams } from "react-router";
+import { getPostById } from "../../redux/action/postById";
 
 
 
@@ -22,6 +23,7 @@ function LargeCardMyEvent(props) {
         interest,
         location,
         like,
+        handleLike,
         comment,
         userName,
         idPost,
@@ -31,10 +33,16 @@ function LargeCardMyEvent(props) {
     } = props;
 
     const dispatch = useDispatch();
-    const [commentLength, setCommentLength] = useState(comment);
-
+    
     const [listCommentState, setListCommentState] = useState([])
     const { listComment, loading } = useSelector((state) => state.comments);
+    // const {postbyid} = useSelector((state) => state.postsId)
+    // const likeSesuai =  postbyid?.filter(item => item.id === idPost);
+    // console.log("jumlah like", postbyid?.like?.length)
+
+    // useEffect(() => {
+    //     dispatch(getPostById(1, idPost))
+    // }, [dispatch])
 
     useEffect(() => {
         setListCommentState([
@@ -60,27 +68,27 @@ function LargeCardMyEvent(props) {
     };
 
     const handlePostComment = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         await dispatch(postComment(idPost, body));
         await dispatch(clearComment())
-        await dispatch(getPost())
-        await setCommentLength(commentLength + 1)
         // await dispatch(getComment(idPost))
+        await dispatch(getPost())
     };
+
+    const jumlahKomen = listComment?.filter(comment => comment.post_id === idPost).length;
 
     //delete comment======================================
     const handleDeleteComment = async (idCommentDel) => {
         await dispatch(deleteComment(idCommentDel, idPost));
         // await dispatch(getComment(idPost))
-        setCommentLength(commentLength - 1)
     }
 
     //like post===========================================
-    const likes = useSelector((state) => state.likes.like);
-    const handleLikes = async (e) => {
-        await dispatch(putLike(idPost))
-        await dispatch(getPost())
-    };
+    // const handleLikes = async (e) => {
+    //     await dispatch(putLike(idPost))
+    //     await dispatch(getPost())
+    //     await dispatch(clearComment())
+    // };
 
     //delete post=========================================
     const loadingDelete = useSelector((state) => state.posts.listPost.loading)
@@ -113,7 +121,7 @@ function LargeCardMyEvent(props) {
     };
 
     // console.log('likes', likes)
-    // console.log('body gaes', body)
+    console.log('list comment', listCommentState)
 
 
     return (
@@ -182,11 +190,11 @@ function LargeCardMyEvent(props) {
                         </div>
 
                         <div className="btnGroup d-inline-flex">
-                            <button className="button-card flex-grow-1" onClick={() => handleLikes()}>
-                                <i className="fa fa-thumbs-o-up" ></i>Like({like})
+                            <button className="button-card flex-grow-1" onClick={() => handleLike(idPost)}>
+                                <i className="fa fa-thumbs-o-up" ></i>Like({like?.length})
                             </button>
                             <button className="button-card flex-grow-1" onClick={() => toggleComment()}>
-                                <i className="fa fa-commenting-o"></i>Comment({commentLength})
+                                <i className="fa fa-commenting-o"></i>Comment({jumlahKomen})
                             </button>
                             <button className="button-card flex-grow-1">
                                 <i className="fa fa-share-alt"></i>Share
@@ -213,7 +221,7 @@ function LargeCardMyEvent(props) {
                         {/* <div className="commentCard py-3 text-center" style={{ fontWeight: '400', fontSize: '16px' }}>
                             <Link className="text-decoration-none text-secondary">Load more comment</Link>
                         </div> */}
-                        {listComment.length > 0 && listComment?.filter((item) => item.post_id === idPost).map((item, idx) => (
+                        {listComment.length > 0 && listCommentState?.filter((item) => item.post_id === idPost).map((item, idx) => (
                             <div key={idx} className="commentCard py-3 px-3">
                                 <div className="d-flex mb-2 fontCircular" style={{ fontWeight: '450', fontSize: '18px' }}>
                                     <div className="flex-grow-1" >{item?.user_id?.fullname}</div>
