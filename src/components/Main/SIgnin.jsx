@@ -13,7 +13,8 @@ import { Formik } from "formik";
 import "./responsive.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-const eye = <FontAwesomeIcon className="fa-lg"icon={faEye} />;
+import { GoogleLogin } from "react-google-login";
+const eye = <FontAwesomeIcon className="fa-lg" icon={faEye} />;
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,11 @@ const Signin = () => {
   if (isLoggendIn) {
     return <Link to="/home" />;
   }
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
 
+  const clientId = "558045279581-0qv822ssgmrkck9kuie1aqprrufbgr47.apps.googleusercontent.com";
   console.log("signIn");
 
   return (
@@ -120,7 +125,7 @@ const Signin = () => {
                           isValid={touched.email && !errors.email}
                           placeholder="email@example.com"
                         />
-                       
+
                         {
                           <p style={{ color: "red", fontSize: "15px" }}>
                             {errors.email && touched.email && errors.email}
@@ -147,7 +152,7 @@ const Signin = () => {
                           isValid={touched.password && !errors.password}
                           placeholder="enter you're password here"
                         />
-                         <div className="Mata-SignIn position-relative float-end">
+                        <div className="Mata-SignIn position-relative float-end">
                           <i onClick={togglePasswordVisiblity}>{eye}</i>
                         </div>
                         {
@@ -167,6 +172,13 @@ const Signin = () => {
                             Login
                           </button>
                         </Col>
+                        <GoogleLogin
+                          clientId={clientId}
+                          buttonText="Sign In with Google"
+                          onSuccess={responseGoogle}
+                          onFailure={responseGoogle}
+                          cookiePolicy={"single_host_origin"}
+                        />
                         <p
                           style={{ fontSize: "16px" }}
                           className="mt-4 text-muted text-center signFoot"

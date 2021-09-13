@@ -8,12 +8,17 @@ import { getPostById } from "../../redux/action/postById";
 import { getCurrentUser, getUser } from "../../redux/action/user";
 import ModalUpdate from "../../components/ModalUpdate";
 
-export default function Getnotif(props) {
+export default function Getnotif() {
   const dispatch = useDispatch();
   const { notif } = useSelector((state) => state.notification);
   const user = useSelector((state) => state.userData.user);
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(false);
 
-
+  function handleShow() {
+    setFullscreen("sm-down", "md-down", "lg-down", "xl-down", "xxl-down");
+    setShow(true);
+  }
   useEffect(() => {
     dispatch(getPostById(1, user.id));
     dispatch(getCurrentUser());
@@ -28,8 +33,10 @@ export default function Getnotif(props) {
           <Row>
             <Col xl={4}>
               <AvatarCard
+                action={handleShow}
                 username={user?.fullname}
                 location={user?.location}
+                photo={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`}
               />
             </Col>
             <Col xl={1}></Col>
