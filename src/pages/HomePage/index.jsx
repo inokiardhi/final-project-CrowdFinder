@@ -74,7 +74,7 @@ function HomePage() {
             <div className="container mt-5" style={{ minHeight: "100vH" }}>
                 <div className="body-main d-flex flex-sm-column flex-md-column flex-lg-row mt-3">
                     <TopicMe />
-                    <div className="createpos w-100 ms-lg-4 mt-sm-4">
+                    <div className="createpost w-100 ms-lg-4 mt-sm-4">
                         <CreatePost />
                         <div>
                             <div className="d-flex mt-4 mb-3">
@@ -108,7 +108,7 @@ function HomePage() {
                                 />
                             )) :
                                 // listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').map((post, id) => (
-                                listPost?.length > 0 && currentPosts?.reverse?.().map((post, id) => (
+                                listPost?.length > 0 && currentPosts?.map((post, id) => (
                                     <LargeCardMyEvent key={id}
                                         contentCard={post?.content}
                                         image={post?.image}
