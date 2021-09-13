@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import './index.css'
 import profilDummy from '../../img/profilDummy.jpeg'
 import { Link } from 'react-router-dom'
