@@ -5,6 +5,7 @@ import { InputGroup, FormControl, Button, Form, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from '../../redux/action/user';
 import { postAnnouncement } from '../../redux/action/announcement';
+import { getPost } from '../../redux/action/post';
 
 function FormCreateAnnouncement(props) {
     const { title, interest, content, image, onClick } = props;
@@ -48,6 +49,7 @@ function FormCreateAnnouncement(props) {
         let formData = new FormData();
 
         dispatch(postAnnouncement(formData))
+        // dispatch(getPost())
         if (data.image.upload) {
             formData.append('image', data.image.upload, data.image.upload.name);
         }
