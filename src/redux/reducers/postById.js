@@ -19,6 +19,7 @@ const postsId = (state = initialState, action) => {
             return {
                 ...state,
                 postbyid: payload,
+                // postbyid: [payload, ...state.postbyid],
                 loading: false,
                 error: null,
             }
