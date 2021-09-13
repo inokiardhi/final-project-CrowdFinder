@@ -60,12 +60,13 @@ function LargeCardMyEvent(props) {
     };
 
     const handlePostComment = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         await dispatch(postComment(idPost, body));
         await dispatch(clearComment())
-        await dispatch(getPost())
-        await setCommentLength(commentLength + 1)
         // await dispatch(getComment(idPost))
+        await dispatch(getPost())
+        await setCommentLength(commentLength + 1);
+       
     };
 
     //delete comment======================================
@@ -76,7 +77,6 @@ function LargeCardMyEvent(props) {
     }
 
     //like post===========================================
-    const likes = useSelector((state) => state.likes.like);
     const handleLikes = async (e) => {
         await dispatch(putLike(idPost))
         await dispatch(getPost())
