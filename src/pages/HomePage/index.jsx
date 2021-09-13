@@ -74,7 +74,7 @@ function HomePage() {
             <div className="container mt-5" style={{ minHeight: "100vH" }}>
                 <div className="body-main d-flex flex-sm-column flex-md-column flex-lg-row mt-3">
                     <TopicMe />
-                    <div className="createpos w-100 ms-lg-4 mt-sm-4">
+                    <div className="createpost w-100 ms-lg-4 mt-sm-4">
                         <CreatePost />
                         <div>
                             <div className="d-flex mt-4 mb-3">
