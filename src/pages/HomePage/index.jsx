@@ -108,7 +108,7 @@ function HomePage() {
                                 />
                             )) :
                                 // listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').map((post, id) => (
-                                listPost?.length > 0 && currentPosts?.reverse?.().map((post, id) => (
+                                listPost?.length > 0 && currentPosts?.map((post, id) => (
                                     <LargeCardMyEvent key={id}
                                         contentCard={post?.content}
                                         image={post?.image}

@@ -24,7 +24,7 @@ function* PostAnnouncements(actions) {
                 timer: 1800
             })
         );
-        // yield window.location.replace("/home")
+        yield window.location.replace("/home")
     } catch (err) {
         yield put({
             type: POST_ANNOUNCEMENT_FAIL,
