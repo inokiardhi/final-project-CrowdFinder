@@ -172,14 +172,14 @@ const Signin = () => {
                             Login
                           </button>
                         </Col>
-                        <GoogleLogin
+                        {/* <GoogleLogin
                           clientId={clientId}
                           buttonText="Sign In with Google"
                           onSuccess={responseGoogle}
                           onFailure={responseGoogle}
                           cookiePolicy={"single_host_origin"}
                           className="button-google"
-                        />
+                        /> */}
                         <p
                           style={{ fontSize: "16px" }}
                           className="mt-4 text-muted text-center signFoot"

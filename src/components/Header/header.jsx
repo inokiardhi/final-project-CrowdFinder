@@ -8,10 +8,7 @@ import {
   Container,
   Nav,
   Form,
-  FormControl,
-  Button,
   NavDropdown,
-  Col,
 } from "react-bootstrap";
 import LogoCrowdFinder from "../../Asset/LogoCrowdFinder";
 import "./header.css";
@@ -108,7 +105,7 @@ const Header = () => {
                     className="avatar-drop"
                     title={
                       <div className="text-center avatar">
-                        <img src={`https://crowdfinder.gabatch13.my.id/api${user.image}`} onError={dummy} />
+                        <img src={`https://crowdfinder.gabatch13.my.id/api${user.image}`} onError={dummy} alt="" />
                       </div>
                     }
                     id="collasible-nav-dropdown"
