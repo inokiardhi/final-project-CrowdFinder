@@ -36,7 +36,7 @@ function HomePage() {
     //get current post
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirsPost = indexOfLastPost - postPerPage;
-    const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost).reverse();
+    const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost);
     console.log('current', currentPosts)
 
     //change page 
@@ -54,12 +54,12 @@ function HomePage() {
     //put like
     const handleLikes = async (id) => {
         await dispatch(putLike(id))
-        await dispatch(getPost())
+        // await dispatch(getPost())
         await dispatch(clearComment())
     };
 
     useEffect(() => {
-        setPosts(listPost)
+        setPosts(listPost.reverse())
         // setTimeout(2000)
     }, [listPost])
 
@@ -82,9 +82,9 @@ function HomePage() {
                                 <p className="my-auto text-secondary" style={{ fontSize: '18px', fontWeight: '400' }}>See All Events</p>
                             </div>
                             <div className="wrapper mx-auto mb-5">
-                                {search?.data?.length > 0 ? search?.data?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
+                                {search?.data?.length > 0 ? search?.data?.filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
                                     <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}> <SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
-                                )) : listPost?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
+                                )) : listPost?.length > 0 && posts?.filter(post => post?.type === 'event').filter((post, idx) => idx < 20).map((post, id) => (
                                     <Link style={{ textDecoration: "none", color: "#454545" }} to={`/comunity-profile/${post?.user_id?.id}`}><SmallCardMyEvent key={id} title={post?.title} image={post?.image} dateTime={post?.date} /></Link>
                                 ))}
                             </div>
