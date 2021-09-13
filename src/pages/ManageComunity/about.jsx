@@ -32,7 +32,7 @@ function About(props) {
                 <FormControl aria-label="Example text with two button addons" />
             </InputGroup> : null}
 
-            {user.followers?.map((item) => (<ListCardPeople fullname={item.fullname} />))}
+            {user.followers?.map((item) => (<ListCardPeople fullname={item.fullname} role={item.role} idUser={item.id} photo={item.image} />))}
 
 
 
