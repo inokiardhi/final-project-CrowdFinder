@@ -15,7 +15,7 @@ function* putLikes(actions) {
             type: PUT_LIKE_SUCCESS,
             payload: res.data,
         });
-        yield getPost()
+        yield window.location.replace("/home")
     } catch (err) {
         yield put({
             type: PUT_LIKE_FAIL,
