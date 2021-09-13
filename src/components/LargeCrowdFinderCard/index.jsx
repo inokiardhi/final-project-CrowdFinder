@@ -68,7 +68,9 @@ function LargeCrowdFinderCard(props) {
     }
 
     const background = `https://crowdfinder.gabatch13.my.id/api${props.imageBkg}`
-
+    const dummy = (e) => {
+        e.target.src = `https://ui-avatars.com/api/?name=${userbyid.fullname}&background=random&length=1&rounded=true&size=35`;
+    }
     return (
 
         <>
@@ -77,10 +79,7 @@ function LargeCrowdFinderCard(props) {
 
                 <div className="d-flex">
                     <div className="imageAvatar">
-                        {userbyid?.image === null ? (<img
-                            src={`https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`}
-                            alt="..."
-                        />) : (<img src={`https://crowdfinder.gabatch13.my.id/api${userbyid.image}`} />)}
+                        {userbyid?.image === null ? null : (<img src={`https://crowdfinder.gabatch13.my.id/api${userbyid.image}`} onError={dummy} />)}
 
                     </div>
                     <div className="headText container-fluid d-block">

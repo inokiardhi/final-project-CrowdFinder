@@ -19,6 +19,9 @@ function AvatarCard(props) {
         dispatch(logout());
         window.location.replace("/")
     }
+    const dummy = (e) => {
+        e.target.src = `https://ui-avatars.com/api/?name=${props.fullname}&background=random&length=1&rounded=true&size=35`;
+    }
 
     useEffect(() => {
         dispatch(getCurrentUser())
@@ -28,7 +31,7 @@ function AvatarCard(props) {
 
         <Card className='AvatarCard'>
             <div className="image-avatar">
-                {user?.image === null ? (<img src={`https://ui-avatars.com/api/?name=${user.fullname}&background=random&length=1&rounded=true&size=35`} />) : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} />)}
+                {user?.image === null ? null : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} onError={dummy} />)}
             </div>
             <Card.Body className='title'>
                 <h4>{props.username}</h4>

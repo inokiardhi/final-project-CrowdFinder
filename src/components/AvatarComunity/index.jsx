@@ -21,14 +21,18 @@ function AvatarComunity(props) {
         e.preventDefault();
         await dispatch(followUser(props.idUser))
         await dispatch(getUserById(props.idUser))
-
     }
+
+    const dummy = (e) => {
+        e.target.src = `https://ui-avatars.com/api/?name=${userbyid.fullname}&background=random&length=1&rounded=true&size=35`;
+    }
+
     const idFollow = userbyid?.followers?.map((item) => item.id)
     return (
 
         <Card className='AvatarCard'>
             <div className="image-avatar">
-                {userbyid?.image === "" ? (<img src={`https://ui-avatars.com/api/?name=${userbyid.fullname}&background=random&length=1&rounded=true&size=35`} />) : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} />)}
+                {userbyid?.image === null ? null : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} onError={dummy} />)}
             </div>
             <Card.Body className='title'>
                 <h4>{props.comunityname}</h4>
@@ -36,7 +40,6 @@ function AvatarComunity(props) {
                     <h5>Comunity</h5>
                 </div>
                 }
-
                 <h5><TiLocation />{props.location}</h5>
             </Card.Body>
 
