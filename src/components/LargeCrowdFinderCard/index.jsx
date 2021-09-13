@@ -16,6 +16,7 @@ import './index.css'
 function LargeCrowdFinderCard(props) {
     const { userbyid } = useSelector((state) => state.getUserById)
     const [show, setShow] = useState(false);
+    const { postbyid, loading } = useSelector((state) => state.postsId);
     const eventid = props
     const dispatch = useDispatch()
     const ref = useRef();
@@ -68,6 +69,9 @@ function LargeCrowdFinderCard(props) {
     }
 
     const background = `https://crowdfinder.gabatch13.my.id/api${props.imageBkg}`
+
+    console.log("ini adalah gambar", background)
+
     const dummy = (e) => {
         e.target.src = `https://ui-avatars.com/api/?name=${userbyid.fullname}&background=random&length=1&rounded=true&size=35`;
     }

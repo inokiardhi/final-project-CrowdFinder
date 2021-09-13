@@ -36,7 +36,7 @@ function EventDetailCard(props) {
                 <div>
                     <Card>
                         <div className="me-3 ms-3 mt-3 mb-4">
-                            <div className="image-hero" style={{ backgroundImage: `url(${post})` }}>
+                            <div className="image-hero" style={{ backgroundImage: `url(${background})` }}>
 
                             </div>
                             <h5 className='title-event my-4'>{props.title}</h5>
