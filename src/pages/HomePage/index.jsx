@@ -13,6 +13,7 @@ import ReactLoading from 'react-loading';
 import './responsive.css'
 import { getComment } from '../../redux/action/comment'
 import { postComment } from '../../redux/action/comment'
+import { clearComment } from '../../redux/action/comment'
 import HomePagination from '../../components/MyPagination/HomePagination'
 
 
@@ -32,12 +33,6 @@ function HomePage() {
         dispatch(getPostById(1, user.id))
     }, [dispatch]);
 
-    useEffect(() => {
-        setPosts(listPost)
-        setTimeout(2000)
-    }, [listPost])
-
-
      //get current post
      const indexOfLastPost = currentPage * postPerPage;
      const indexOfFirsPost = indexOfLastPost - postPerPage;
@@ -56,7 +51,17 @@ function HomePage() {
         setCurrentPage(currentPage -1)
     }
 
+    //put like
+    const handleLikes = async (id) => {
+        await dispatch(putLike(id))
+        await dispatch(getPost())
+        await dispatch(clearComment())
+    };
 
+    useEffect(() => {
+        setPosts(listPost)
+        // setTimeout(2000)
+    }, [listPost])
 
     // console.log('comment',listComment)
     // console.log('data', listPost)
@@ -99,7 +104,7 @@ function HomePage() {
                                     comment={post?.comment?.length}
                                     idUserPost={post?.user_id.id}
                                     photo={post?.user_id.image}
-                                // handlePostComment={(id, body) => handlePostComment(post?.id, )}
+                                    handleLike={handleLikes}
                                 />
                             )) : 
                                 // listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').map((post, id) => (
@@ -110,12 +115,13 @@ function HomePage() {
                                     time={post?.createdAt}
                                     interest={post?.interest}
                                     location={post?.user_id?.location}
-                                    like={post?.like?.length}
+                                    like={post?.like}
                                     userName={post?.user_id?.fullname}
                                     idPost={post?.id}
                                     comment={post?.comment?.length}
                                     idUserPost={post?.user_id.id}
                                     photo={post?.user_id.image}
+                                    handleLike={handleLikes}
                                 />
                             ))
                             )}
