@@ -24,6 +24,7 @@ function Event(props) {
         setPosts(postbyid)
     }, [postbyid])
 
+    console.log("ini gambar yang ada", detailcard)
     return (
         <div>
             {show ?
@@ -43,7 +44,7 @@ function Event(props) {
                                 address: post.address
                             })
                         }
-                        } idPost={post.id} />)),
+                        } idPost={post.id} imageBkg={post.image} />)),
                     <div className="pagination justify-content-center mt-5">
                         <MyPagination />
                     </div>
