@@ -3,12 +3,16 @@ import { useDispatch } from "react-redux";
 import { Register } from "../../redux/action/user";
 import "./index.css";
 import Logo from "../../Asset/logo.png";
-import PlayStore from "../../Asset/GogglePlayStore.png";
+import PlayStore from "../../Asset/GooglePlay.png";
 import AppStore from "../../Asset/AppStore.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Col, Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import "./responsive.css"
+const eye = <FontAwesomeIcon className="fa-lg"icon={faEye} />;
+
 
 export default function MultiStep() {
   const [page, setPage] = useState(1);
@@ -21,6 +25,10 @@ export default function MultiStep() {
     location: "",
     interest: [],
   });
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     if (page > 3) {
@@ -90,13 +98,13 @@ export default function MultiStep() {
 
                     </div>
                     <div className="image-app d-flex justify-content-center align-items-center">
-                      <div className="play-store">
+                      <div className="play-store me-1">
                         <img
                           src={PlayStore}
                           alt="playstore"
                         />
                       </div>
-                      <div className="app-store">
+                      <div className="app-store ms-1">
                         <img
                           src={AppStore}
                           alt="appstore"
@@ -184,12 +192,15 @@ export default function MultiStep() {
                             Password
                           </label>
                           <Form.Control
-                            type="password"
+                            type={passwordShown ? "text" : "password"}
                             placeholder="enter you're password here"
                             value={form.password}
                             name="password"
                             onChange={(e) => changeForm(e)}
                           />
+                          <div className="Mata-SignUp position-relative float-end">
+                          <i onClick={togglePasswordVisiblity}>{eye}</i>
+                        </div>
                         </Form.Group>
                         <Form.Group>
                           <Col>

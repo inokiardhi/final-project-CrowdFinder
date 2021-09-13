@@ -18,7 +18,7 @@
 }
 
 .avatar {
-    width: 61px;
+    width: 4rem;
     height: 61px;
     border-radius: 50%;
     border: solid 3px white;
@@ -38,6 +38,5 @@
 
 .avatar-drop {
     padding: 0;
-    width: 61px;
     height: 80px
 }
