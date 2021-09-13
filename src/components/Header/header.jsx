@@ -50,6 +50,10 @@ const Header = () => {
     };
   };
 
+  const dummy = (e) => {
+    e.target.src = `https://ui-avatars.com/api/?name=${user.fullname}&background=random&length=1&rounded=true&size=35`;
+}
+
   const debounceSearch = debounce((e) => searchPost(e));
 
   //  console.log('testing',user)
@@ -104,10 +108,7 @@ const Header = () => {
                     className="avatar-drop"
                     title={
                       <div className="text-center avatar">
-                        <img
-                          src={`https://ui-avatars.com/api/?name=${user?.fullname}&background=random&length=1&rounded=true&size=35`}
-                          alt="..."
-                        />
+                        <img src={`https://crowdfinder.gabatch13.my.id/api${user.image}`} onError={dummy} />
                       </div>
                     }
                     id="collasible-nav-dropdown"
