@@ -7,7 +7,7 @@ import {
     DELETE_POST_FAIL,
     DELETE_POST_BEGIN,
 } from "../action/type";
-import { BASE_URL_CROWDFINDER} from "../action/type";
+import { BASE_URL_CROWDFINDER } from "../action/type";
 import { put, takeEvery } from "@redux-saga/core/effects";
 import Swal from "sweetalert2";
 
@@ -43,12 +43,12 @@ function* deletePosts(actions) {
         });
         yield (
             Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Deleted',
-            showConfirmButton: false,
-            timer: 1800
-          })
+                position: 'center',
+                icon: 'success',
+                title: 'Deleted',
+                showConfirmButton: false,
+                timer: 1800
+            })
         );
         // yield window.location.replace("/home")<
     } catch (err) {
@@ -58,12 +58,12 @@ function* deletePosts(actions) {
         });
         yield (
             Swal.fire({
-            position: 'center',
-            icon: 'warning',
-            title: 'this is not your post',
-            showConfirmButton: false,
-            timer: 1800
-          })
+                position: 'center',
+                icon: 'warning',
+                title: 'this is not your post',
+                showConfirmButton: false,
+                timer: 1800
+            })
         )
     }
 };
