@@ -17,8 +17,7 @@ function AvatarComunity(props) {
     const { userbyid } = useSelector((state) => state.getUserById)
     const user = useSelector((state) => state.userData.user)
 
-    const handleFollowUser = async (e) => {
-        e.preventDefault();
+    const handleFollowUser = async () => {
         await dispatch(followUser(props.idUser))
         await dispatch(getUserById(props.idUser))
     }

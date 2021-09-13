@@ -7,6 +7,7 @@ import MyPagination from '../../components/MyPagination/MyPagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ListCardComunity from '../../ListCardComunity';
+import InterstTopicNoEdit from '../../components/InterestTopic/InterestTopicnoEdit';
 
 function About(props) {
     const { userbyid } = useSelector((state) => state.getUserById)
@@ -22,7 +23,8 @@ function About(props) {
             </>) : (<>
 
                 <div className="d-flex mb-3">
-                    <InterstTopic userInterest={userbyid.interest} />
+                    <InterstTopicNoEdit list={userbyid.interest} />
+
                 </div>
                 <div className="myCrowd d-flex flex-wrap justify-content-between py-3">
                     <h5>Comunity</h5>

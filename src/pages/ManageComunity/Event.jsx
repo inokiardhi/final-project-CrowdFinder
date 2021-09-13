@@ -27,22 +27,30 @@ function Event(props) {
         <div>
             {show ?
                 [
-                    postbyid?.length > 0 && posts?.reverse().filter(post => post.type === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
-                    (<LargeCrowdFinderCard key={idx} userName={post.user_id.username} title={post.title} content={post.content} time={post.createdAt}
+                    postbyid.length > 0 && posts?.reverse().filter(post => post.type === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
+                    (<LargeCrowdFinderCard date={post.date} attend={post.attender.length} key={idx} userName={post.user_id.username} title={post.title} content={post.content} time={post.createdAt}
                         action={() => {
                             setShow(false)
                             setDetailCard({
                                 title: post.title,
-                                content: post.content
+                                content: post.content,
+                                post_id: post.id,
+                                userId: post.user_id.id,
+                                imageBkg: post.image,
+                                date: post.date,
+                                attend: post.attender.length,
+                                address: post.address
                             })
                         }
-                        } idPost={post.id} />)),
+                        } idPost={post.id} imageBkg={post.image} />)),
                     <div className="pagination justify-content-center mt-5">
                         <MyPagination />
                     </div>
 
                 ]
-                : <EventDetailCard title={detailcard.title} content={detailcard.content} postid={detailcard.post_id} />}
+                : <EventDetailCard date={detailcard.date}
+                    address={detailcard.address} attend={detailcard.attend}
+                    imageBkg={detailcard.imageBkg} title={detailcard.title} content={detailcard.content} postid={detailcard.post_id} idUser={detailcard.userId} />}
         </div>
     );
 }

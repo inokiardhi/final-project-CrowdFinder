@@ -15,10 +15,10 @@ function ListCardPeople(props) {
     //     dispatch(getUserById(props.idUser))
     // }, [dispatch])
 
-    const handleFollowUser = async (e) => {
-        e.preventDefault();
-        await dispatch(followUser(props.idUser))
-    }
+    // const handleFollowUser = async (e) => {
+    //     e.preventDefault();
+    //     await dispatch(followUser(props.idUser))
+    // }
     const dummy = (e) => {
         e.target.src = `https://ui-avatars.com/api/?name=${props.fullname}&background=random&length=1&rounded=true&size=35`;
     }
@@ -37,7 +37,7 @@ function ListCardPeople(props) {
                         </div>
                     </div>
                     <div>
-                        <Button style={{ fontSize: '14px', fontWeight: '700' }} size='lg' variant="secondary">Unfollow</Button>
+                        {/* <Button style={{ fontSize: '14px', fontWeight: '700' }} size='lg' variant="secondary">Unfollow</Button> */}
                     </div>
                 </Card.Body>
             </Card>
