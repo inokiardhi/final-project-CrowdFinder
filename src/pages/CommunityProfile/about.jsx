@@ -19,12 +19,18 @@ function About(props) {
                 <h5>Comunity Member (205)</h5>
             </div>
                 <ListCardPeople />
-            </>) : (<> <div className="myCrowd d-flex flex-wrap justify-content-between py-3">
-                <h5>Comunity</h5>
+            </>) : (<>
 
-                <h5><Link style={{ color: '#D82671', fontWeight: '400', textDecoration: 'none', fontSize: '16px' }}
-                    to={`/mycrowd/${userbyid.id}`}>See All</Link></h5>
-            </div>
+                <div className="d-flex mb-3">
+                    <InterstTopic userInterest={userbyid.interest} />
+                </div>
+                <div className="myCrowd d-flex flex-wrap justify-content-between py-3">
+                    <h5>Comunity</h5>
+
+                    <h5><Link style={{ color: '#D82671', fontWeight: '400', textDecoration: 'none', fontSize: '16px' }}
+                        to={`/mycrowd/${userbyid.id}`}>See All</Link></h5>
+                </div>
+
                 {userbyid.following?.filter((item) => item.role === "community").map((item) => (<ListCardComunity comunityname={item.fullname} />))}
             </>)
 
