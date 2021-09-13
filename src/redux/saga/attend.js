@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 function* attendEvent(action) {
     const { post_id } = action
     const Token = localStorage.getItem('user');
-    yield console.log("masuk token", Token)
     try {
         const res = yield axios.put(`https://crowdfinder.gabatch13.my.id/api/post/attend/${post_id}`, {}, { headers: { Authorization: `Bearer ${Token}` } })
         yield put({

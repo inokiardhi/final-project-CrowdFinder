@@ -25,7 +25,7 @@ function About(props) {
 
             </div>
 
-            {user.following?.filter((item) => item.role === "community").map((item) => (<ListCardComunity comunityname={item.fullname} />))}
+            {user.following?.filter((item) => item.role === "community").map((item) => (<ListCardComunity comunityname={item.fullname} photo={item.photo} />))}
 
         </div>
     );

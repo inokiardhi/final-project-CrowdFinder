@@ -20,8 +20,6 @@ function Event(props) {
     const [data, setData] = useState({ name: "", id: "" })
     const { listPost } = useSelector((state) => state.posts);
 
-    console.log("ini detail card", detailcard)
-
     useEffect(() => {
         setPosts(postbyid)
     }, [postbyid])

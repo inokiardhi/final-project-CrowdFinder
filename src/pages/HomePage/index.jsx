@@ -33,22 +33,22 @@ function HomePage() {
         dispatch(getPostById(1, user.id))
     }, [dispatch]);
 
-     //get current post
-     const indexOfLastPost = currentPage * postPerPage;
-     const indexOfFirsPost = indexOfLastPost - postPerPage;
-     const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost).reverse();
-     console.log('current', currentPosts)
+    //get current post
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirsPost = indexOfLastPost - postPerPage;
+    const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost).reverse();
+    console.log('current', currentPosts)
 
     //change page 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     //next and prev page
     const handleNextPage = () => {
-        setCurrentPage(currentPage +1)
+        setCurrentPage(currentPage + 1)
     }
 
     const handlePrevPage = () => {
-        setCurrentPage(currentPage -1)
+        setCurrentPage(currentPage - 1)
     }
 
     //put like
@@ -106,34 +106,34 @@ function HomePage() {
                                     photo={post?.user_id.image}
                                     handleLike={handleLikes}
                                 />
-                            )) : 
+                            )) :
                                 // listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').map((post, id) => (
                                 listPost?.length > 0 && currentPosts?.reverse?.().map((post, id) => (
-                                <LargeCardMyEvent key={id}
-                                    contentCard={post?.content}
-                                    image={post?.image}
-                                    time={post?.createdAt}
-                                    interest={post?.interest}
-                                    location={post?.user_id?.location}
-                                    like={post?.like}
-                                    userName={post?.user_id?.fullname}
-                                    idPost={post?.id}
-                                    comment={post?.comment?.length}
-                                    idUserPost={post?.user_id.id}
-                                    photo={post?.user_id.image}
-                                    handleLike={handleLikes}
-                                />
-                            ))
+                                    <LargeCardMyEvent key={id}
+                                        contentCard={post?.content}
+                                        image={post?.image}
+                                        time={post?.createdAt}
+                                        interest={post?.interest}
+                                        location={post?.user_id?.location}
+                                        like={post?.like}
+                                        userName={post?.user_id?.fullname}
+                                        idPost={post?.id}
+                                        comment={post?.comment?.length}
+                                        idUserPost={post?.user_id.id}
+                                        photo={post?.user_id?.image}
+                                        handleLike={handleLikes}
+                                    />
+                                ))
                             )}
                             <div className="d-flex justify-content-center mx-auto my-5">
                                 {/* <MyPagination /> */}
-                                <HomePagination 
-                                postPerPage={postPerPage} 
-                                totalPost={listPost.filter(post => post?.type === 'announcement').length} 
-                                paginate={paginate}
-                                currentPage={currentPage}
-                                handleNextPage={handleNextPage}
-                                handlePrevPage={handlePrevPage}
+                                <HomePagination
+                                    postPerPage={postPerPage}
+                                    totalPost={listPost.filter(post => post?.type === 'announcement').length}
+                                    paginate={paginate}
+                                    currentPage={currentPage}
+                                    handleNextPage={handleNextPage}
+                                    handlePrevPage={handlePrevPage}
                                 />
                             </div>
                         </div>
