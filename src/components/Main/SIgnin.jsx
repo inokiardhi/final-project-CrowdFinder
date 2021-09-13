@@ -178,6 +178,7 @@ const Signin = () => {
                           onSuccess={responseGoogle}
                           onFailure={responseGoogle}
                           cookiePolicy={"single_host_origin"}
+                          className="button-google"
                         />
                         <p
                           style={{ fontSize: "16px" }}
