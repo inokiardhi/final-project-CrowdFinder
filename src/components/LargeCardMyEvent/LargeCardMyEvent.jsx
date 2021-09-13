@@ -95,6 +95,7 @@ function LargeCardMyEvent(props) {
     const handleDelete = async () => {
         await dispatch(deletePost(idPost))
         await dispatch(postComment(idPost, body));
+        await dispatch(clearComment())
         await dispatch(getPost())
     }
 
