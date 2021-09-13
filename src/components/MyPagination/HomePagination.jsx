@@ -14,7 +14,10 @@ function HomePagination(props) {
         <>
             <ul className="pagination">
                 <li className="page-item">
+                    { currentPage === 1 ?
+                    <button onClick={handlePrevPage} className="page-link text-secondary" disabled>Prev</button> :
                     <button onClick={handlePrevPage} className="page-link text-secondary">Prev</button>
+                    }
                 </li>
                 {pageNumbers.map(number => (
                     <li key={number} className="page-item">
@@ -24,7 +27,10 @@ function HomePagination(props) {
                     </li>
                 ))}
                 <li className="page-item">
-                    <button onClick={handleNextPage} className="page-link text-secondary">next</button>
+                    { currentPage === Math.ceil(totalPost / postPerPage) ?
+                    <button onClick={handleNextPage} className="page-link text-secondary"  disabled>next</button> :
+                    <button onClick={handleNextPage} className="page-link text-secondary"  >next</button>
+                    }
                 </li>
             </ul>
             
