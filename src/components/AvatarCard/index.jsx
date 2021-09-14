@@ -32,7 +32,7 @@ function AvatarCard(props) {
 
         <Card className='AvatarCard'>
             <div className="image-avatar">
-                {user?.image === null ? null : (<img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} onError={dummy} />)}
+                <img src={`https://crowdfinder.gabatch13.my.id/api${props.photo}`} onError={dummy} />
             </div>
             <Card.Body className='title'>
                 <h4>{props.username}</h4>

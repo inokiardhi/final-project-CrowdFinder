@@ -6,6 +6,7 @@ import LargeCardMyEvent from '../../components/LargeCardMyEvent/LargeCardMyEvent
 import LargeCrowdFinderCard from '../../components/LargeCrowdFinderCard';
 import MyPagination from '../../components/MyPagination/MyPagination';
 import { getPostById } from '../../redux/action/postById';
+import ActivitiesPagination from '../../components/MyPagination/ActivitiesPagination';
 
 function Post(props) {
     const [posts, setPosts] = useState();
@@ -15,18 +16,38 @@ function Post(props) {
     const [detailcard, setDetailCard] = useState({ title: "", content: "" })
     const [data, setData] = useState({ name: "", id: "" })
     const { listPost } = useSelector((state) => state.posts);
-    const dispatch = useDispatch()
+    const { userbyid } = useSelector((state) => state.getUserById)
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(6);
+
+     //get current post
+     const indexOfLastPost = currentPage * postPerPage;
+     const indexOfFirsPost = indexOfLastPost - postPerPage;
+     const currentPosts = listPost?.length > 0 && posts?.filter(post => post.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost);
+
+    //change page 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+     //next and prev page
+     const handleNextPage = () => {
+        setCurrentPage(currentPage + 1)
+    }
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1)
+    }
+
 
     useEffect(() => {
         setPosts(postbyid)
-        dispatch(getPostById(1, user.id))
-    }, [postbyid, getPostById])
+    }, [postbyid])
 
     return (
         <div>
             {show ?
                 [
-                    postbyid?.length > 0 && posts?.reverse().filter(post => post.type === 'announcement').map((post, idx) => (
+                    postbyid.length > 0 && currentPosts?.reverse().filter(post => post.type === 'announcement').map((post, idx) => (
                         <LargeCardMyEvent
                             key={idx}
                             contentCard={post.content}
@@ -38,10 +59,18 @@ function Post(props) {
                             userName={post.user_id.fullname}
                             idPost={post.id}
                             comment={post.comment.length}
-                            idUserPost={post?.user_id.id} />
+                            photo={userbyid.image}
+                        />
                     )),
                     <div className="pagination justify-content-center mt-5">
-                        <MyPagination />
+                        <ActivitiesPagination
+                        postPerPage={postPerPage}
+                        totalPost={posts?.filter(post => post.type === 'announcement').length}
+                        paginate={paginate}
+                        currentPage={currentPage}
+                        handleNextPage={handleNextPage}
+                        handlePrevPage={handlePrevPage}
+                         />
                     </div>
 
                 ]

@@ -3,6 +3,7 @@ import { PUT_LIKE_BEGIN, PUT_LIKE_SUCCESS, PUT_LIKE_FAIL } from "../action/type"
 import { BASE_URL_CROWDFINDER } from "../action/type";
 import { put, takeEvery } from "@redux-saga/core/effects";
 import { getPost } from "../action/post";
+import { useDispatch } from "react-redux";
 
 
 function* putLikes(actions) {
@@ -28,5 +29,7 @@ function* putLikes(actions) {
 
 
 export function* watchPutLikes() {
+    // const Dispatch = useDispatch();
     yield takeEvery(PUT_LIKE_BEGIN, putLikes);
+    // yield Dispatch(getPost());
 };

@@ -22,6 +22,9 @@ function* followUser(action) {
                 timer: 1800
             })
         )
+        yield (
+            window.location.reload()
+        )
     } catch (err) {
         yield put({
             type: FOLLOW_USER_FAIL,

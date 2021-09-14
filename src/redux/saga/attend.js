@@ -20,6 +20,9 @@ function* attendEvent(action) {
                 timer: 1800
             })
         )
+        yield (
+            window.location.reload(1)
+        )
     } catch (err) {
         yield put({
             type: PUT_ATTEND_FAIL,

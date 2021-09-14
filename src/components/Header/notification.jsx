@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Notification } from "../../redux/action/notification";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import AvatarCard from "../../components/AvatarCard";
 import Hero from "../../components/Hero";
 import { getPostById } from "../../redux/action/postById";
@@ -24,6 +24,9 @@ export default function Getnotif() {
     dispatch(getCurrentUser());
     dispatch(Notification());
   }, [dispatch]);
+  const dummy = (e) => {
+    e.target.src = `https://ui-avatars.com/api/?name=${user.fullname}&background=random&length=1&rounded=true&size=35`;
+  };
 
   return (
     <>
@@ -45,23 +48,54 @@ export default function Getnotif() {
                 <div className="button-menu d-flex">
                   <h5>Notification</h5>
                 </div>
-                <div className="d-flex flex-wrap justify-content-between py-3">
-                  {notif?.data && notif?.data?.length
-                    ? notif?.data?.map((item, index) => {
-                        return (
-                          <div className="mb-3" key={index}>
-                            <h5>{item.content}</h5>
-                          </div>
-                        );
-                      })
-                    : notif?.data?.map((item, index) => {
-                        return (
-                          <div key={index}>
-                            <h5>{item.content}</h5>
-                          </div>
-                        );
-                      })}
-                </div>
+                {
+                  <>
+                     {notif?.data && notif?.data?.length
+                       ? notif?.data?.map((item, index) => {
+                           return (
+                             <Card className="d-flex flex-row align-items-center mb-2">
+                               <div className="imageAvatar m-2 ms-4">
+                               <img src={`https://crowdfinder.gabatch13.my.id/api${item.user_id.image}`} onError={dummy} alt="" />
+                               </div>
+                             <div className="d-flex flex-wrap justify-content-between"  key={index}>
+                               <label style={{fontSize: "18px"}}>{item.content}</label>
+                             </div>
+                             </Card>
+                           );
+                         })
+                       : notif?.data?.map((item, index) => {
+                           return (
+                            <Card className="d-flex flex-row align-items-center mb-2">
+                              <div className="imageAvatar m-2 ms-4">
+                               <img src={`https://crowdfinder.gabatch13.my.id/api${item.user_id.image}`} onError={dummy} alt="" />
+                               </div>
+                             <div className="d-flex flex-wrap justify-content-between"  key={index}>
+                               <label style={{fontSize: "18px"}}>{item.content}</label>
+                             </div>
+                             </Card>
+                           );
+                         })}
+                  </>
+              }
+                {/* <Card className="fontWeight-create">
+                  <div className="d-flex flex-wrap justify-content-between py-3">
+                    {notif?.data && notif?.data?.length
+                      ? notif?.data?.map((item, index) => {
+                          return (
+                            <div className="mb-3" key={index}>
+                              <h5>{item.content}</h5>
+                            </div>
+                          );
+                        })
+                      : notif?.data?.map((item, index) => {
+                          return (
+                            <div key={index}>
+                              <h5>{item.content}</h5>
+                            </div>
+                          );
+                        })}
+                  </div>
+                </Card> */}
               </>
             </Col>
           </Row>
