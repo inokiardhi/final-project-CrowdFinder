@@ -23,7 +23,7 @@ function MyCrowd(props) {
         dispatch(getUserById(userId))
     }, [dispatch])
 
-    console.log("ini my crowd", userbyid)
+    // console.log("ini my crowd", userbyid)
 
     return (
         <Container style={{ minHeight: "100vH", paddingBottom: "500px" }}>

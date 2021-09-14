@@ -5,7 +5,7 @@ import { put, takeEvery } from "@redux-saga/core/effects";
 
 function* getuserById(action) {
     const { id } = action;
-    yield console.log("fungsi berjalan")
+    // yield console.log("fungsi berjalan")
     try {
         const res = yield axios.get(`https://crowdfinder.gabatch13.my.id/api/user/${id}`);
 

@@ -30,7 +30,7 @@ function ComunityProfile(props) {
         setIsAbout(index);
     }
 
-    console.log(userId)
+    // console.log(userId)
 
     return (
         <Container style={{ minHeight: "100vH", paddingBottom: "500px" }}>

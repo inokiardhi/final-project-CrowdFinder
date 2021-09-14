@@ -20,7 +20,7 @@ function EventDetailCard(props) {
 
     const idAttend = postbyid?.find((item) => item.id === props.postid).attender
 
-    console.log("ini id user", props.idUser)
+    // console.log("ini id user", props.idUser)
 
     const handleAttendEvent = async (e) => {
         e.preventDefault();

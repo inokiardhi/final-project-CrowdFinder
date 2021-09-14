@@ -8,7 +8,7 @@ import ListCardComunity from '../../ListCardComunity';
 
 function About(props) {
     const user = useSelector((state) => state.userData.user)
-    console.log(user.id)
+    // console.log(user.id)
     return (
         <div>
             <Bio bio={user.bio} />

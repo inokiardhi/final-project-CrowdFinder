@@ -70,7 +70,7 @@ function LargeCrowdFinderCard(props) {
 
     const background = `https://crowdfinder.gabatch13.my.id/api${props.imageBkg}`
 
-    console.log("ini adalah gambar", background)
+    // console.log("ini adalah gambar", background)
 
     const dummy = (e) => {
         e.target.src = `https://ui-avatars.com/api/?name=${userbyid.fullname}&background=random&length=1&rounded=true&size=35`;

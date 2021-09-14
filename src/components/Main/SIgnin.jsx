@@ -40,7 +40,7 @@ const Signin = () => {
   }
 
   const clientId = "558045279581-0qv822ssgmrkck9kuie1aqprrufbgr47.apps.googleusercontent.com";
-  console.log("signIn");
+  // console.log("signIn");
 
   return (
     <div className="container-Signin">
