@@ -21,7 +21,7 @@ function HomePage() {
     const [posts, setPosts] = useState();
     const [loadingPg, setLoadingPg] = useState();
     const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage, setPostPerPage] = useState(4);
+    const [postPerPage, setPostPerPage] = useState(6);
 
     const dispatch = useDispatch()
     const { listPost, loading } = useSelector((state) => state.posts);
@@ -37,7 +37,7 @@ function HomePage() {
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirsPost = indexOfLastPost - postPerPage;
     const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost);
-    console.log('current', currentPosts)
+    // console.log('current', currentPosts)
 
     //change page 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)

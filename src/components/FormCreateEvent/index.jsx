@@ -40,7 +40,7 @@ function FormCreateEvent(props) {
 
                 {loading && <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'}/>}
                 {!loading && (
-                <Card className="cardSize mb-3">
+                <Card className="imgContainer mb-3">
                     {displayImage && <img src={displayImage} alt="" />}
                     <input
                         type="file"
@@ -130,7 +130,7 @@ function FormCreateEvent(props) {
                 </div>
                 )}
 
-                <div className="d-flex justify-content-end">
+                <div className="d-flex justify-content-end mt-4">
                     <Button className="px-5" variant="secondary" onClick={onClick}>Post event</Button>
                 </div>
 

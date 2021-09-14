@@ -5,6 +5,7 @@ import EventDetailCard from '../../components/EventDetailCard';
 import LargeCardMyEvent from '../../components/LargeCardMyEvent/LargeCardMyEvent';
 import LargeCrowdFinderCard from '../../components/LargeCrowdFinderCard';
 import MyPagination from '../../components/MyPagination/MyPagination';
+import ActivitiesPagination from '../../components/MyPagination/ActivitiesPagination'
 import { getPostById } from '../../redux/action/postById';
 import { getPost } from "../../redux/action/post";
 
@@ -19,6 +20,25 @@ function Activities(props) {
     const { listPost } = useSelector((state) => state.posts);
     const dispatch = useDispatch()
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(6);
+
+     //get current post
+     const indexOfLastPost = currentPage * postPerPage;
+     const indexOfFirsPost = indexOfLastPost - postPerPage;
+     const currentPosts = listPost?.length > 0 && posts?.slice(indexOfFirsPost, indexOfLastPost);
+
+    //change page 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+     //next and prev page
+     const handleNextPage = () => {
+        setCurrentPage(currentPage + 1)
+    }
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1)
+    }
 
     useEffect(() => {
         setPosts(postbyid)
@@ -30,7 +50,7 @@ function Activities(props) {
         <div>
             {show ?
                 [
-                    postbyid?.length > 0 && posts?.reverse().filter(post => post.type === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
+                    postbyid?.length > 0 && currentPosts?.reverse().filter(post => post.type === 'event').filter((post, idx) => idx < 10).map((post, idx) =>
                     (<LargeCrowdFinderCard key={idx} userName={post.user_id.username} title={post.title} content={post.content} time={post.createdAt}
                         action={() => {
                             setShow(false)
@@ -40,7 +60,7 @@ function Activities(props) {
                             })
                         }
                         } idPost={post.id} />)),
-                    postbyid?.length > 0 && posts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
+                    postbyid?.length > 0 && currentPosts?.reverse?.().filter(post => post?.type === 'announcement').map((post, id) => (
                         <LargeCardMyEvent key={id}
                             contentCard={post?.content}
                             image={post?.image}
@@ -56,7 +76,14 @@ function Activities(props) {
                         />
                     )),
                     <div className="pagination justify-content-center mt-5">
-                        <MyPagination />
+                         <ActivitiesPagination
+                                    postPerPage={postPerPage}
+                                    totalPost={posts?.length}
+                                    paginate={paginate}
+                                    currentPage={currentPage}
+                                    handleNextPage={handleNextPage}
+                                    handlePrevPage={handlePrevPage}
+                                />
                     </div>
 
                 ]
