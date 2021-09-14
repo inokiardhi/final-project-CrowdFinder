@@ -68,7 +68,7 @@ function ModalUpdate(props) {
 
     }
 
-    console.log("form", form);
+    // console.log("form", form);
 
 
     return (

@@ -126,7 +126,7 @@ function LargeCardMyEvent(props) {
     const dummy = (e) => {
         e.target.src = `https://ui-avatars.com/api/?name=${userName}&background=random&length=1&rounded=true&size=35`;
     }
-    console.log('list comment', listCommentState)
+    // console.log('list comment', listCommentState)
 
 
     return (

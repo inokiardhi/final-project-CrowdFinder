@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import "./responsive.css"
-const eye = <FontAwesomeIcon className="fa-lg"icon={faEye} />;
+const eye = <FontAwesomeIcon className="fa-lg" icon={faEye} />;
 
 
 export default function MultiStep() {
@@ -74,7 +74,7 @@ export default function MultiStep() {
     );
   };
 
-  console.log("form", form);
+  // console.log("form", form);
 
   return (
     <>
@@ -199,8 +199,8 @@ export default function MultiStep() {
                             onChange={(e) => changeForm(e)}
                           />
                           <div className="Mata-SignUp position-relative float-end">
-                          <i onClick={togglePasswordVisiblity}>{eye}</i>
-                        </div>
+                            <i onClick={togglePasswordVisiblity}>{eye}</i>
+                          </div>
                         </Form.Group>
                         <Form.Group>
                           <Col>

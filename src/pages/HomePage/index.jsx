@@ -37,7 +37,7 @@ function HomePage() {
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirsPost = indexOfLastPost - postPerPage;
     const currentPosts = listPost?.length > 0 && posts?.filter(post => post?.type === 'announcement').slice(indexOfFirsPost, indexOfLastPost);
-    console.log('current', currentPosts)
+    // console.log('current', currentPosts)
 
     //change page 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
@@ -63,12 +63,7 @@ function HomePage() {
         // setTimeout(2000)
     }, [listPost])
 
-    // console.log('comment',listComment)
-    // console.log('data', listPost)
-    console.log("ini listpost", listPost)
-    console.log("ini posts", posts)
 
-    // console.log("searchdata", search?.data?.length)
     return (
         <>
             <div className="container mt-5" style={{ minHeight: "100vH" }}>
