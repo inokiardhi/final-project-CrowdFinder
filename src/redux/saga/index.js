@@ -24,6 +24,7 @@ import { watchAttendEvent } from "./attend";
 import { watchFollowUser } from "./followUser";
 import { watchUserUpdate } from "./updateUser";
 import {watchNotification} from "./notification"
+import { watchGetPostByIdPost } from "./PostByIdPost";
 
 export default function* rootSaga() {
   yield all([
@@ -47,5 +48,6 @@ export default function* rootSaga() {
     watchFollowUser(),
     watchUserUpdate(),
     watchNotification(),
+    watchGetPostByIdPost(),
   ]);
 }

@@ -12,6 +12,7 @@ import attendEvent from "./attend";
 import followUser from "./followUser";
 import updateUser from "./updateUser";
 import notification from "./notification"
+import postByIdPost from "./PostByIdPost";
 
 
 export default combineReducers({
@@ -28,4 +29,5 @@ export default combineReducers({
     followUser,
     updateUser,
     notification,
+    postByIdPost,
 });

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { InputGroup, FormControl, Button, Form, Card } from 'react-bootstrap'
 import { getCurrentUser } from '../../redux/action/user';
 import { useParams } from 'react-router';
-import { getPostById } from '../../redux/action/postById';
+import { getPostByIdPost } from '../../redux/action/postByIdPost';
 import { updateAnnouncement } from '../../redux/action/announcement';
 import ReactLoading from 'react-loading';
 
@@ -20,8 +20,7 @@ function FormUpdateAnnouncement(props) {
    
 
     //getPost by ID ==================================
-    const {postbyid} = useSelector((state) => state.postsId)
-    
+    const {ByIdPost} = useSelector((state) => state.postByIdPost)
     // useEffect(() => {
        
     // }, [dispatch])
@@ -37,18 +36,18 @@ function FormUpdateAnnouncement(props) {
 
     useEffect(() => {
         setState({
-            interest : postbyid.interest,
-            content : postbyid.content,
+            interest : ByIdPost.interest,
+            content : ByIdPost.content,
             image : {
-                display: postbyid.image,
+                display: ByIdPost.image,
                 upload: null,
             }
         })
-    },[postbyid])
+    },[ByIdPost])
 
     useEffect(() => {
         dispatch(getCurrentUser());
-        dispatch(getPostById(1, idPost));
+        dispatch(getPostByIdPost(1, idPost));
     }, [dispatch]);
 
     const imageFile = (e) => {
@@ -84,7 +83,7 @@ function FormUpdateAnnouncement(props) {
         formData.append('interest', data.interest);
     }
 
-    console.log('ini dari inoki', postbyid)
+   
     console.log('ini dari inoki2', state)
 
     //imageHandler ============================================
