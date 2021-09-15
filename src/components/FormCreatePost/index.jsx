@@ -11,7 +11,7 @@ function FormCreateAnnouncement(props) {
     const { title, interest, content, image, onClick } = props;
     const dispatch = useDispatch();
     const [error, setError] = useState(false);
-    const {loading} = useSelector((state) => state.announcements)
+    const { loading } = useSelector((state) => state.announcements)
 
     const [state, setState] = useState({
         content: "",
@@ -57,8 +57,8 @@ function FormCreateAnnouncement(props) {
         formData.append('interest', data.interest);
     };
 
-    console.log(state.image.upload)
-    console.log(state)
+    // console.log(state.image.upload)
+    // console.log(state)
 
     //getUserData=============================================
     const userInterest = useSelector((state) => state.userData.user.interest);
@@ -84,50 +84,56 @@ function FormCreateAnnouncement(props) {
                                 ))}
                             </select>
                         </div>
-                        {loading && <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'}/>}
+                        {loading && <ReactLoading className='mx-auto' type={'cylon'} color={'#20BDE0'} height={'20%'} width={'20%'} />}
                         {!loading && (
-                        <InputGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <FormControl
-                                as="textarea"
-                                placeholder="Type something..."
-                                rows={3}
-                                onChange={(e) => setState({ ...state, content: e.target.value })}
-                            />
-                        </InputGroup>
+                            <InputGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                <FormControl
+                                    as="textarea"
+                                    placeholder="Type something..."
+                                    rows={3}
+                                    onChange={(e) => setState({ ...state, content: e.target.value })}
+                                />
+                            </InputGroup>
                         )}
 
                         {!loading && (
-                        <Card className="imgContainer">
-                            {state.image.display && <img src={state.image.display} alt="" />}
-                            <input
-                                type="file"
-                                name="image-upload"
-                                id="input"
-                                accept="image/*"
-                                onChange={imageFile}
-                            />
+                            <Card className="imgContainer">
+                                {state.image.display && <img src={state.image.display} alt="" />}
+                                <input
+                                    type="file"
+                                    name="image-upload"
+                                    id="input"
+                                    accept="image/*"
+                                    onChange={imageFile}
+                                />
 
-                            {state.image.display ? (
-                                <button
-                                    className="rounded-pill btnStyle-announcement btnCenter"
-                                    onClick={() => setState({ ...state, image:{ display: null, upload: null  }})}
-                                >
-                                    <i className="fa fa-picture-o  me-2"></i>remove image
-                                </button>
-                            ) : (
-                                <label className="rounded-pill btnStyle-announcement btnCenter" htmlFor="input">
-                                    <i className="fa fa-picture-o me-2"></i>Add Image
-                                </label>
-                            )}
-                        </Card>
-                         )}
-                        
+                                {state.image.display ? (
+                                    <button
+                                        className="rounded-pill btnStyle-announcement btnCenter"
+                                        onClick={() => setState({ ...state, image: { display: null, upload: null } })}
+                                    >
+                                        <i className="fa fa-picture-o  me-2"></i>remove image
+                                    </button>
+                                ) : (
+                                    <label className="rounded-pill btnStyle-announcement btnCenter" htmlFor="input">
+                                        <i className="fa fa-picture-o me-2"></i>Add Image
+                                    </label>
+                                )}
+                            </Card>
+                        )}
+
                         {!loading && (
+<<<<<<< HEAD
                         <div className="d-flex justify-content-end mt-4">
                             <Button className="px-5" variant="secondary" onClick={(e) => handlePostAnnouncement(e)} >Post</Button>
                         </div>
+=======
+                            <div className="d-flex justify-content-end">
+                                <Button className="px-5" variant="secondary" onClick={(e) => handlePostAnnouncement(e)} >Post</Button>
+                            </div>
+>>>>>>> b856efbf8eb64033d8c70b70b0b23fea12ef57ad
                         )}
-                        
+
                     </div>
                 </div>
 

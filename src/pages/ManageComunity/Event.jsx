@@ -43,7 +43,7 @@ function Event(props) {
         setPosts(postbyid)
     }, [postbyid])
 
-    console.log("postid event", postbyid)
+    // console.log("postid event", postbyid)
     return (
         <div>
             {show ?

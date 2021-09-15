@@ -1,7 +1,7 @@
 import { POST_ANNOUNCEMENT_BEGIN, UPDATE_ANNOUNCEMENT_BEGIN } from "./type";
 
 export const postAnnouncement = (data) => {
-  console.log(data)
+  // console.log(data)
   return {
     type: POST_ANNOUNCEMENT_BEGIN,
     data

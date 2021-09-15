@@ -22,7 +22,6 @@ function AvatarCard(props) {
     const dummy = (e) => {
         e.target.src = `https://ui-avatars.com/api/?name=${user?.username}&background=random&length=1&rounded=true&size=35`;
     }
-    console.log("username", user)
 
     useEffect(() => {
         dispatch(getCurrentUser())

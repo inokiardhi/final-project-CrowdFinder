@@ -9,7 +9,7 @@ const initialState = {
 
 const events = (state = initialState, action) => {
     const { type, payload, error } = action;
-    console.log('ini')
+    // console.log('ini')
     switch (type) {
         case POST_EVENT_BEGIN:
             return {

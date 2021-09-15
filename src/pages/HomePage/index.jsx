@@ -63,12 +63,7 @@ function HomePage() {
         // setTimeout(2000)
     }, [listPost])
 
-    // console.log('comment',listComment)
-    // console.log('data', listPost)
-    console.log("ini listpost", listPost)
-    console.log("ini posts", posts)
 
-    // console.log("searchdata", search?.data?.length)
     return (
         <>
             <div className="container mt-5" style={{ minHeight: "100vH" }}>

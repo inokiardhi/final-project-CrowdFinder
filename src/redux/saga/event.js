@@ -7,11 +7,10 @@ import Swal from "sweetalert2";
 function* PostEvents(actions) {
     const Token = localStorage.getItem('user');
     const { data } = actions;
-    console.log("ini action")
     // console.log('actions', actions)
     try {
         const res = yield axios.post(`${BASE_URL_CROWDFINDER}/post/event`, data, { headers: { Authorization: `Bearer ${Token}` } });
-        console.log('form', res)
+        // console.log('form', res)
         yield put({
             type: POST_EVENT_SUCCESS,
             payload: res.data,

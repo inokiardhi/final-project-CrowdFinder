@@ -24,7 +24,7 @@ function Event(props) {
         setPosts(postbyid)
     }, [postbyid])
 
-    console.log("ini gambar yang ada", detailcard)
+    // console.log("ini gambar yang ada", detailcard)
     return (
         <div>
             {show ?
