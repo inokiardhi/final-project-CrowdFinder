@@ -123,15 +123,9 @@ function FormCreateAnnouncement(props) {
                         )}
 
                         {!loading && (
-<<<<<<< HEAD
                         <div className="d-flex justify-content-end mt-4">
                             <Button className="px-5" variant="secondary" onClick={(e) => handlePostAnnouncement(e)} >Post</Button>
                         </div>
-=======
-                            <div className="d-flex justify-content-end">
-                                <Button className="px-5" variant="secondary" onClick={(e) => handlePostAnnouncement(e)} >Post</Button>
-                            </div>
->>>>>>> b856efbf8eb64033d8c70b70b0b23fea12ef57ad
                         )}
 
                     </div>
