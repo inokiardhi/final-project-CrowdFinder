@@ -1,0 +1,38 @@
+* {
+  font-family: 'Mulish', sans-serif;
+}
+
+.wrapper {
+  max-height: 300px;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 3px;
+  display: flex;
+  max-width: 62rem;
+  min-width: 0px;
+  overflow-x: scroll;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background: #93bdc7;
+  border-radius: 5px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+  background: #20BDE0;
+}
+
+.lineHeight-homePage {
+  line-height: 15px;
+}

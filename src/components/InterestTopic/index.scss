@@ -1,0 +1,45 @@
+.Topic {
+    font-family: 'Mulish', sans-serif;
+    color: #4F4F4F;
+
+    .title {
+        h5 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .button-edit {
+            color: #4F4F4F;
+            cursor: pointer;
+        }
+
+        .modal-edit {
+
+            background-color: rgba(255, 255, 255, 0.8);
+            font-family: 'Mulish', sans-serif;
+
+
+            .modal-textarea {
+                font-family: 'Mulish', sans-serif;
+
+            }
+
+
+
+        }
+    }
+
+    .body {
+        line-height: 25px;
+        word-spacing: 2px;
+        padding: 0;
+
+
+        .topicuser {
+            font-size: 16px;
+            padding: 10px 15px;
+            font-weight: 400;
+            background-color: #189AB0;
+        }
+    }
+}

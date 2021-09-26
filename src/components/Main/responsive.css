@@ -1,0 +1,57 @@
+@media(max-width:1200px) {
+    .image-logo img {
+        width: 500px;
+    }
+}
+
+@media(max-width:600px) {
+    .image-logo img {
+        width: 400px;
+    }
+
+    .logo-title h2 {
+        font-size: 25px;
+    }
+
+    .image-app image {
+        width: 10px;
+    }
+
+    .play-store img {
+        width: 175px;
+        height: 59px;
+    }
+
+    .app-store img {
+        width: 175px;
+        height: 65px;
+
+    }
+
+    .main-sign {
+        flex-direction: column;
+    }
+}
+
+
+@media(max-width:400px) {
+    .image-logo img {
+        width: 300px;
+    }
+
+    .logo-title h2 {
+        font-size: 20px;
+    }
+
+    .play-store img {
+        width: 170px;
+        height: 55px;
+    }
+
+    .app-store img {
+        width: 170px;
+        height: 60px;
+
+    }
+
+}

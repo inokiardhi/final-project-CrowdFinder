@@ -1,0 +1,66 @@
+.headText-badge {
+    padding: 0 10px;
+    color: #D82671;
+    border: 1px solid #D82671;
+    /* border-radius: 20%/50%; */
+
+}
+
+.widthBadge {
+    width: 100px;
+}
+
+.MyBadge {
+    padding: 3px 10px;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    color: #D82671;
+    border: 1px solid #D82671;
+    background-color: #fff;
+}
+
+.MyBadge:focus {
+    outline: 0;
+}
+
+.imgContainer input {
+    display: none;
+}
+
+.imgContainer {
+    max-width: 25rem;
+    min-width:20rem ;
+    min-height: 16rem;
+    
+}
+
+.imgContainer img {
+    max-width: 25rem;
+    min-height: 16rem;
+}
+
+.btnStyle-announcement {
+    border: 1px solid rgb(168, 168, 168);
+    padding: 5px 8px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btnStyle:active {
+    background-color: rgb(230, 230, 230);
+}
+
+.btnCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}

@@ -1,0 +1,31 @@
+@media(max-width:1500px) {
+    .wrapper {
+        max-width: 50rem;
+        min-width: 0;
+    }
+}
+
+@media(max-width:1200px) {
+    .wrapper {
+        max-width: 40rem;
+        min-width: 0;
+    }
+}
+
+@media(max-width:1000px) {
+    .wrapper {
+        max-width: 40rem;
+        min-width: 0;
+    }
+}
+
+@media(max-width:600px) {
+    .createpos {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .body-main {
+        flex-direction: column;
+    }
+}

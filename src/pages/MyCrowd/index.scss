@@ -1,0 +1,25 @@
+.Profile-page {
+
+
+    .not-active {
+        color: #B7B7B7;
+    }
+
+    .is-active {
+        color: #D82671;
+        border-bottom: solid 5px #D82671;
+    }
+
+    .button-menu {
+        h5 {
+            margin: 20px 20px 60px 0;
+            padding: 30px 75px 20px 0;
+        }
+
+        h5:hover {
+            cursor: pointer;
+        }
+
+    }
+
+}

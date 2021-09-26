@@ -1,0 +1,32 @@
+.font {
+    font-size: 11pt;
+}
+
+label {
+    font-size: 0.85rem;
+}
+
+i {
+    color: #BDBDBD;
+}
+
+.sizeCard {
+    width: 15rem;
+}
+
+.dateTime {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.smallcard:hover {
+    background-color: rgba(32, 189, 224, 0.4);
+    color: rgb(88, 88, 88);
+    cursor: pointer;
+
+}
+
+.sizeImage {
+    width: 16rem;
+    height: 10rem;
+}

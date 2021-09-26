@@ -1,0 +1,160 @@
+.container-signup {
+  height: 100vh;
+}
+
+
+.Fullbgimage-left {
+  background-image: url(../../Asset/background.png);
+  background-size: cover;
+  text-align: center;
+}
+
+.left {
+  background-color: rgba(216, 38, 113, 0.9);
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+
+}
+
+.Fullbgimage-left h2 {
+  color: white;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 53px;
+  letter-spacing: -0.24px;
+}
+
+.Fullbgimage-right {
+  background-image: url(../../Asset/background.png);
+  background-size: cover;
+  text-align: center;
+
+}
+
+.Right {
+  background-color: rgba(255, 255, 255, 0.9);
+  background-size: cover;
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+
+
+}
+
+.box {
+  background-color: rgb(255, 255, 255);
+}
+
+.button-signup {
+  background-color: #D82671;
+  border: none;
+  color: white;
+  height: 3rem;
+  width: 22rem;
+}
+
+.Mata-SignUp{
+  position: absolute;
+  bottom:1.9rem;
+  margin-right: 2.5rem;
+}
+
+
+/*=============================================== CITY============================================ */
+
+.Citybgimage-left {
+  background-image: url(../../Asset/background.png);
+  background-size: cover;
+  text-align: center;
+}
+
+.left-city {
+  background-color: rgba(216, 38, 113, 0.9);
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.Citybgimage-right {
+  background-image: url(../../Asset/background.png);
+  background-size: cover;
+  text-align: center;
+
+}
+
+.Right-City {
+  background-color: rgba(255, 255, 255, 0.9);
+  background-size: cover;
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+
+}
+
+.content-form {
+  background-color: rgb(255, 255, 255);
+  width: 43rem
+}
+
+.form-data {
+  width: 31rem
+}
+
+.content-city {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  /* width: 40rem; */
+}
+
+/* =======================================================Interest===================================== */
+
+
+.bgimage-left {
+  background-image: url(../../Asset/background.png);
+  background-size: cover;
+  text-align: center;
+}
+
+.left-interest {
+  background-color: rgba(216, 38, 113, 0.9);
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.bgimage-right {
+  background-image: url(../../Asset/background.png);
+  background-size: cover;
+  text-align: center;
+}
+
+.Right-interest {
+  background-color: rgba(255, 255, 255, 0.9);
+  background-size: cover;
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+
+}
+
+.content-interest {
+  background-color: rgb(255, 255, 255);
+}
+
+.yes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  /* width: 50rem; */
+}

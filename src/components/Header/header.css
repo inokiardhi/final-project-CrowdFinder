@@ -1,0 +1,42 @@
+.header {
+    background-color: #D82671;
+    /* height: 70px; */
+    height: 100%;
+    justify-content: center;
+    top: 50%;
+    font-family: 'Mulish', sans-serif;
+}
+
+.search-bar {
+    width: 35rem;
+    margin-left: 2rem;
+    max-height: 100%;
+}
+
+.header-logo {
+    margin-right: 2rem;
+}
+
+.avatar {
+    width: 4rem;
+    height: 61px;
+    border-radius: 50%;
+    border: solid 3px white;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.Feed-Notification p {
+    color: white;
+}
+
+.avatar-drop {
+    padding: 0;
+    height: 80px
+}

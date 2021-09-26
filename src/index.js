@@ -1,12 +1,23 @@
 import React from 'react';
+import { Provider } from "react-redux";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import store from "./redux/store";
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom.scss'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+TimeAgo.addDefaultLocale(en)
+
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,22 @@
+.footer {
+    background-color: rgba(216, 38, 113, 0.9);
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 20px;
+}
+
+.logo {
+    margin: 5rem 4rem 4rem 0;
+}
+
+.list-unstyled {
+    color: #FFFF;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 1rem;
+}
